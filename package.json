@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/MusicIO-Grupo2/sharedServer/issues"
   },
-  "homepage": "https://github.com/MusicIO-Grupo2/sharedServer#readme"
+  "homepage": "https://github.com/MusicIO-Grupo2/sharedServer#readme",
+  "dependencies": {
+    "asyn": "0.0.1",
+    "jade": "^1.11.0",
+    "pg": "6.1.5",
+    "sequelize-cli": "^2.7.0"
+  }
 }
