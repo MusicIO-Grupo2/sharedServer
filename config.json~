@@ -20,7 +20,7 @@
   "production": {
     "username": "jmqeqwnwlmwhmx",
     "password": "6180d5331a35c4ff3db6acca62c7e435d59c4a761ef25e928d142cafb5535ce1",
-    "database": "da49e341jv9ubc",
+    "database": "database_production",
     "port": "5432",
     "host": "ec2-75-101-142-182.compute-1.amazonaws.com",
     "dialect": "postgres",
