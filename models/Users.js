@@ -19,10 +19,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    FechaNacimiento: {
+        type: DataTypes.DATEONLY,
+        allowNull: true
+    },
     Passwd: {
-      type: DataTypes.STRING,
-      allowNull: true
-    }
+    type: DataTypes.STRING,
+    allowNull: true
+  }
   }, {
     tableName: 'Users'
   });
