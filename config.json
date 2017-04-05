@@ -38,7 +38,12 @@
     "port": "5432",
     "host": "ec2-75-101-142-182.compute-1.amazonaws.com",
     "dialect": "postgres",
-    "SSL" : "true",
+    "ssl" : "true",
+    "dialectOptions":{
+      "ssl":{
+         "require":true
+      }
+    },
     "define": {
         "timestamps": false
     }

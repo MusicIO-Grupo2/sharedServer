@@ -4,7 +4,7 @@
   "description": "Aplicacion para Materia Taller 2-Facultad de Ingenieria UBA- Grupo 2 1er cuatrimestre 2017.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers ts:typescript-require"
+    "test": "./node_modules/.bin/mocha --compilers ts:typescript-require",
   },
   "repository": {
     "type": "git",
