@@ -43,9 +43,13 @@ Docker:
 		Por otro lado, se dejó expuesto el postgres en el puerto 8080 para poder trabajar con postgres.
 
 Heroku Server:
-	Servidor: https://musiciogrupo2.herokuapp.com/
-	Git: https://git.heroku.com/musiciogrupo2.git	
-	DB: https://data.heroku.com/datastore/218034bf-a1c7-4ae5-b081-4fe1a9071d21
+	Servidor: 
+		https://musiciogrupo2.herokuapp.com/
+	Git: 
+		https://git.heroku.com/musiciogrupo2.git	
+	DB: 
+		https://data.heroku.com/datastore/218034bf-a1c7-4ae5-b081-4fe1a9071d21
+
 	Heroku pull database: 
 		- Cambiar primero de usuario: sudo su postgres
 		- heroku pg:pull postgresql-graceful-40196 musicio2 --app musiciogrupo2
