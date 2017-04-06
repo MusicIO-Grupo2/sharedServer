@@ -8,6 +8,8 @@ Estructura de directorios:
 - lib
 	- Carpeta con librerias varias: password, token, servicios, etc.
 
+- logs
+	- Carpeta que contiene archivos de logs de la aplicación: access, app, error.
 - Migrations
 	- Carpeta que contiene las migrations de sequelize de cambio de base de datos.
 - Models
@@ -97,6 +99,9 @@ Referencias:
 		https://mochajs.org/
 	- Chai
 		http://chaijs.com/
+
+	- Log4js
+		https://www.npmjs.com/package/log4js
 
 
 
