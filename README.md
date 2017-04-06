@@ -58,9 +58,7 @@ Referencias:
 
 	- Docker: 
 		https://docs.docker.com/compose/compose-file/#volume-configuration-reference
-
 		https://docs.docker.com/engine/getstarted/step_six/#step-2-pull-your-new-image
-
 		https://docs.docker.com/engine/reference/commandline/tag/ 
 	- Heroku:
 		https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction
