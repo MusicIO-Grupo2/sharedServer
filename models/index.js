@@ -1,16 +1,17 @@
 'use strict';
-
 var fs        = require('fs');
 var path      = require('path');
 var Sequelize = require('sequelize');
 var basename  = path.basename(module.filename);
 var env       = process.env.NODE_ENV || 'development';
-var config    = require(__dirname + '/config.json')[env];
+var config    = require('../config/configDB.json')[env];
 var db        = {};
 
-console.log(process.env);
-console.log(config);
-console.log(env);
+
+var log4js = require('log4js');
+log4js.configure('./config/log4js.json');
+var logger = log4js.getLogger("info");
+logger.trace(config);
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
