@@ -30,19 +30,24 @@ Estructura de directorios:
 
 Ejemplos de prueba con Curl:
 
-Saber si un usuario está registrado por mail:	curl -i http://localhost:5000/user/Registrado?email='nflabo'
-Saber si un usuario está registrado por id: 	curl -i http://localhost:5000/user/Registrado?id=1
-Auth Login: curl -H "Content-Type: application/json" -X POST -d '{"Email":"nflabo","Password":"xyz"}' http://localhost:5000/auth/login
+Saber si un usuario está registrado por mail:	
+		curl -i http://localhost:5000/user/Registrado?email='nflabo'
+Saber si un usuario está registrado por id:
+		curl -i http://localhost:5000/user/Registrado?id=1
+Auth Login: 
+		curl -H "Content-Type: application/json" -X POST -d '{"Email":"nflabo","Password":"xyz"}' http://localhost:5000/auth/login
 
 Docker:
-	- https://cloud.docker.com/swarm/tallermusiciogrupo2
-	- tallermusiciogrupo2 (user)
-	- nflabo@gmail.com (passwd pedirlo)
+	- Repo:
+		https://cloud.docker.com/swarm/tallermusiciogrupo2
+	- Usuario,
+		tallermusiciogrupo2 (user)
 	- docker pull tallermusiciogrupo2/sharedserver_app. 
 		Una vez descargada la imagen, en la carpeta actual se debe tener la carpeta de init_scripts.
 		Por otro lado, se dejó expuesto el postgres en el puerto 8080 para poder trabajar con postgres.
 
 Heroku Server:
+
 	Servidor: 
 		https://musiciogrupo2.herokuapp.com/
 	Git: 
