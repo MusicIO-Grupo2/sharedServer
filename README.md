@@ -75,6 +75,15 @@ Heroku Server:
 		heroku pg:reset
 		heroku pg:push musicio2 postgresql-graceful-40196 --app musiciogrupo2
 
+	Push to Heruku
+		git push heroku master
+
+	Check Running:
+		heroku ps:scale web=1
+
+	Open Site
+		heroku open
+
 Referencias:
 
 	- Docker: 
