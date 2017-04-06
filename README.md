@@ -30,14 +30,20 @@ Estructura de directorios:
 
 Ejemplos de prueba con Curl:
 
-Saber si un usuario está registrado por mail:	
+Saber si un usuario está registrado por mail:
+	
 			curl -i http://localhost:5000/user/Registrado?email='nflabo'
+
 Saber si un usuario está registrado por id:
+
 			curl -i http://localhost:5000/user/Registrado?id=1
+
 Auth Login: 
+
 			curl -H "Content-Type: application/json" -X POST -d '{"Email":"nflabo","Password":"xyz"}' http://localhost:5000/auth/login
 
 Docker:
+
 	Repo:
 
 		https://cloud.docker.com/swarm/tallermusiciogrupo2
