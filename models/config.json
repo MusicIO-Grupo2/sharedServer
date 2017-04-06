@@ -6,7 +6,12 @@
     "host": "musicio2",
     "port": "5432",
     "dialect": "postgres",
-    "SSL" : "true",
+    "ssl" : "true",
+    "dialectOptions":{
+      "ssl":{
+         "require":true
+      }
+    },
     "define": {
         "timestamps": false
     }
@@ -18,7 +23,12 @@
     "host": "localhost",
     "port": "5432",
     "dialect": "postgres",
-    "SSL" : "true",
+    "ssl" : "true",
+    "dialectOptions":{
+      "ssl":{
+         "require":true
+      }
+    },
     "define": {
         "timestamps": false
     }
@@ -29,7 +39,13 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "SSL" : "true",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "ssl" : "true",
+    "dialectOptions":{
+      "ssl":{
+         "require":true
+      }
+    }
   },
   "production": {
     "username": "jmqeqwnwlmwhmx",
