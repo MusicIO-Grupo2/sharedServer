@@ -31,18 +31,18 @@ Estructura de directorios:
 Ejemplos de prueba con Curl:
 
 Saber si un usuario está registrado por mail:	
-		curl -i http://localhost:5000/user/Registrado?email='nflabo'
+			curl -i http://localhost:5000/user/Registrado?email='nflabo'
 Saber si un usuario está registrado por id:
-		curl -i http://localhost:5000/user/Registrado?id=1
+			curl -i http://localhost:5000/user/Registrado?id=1
 Auth Login: 
-		curl -H "Content-Type: application/json" -X POST -d '{"Email":"nflabo","Password":"xyz"}' http://localhost:5000/auth/login
+			curl -H "Content-Type: application/json" -X POST -d '{"Email":"nflabo","Password":"xyz"}' http://localhost:5000/auth/login
 
 Docker:
-	- Repo:
+	Repo:
 		https://cloud.docker.com/swarm/tallermusiciogrupo2
-	- Usuario,
+	Usuario:
 		tallermusiciogrupo2 (user)
-	- docker pull tallermusiciogrupo2/sharedserver_app. 
+	Docker pull tallermusiciogrupo2/sharedserver_app. 
 		Una vez descargada la imagen, en la carpeta actual se debe tener la carpeta de init_scripts.
 		Por otro lado, se dejó expuesto el postgres en el puerto 8080 para poder trabajar con postgres.
 
@@ -56,12 +56,12 @@ Heroku Server:
 		https://data.heroku.com/datastore/218034bf-a1c7-4ae5-b081-4fe1a9071d21
 
 	Heroku pull database: 
-		- Cambiar primero de usuario: sudo su postgres
-		- heroku pg:pull postgresql-graceful-40196 musicio2 --app musiciogrupo2
+		Cambiar primero de usuario: sudo su postgres
+		heroku pg:pull postgresql-graceful-40196 musicio2 --app musiciogrupo2
 
 	Heroku push database:
-		- heroku pg:reset
-		- heroku pg:push musicio2 postgresql-graceful-40196 --app musiciogrupo2
+		heroku pg:reset
+		heroku pg:push musicio2 postgresql-graceful-40196 --app musiciogrupo2
 
 Referencias:
 
