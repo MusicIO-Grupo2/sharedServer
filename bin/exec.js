@@ -21,5 +21,5 @@ app.get('/', function(request, response) {
     var result = 'Aplicación ejecutándose'
     response.send(result);
 }).listen(app.get('port'), function() {
-    log.info('La aplicación está corriendo en el puerto: ', app.get('port'));
+	log.info('La aplicación está corriendo en el puerto: ', app.get('port'));
 });
