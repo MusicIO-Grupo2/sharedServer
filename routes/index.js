@@ -12,7 +12,9 @@ UserRouter.post('/auth/login', authCtrl.emailLogin);
 // Ruta solo accesible si estás autenticado
 UserRouter.get('/private',middleware.ensureAuthenticated, function(req, res) {} );
 
-UserRouter.get('/', function(req, res) { });
+UserRouter.get('/', function(req, res) { 
+    res.render('index');
+});
 
 UserRouter.get('/Registrado/',functionsDatabase.getUser,  function(req, res,next) {});
 
