@@ -1,6 +1,6 @@
 var express = require('express');
-var authCtrl = require('../auth');
-var middleware = require('../middleware');
+var authCtrl = require('../lib/auth');
+var middleware = require('../lib/middleware');
 var models = require('../models/index');
 var functionsDatabase = require('../lib/postgres');
 

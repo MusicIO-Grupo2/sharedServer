@@ -1,8 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');  
-var authCtrl = require('./auth');
-var middleware = require('./middleware');
+var authCtrl = require('./lib/auth');
+var middleware = require('./lib/middleware');
 var env = require('node-env-file');
 var app = express();
 env(__dirname + '/process.env');
