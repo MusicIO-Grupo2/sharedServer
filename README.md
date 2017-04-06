@@ -39,11 +39,17 @@ Auth Login:
 
 Docker:
 	Repo:
+
 		https://cloud.docker.com/swarm/tallermusiciogrupo2
+
 	Usuario:
+
 		tallermusiciogrupo2 (user)
-	Docker pull tallermusiciogrupo2/sharedserver_app. 
+
+	Docker pull tallermusiciogrupo2/sharedserver_app.
+
 		Una vez descargada la imagen, en la carpeta actual se debe tener la carpeta de init_scripts.
+
 		Por otro lado, se dejó expuesto el postgres en el puerto 8080 para poder trabajar con postgres.
 
 Heroku Server:
