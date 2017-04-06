@@ -86,6 +86,18 @@ Heroku Server:
 	Open Site
 		heroku open
 
+App Web:
+    
+    Para levantar la aplicación web de forma local se necesita tener instalado [Python](https://www.python.org/downloads/)
+        
+        $ cd sharedServer
+        $ cd client
+        $ phyton -m SimpleHTTPServer
+
+    Esto dejara corriendo la aplicación en su localhost en el puerto 8000
+            
+        
+
 Referencias:
 
 	- Docker: 
