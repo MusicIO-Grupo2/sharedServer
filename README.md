@@ -1,7 +1,7 @@
 Shared Server - MusicIO Grupo 2- Taller de Programación II - FIUBA
 
 Coverage:
-[![Coverage Status](https://coveralls.io/repos/github/nicolasgalvarez91/orgaCompu2016_2C/badge.svg?branch=master)](https://coveralls.io/github/nicolasgalvarez91/orgaCompu2016_2C?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/MusicIO-Grupo2/sharedServer/badge.svg?branch=master)](https://coveralls.io/github/MusicIO-Grupo2/sharedServer?branch=master)
 
 Travis : 
 [![Build Status](https://travis-ci.org/MusicIO-Grupo2/sharedServer.svg?branch=master)](https://travis-ci.org/MusicIO-Grupo2/sharedServer)
