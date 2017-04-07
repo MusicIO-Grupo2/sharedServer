@@ -1,5 +1,11 @@
 Shared Server - MusicIO Grupo 2- Taller de Programación II - FIUBA
 
+Coverage:
+[![Coverage Status](https://coveralls.io/repos/github/nicolasgalvarez91/orgaCompu2016_2C/badge.svg?branch=master)](https://coveralls.io/github/nicolasgalvarez91/orgaCompu2016_2C?branch=master)
+
+Travis : 
+[![Build Status](https://travis-ci.org/MusicIO-Grupo2/sharedServer.svg?branch=master)](https://travis-ci.org/MusicIO-Grupo2/sharedServer)
+
 Estructura de directorios:
 - bin
 	- exec.js: file que contiene comandos para ejecutar lo que se encuentra en app.js y ponerse a escuchar en un puerto determinado peticiones.
@@ -116,6 +122,3 @@ Referencias:
 		https://www.npmjs.com/package/log4js
 
 
-
-Travis : 
-[![Build Status](https://travis-ci.org/MusicIO-Grupo2/sharedServer.svg?branch=master)](https://travis-ci.org/MusicIO-Grupo2/sharedServer)
