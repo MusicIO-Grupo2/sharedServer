@@ -2,10 +2,4 @@ language: node_js
 node_js:
   - "7.8.0"
 
-services:
-  - postgresql
-
-before_script:
-  - psql -U postgres -d postgres -a -f ./init_scripts/musicio2.sql
-
 after_success: npm run coverage
