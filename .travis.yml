@@ -5,7 +5,7 @@ node_js:
 addons:
   postgresql: "9.6"
 
-after_script:
+before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - psql -U postgres -d travis_ci_test -a -f ./init_scripts/musicio2.sql
 
