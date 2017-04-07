@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - "7.8.0"
 
-addons:
-  postgresql: "9.6"
+services:
+  - postgresql
 
 before_script:
   - psql -c 'create database musicio2;' -U postgres
