@@ -13,6 +13,7 @@ UserRouter.post('/auth/login', authCtrl.emailLogin);
 UserRouter.get('/private',middleware.ensureAuthenticated, function(req, res) {} );
 
 UserRouter.get('/', function(req, res) { 
+    res.status = 200;
     res.render('index');
 });
 

@@ -4,5 +4,12 @@ idea/*
 ./log/*
 /coverage
 /log
+log/
 .nyc_output/
-./config/configDB.json
+/config/configDB.json
+process.env
+node_modules/.cache/
+log/access.log
+log/app.log
+log/errors.log
+
