@@ -19,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 var logger = log4js.getLogger("App");
-app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+app.use(log4js.connectLogger(log4js.getLogger("consola"), { level: 'auto' }));
 
 // *** routes *** //
 var routes = require('./routes/index.js');
