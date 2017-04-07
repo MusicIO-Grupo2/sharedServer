@@ -6,7 +6,6 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database musicio2;' -U postgres
-  - psql -U postgres -d musicio2 -a -f ./init_scripts/musicio2.sql
+  - psql -U postgres -d postgres -x postgres -a -f ./init_scripts/musicio2.sql
 
 after_success: npm run coverage

@@ -16,3 +16,12 @@
   ssl: 'true',
   dialectOptions: { ssl: { require: true } },
   define: { timestamps: false } }
+[2017-04-07 15:01:39.826] [TRACE] info - { username: 'postgres',
+  password: '',
+  database: 'postgres',
+  host: 'localhost',
+  port: '5432',
+  dialect: 'postgres',
+  ssl: 'true',
+  dialectOptions: { ssl: { require: true } },
+  define: { timestamps: false } }
