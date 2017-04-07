@@ -5,4 +5,4 @@ idea/*
 /coverage
 /log
 .nyc_output/
-./config/configDB.json
+
