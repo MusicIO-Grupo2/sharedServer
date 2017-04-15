@@ -10,6 +10,23 @@
     "define": {
         "timestamps": false
     }
+  },
+  "development": {
+    "username": "postgres",
+    "password": "postgres",
+    "database": "musicio2",
+    "host": "localhost",
+    "port": "5432",
+    "dialect": "postgres",
+    "ssl" : "true",
+    "dialectOptions":{
+      "ssl":{
+         "require":true
+      }
+    },
+    "define": {
+        "timestamps": false
+    }
   }
 }
 
