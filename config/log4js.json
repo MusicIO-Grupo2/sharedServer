@@ -17,6 +17,7 @@
         {
           "type": "logLevelFilter",
           "level": "ERROR",
+	  "category": "error",
           "appender": {
             "type": "file",
             "filename": "log/errors.log"
