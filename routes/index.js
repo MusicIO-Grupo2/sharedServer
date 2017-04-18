@@ -18,6 +18,7 @@ UserRouter.get('/', function(req, res) {
 });
 
 UserRouter.get('/users/Registrado/',functionsDatabase.getUser,  function(req, res,next) {});
+UserRouter.get('/users/Contactos/:id',functionsDatabase.listarContactosUser,  function(req, res,next) {});
 UserRouter.post('/users/Registrar/',functionsDatabase.registerUser,  function(req, res,next) {});
 UserRouter.delete('/users/Eliminar/:id',functionsDatabase.deleteUser,  function(req, res,next) {});
 UserRouter.delete('/users/Eliminar/',functionsDatabase.deleteUserByMail,  function(req, res,next) {});

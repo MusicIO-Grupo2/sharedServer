@@ -2,9 +2,19 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../app');
 var helperToken = require('../lib/service');
+var helperPass= require('../lib/password');
 var should = chai.should();
 
 chai.use(chaiHttp);
+
+describe('Password', function() {
+	it('Test hash y validate', function() {
+		var passwHash= helperPass.hash("test1");	       
+		var assert = chai.assert;		
+		 assert.equal(helperPass.validate('eMtJupw9v0dde3743f0569de80abeaca10eca65db','test1'),true);
+	   });
+
+});
 
 describe('Tokens', function() {
 	it('Obtener Token by mail y password', function(done) {
@@ -205,6 +215,15 @@ describe('Users', function() {
       .put('/users/Reactivar/0')
       .end(function(err, res){
         res.should.have.status(401);
+        res.should.be.json;
+        done();
+      });
+   });
+   it('Listado de Contactos', function(done) {
+       chai.request(server)
+      .get('/users/Contactos/7')
+      .end(function(err, res){
+        res.should.have.status(200);
         res.should.be.json;
         done();
       });

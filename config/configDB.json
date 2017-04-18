@@ -7,6 +7,7 @@
     "port": "5432",
     "dialect": "postgres",
     "ssl" : "true",
+    "freezeTableName": true,
     "define": {
         "timestamps": false
     }
@@ -19,6 +20,7 @@
     "port": "5432",
     "dialect": "postgres",
     "ssl" : "true",
+    "freezeTableName": true,
     "dialectOptions":{
       "ssl":{
          "require":true
