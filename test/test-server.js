@@ -62,6 +62,244 @@ describe('Tokens', function() {
 	   });
 });
 
+describe('Canciones', function() {
+	it('Obtener Canciones', function(done) {
+		       chai.request(server)
+		      .get('/canciones/ObtenerCanciones')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Re Activar Cancion ', function(done) {
+		       chai.request(server)
+		      .put('/canciones/ReactivarCancion/1')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Re Activar Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .put('/canciones/ReactivarCancion/0')
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Obtener Cancion', function(done) {
+		       chai.request(server)
+		      .get('/canciones/ObtenerCancion/1')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Obtener Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .get('/canciones/ObtenerCancion/0')
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Obtener Puntuacion Cancion', function(done) {
+		       chai.request(server)
+		      .get('/canciones/ObtenerPuntuacionCancion/1')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Obtener Puntuacion Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .get('/canciones/ObtenerPuntuacionCancion/0')
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Marcar Cancion', function(done) {
+		       chai.request(server)
+		      .post('/canciones/MarcarCancion/')
+		      .send({"UserID":"8","CancionID":"1"})
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Marcar Cancion ya marcada', function(done) {
+		       chai.request(server)
+		      .post('/canciones/MarcarCancion/')
+		      .send({"UserID":"8","CancionID":"1"})
+		      .end(function(err, res){
+				res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('DesMarcar Cancion', function(done) {
+		       chai.request(server)
+		      .post('/canciones/DesmarcarCancion/')
+		      .send({"UserID":"8","CancionID":"1"})
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('DesMarcar Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .post('/canciones/DesmarcarCancion/')
+		      .send({"UserID":"8","CancionID":"0"})
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	
+	it('Alta Cancion', function(done) {
+		       chai.request(server)
+		      .post('/canciones/AltaCancion/')
+		      .send({"Nombre":helperPass.hash("testeame"),"Descripcion":helperPass.hash("testeame")})
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Alta Cancion existente', function(done) {
+		       chai.request(server)
+		      .post('/canciones/AltaCancion/')
+		      .send({"Nombre":"Testeame","Descripcion":"Testeame"})
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Puntuar Cancion', function(done) {
+		       chai.request(server)
+		      .post('/canciones/PuntuarCancion/')
+		      .send({"UserID":"8","CancionID":"1","Puntaje":"5"})
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Alta Genero Cancion', function(done) {
+		       chai.request(server)
+		      .post('/canciones/AltaGeneroCancion/')
+		      .send({"CancionID":"1","GeneroID":"2"})
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Alta Genero Cancion Existente', function(done) {
+		       chai.request(server)
+		      .post('/canciones/AltaGeneroCancion/')
+		      .send({"CancionID":"1","GeneroID":"2"})
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Baja Genero Cancion', function(done) {
+		       chai.request(server)
+		      .delete('/canciones/BajaGeneroCancion?id=1&idGenero=2')
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Baja Genero Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .delete('/canciones/BajaGeneroCancion?id=1&idGenero=2')
+		      .end(function(err, res){
+			if (res.status==404){
+				res.should.have.status(404);
+			}else{
+				res.should.have.status(200);
+			}
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Actualizar Cancion', function(done) {
+		       chai.request(server)
+		      .put('/canciones/ActualizarCancion/1')
+		      .send({"Nombre":"testeame","Descripcion":"testeame"})
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Actualizar Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .put('/canciones/ActualizarCancion/0')
+		      .send({"Nombre":"testeame","Descripcion":"testeame"})
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Baja Cancion', function(done) {
+		       chai.request(server)
+		      .delete('/canciones/BajaCancion/1')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+	it('Baja Cancion Inexistente', function(done) {
+		       chai.request(server)
+		      .delete('/canciones/BajaCancion/0')
+		      .end(function(err, res){
+			res.should.have.status(404);
+			res.should.be.json;
+			done();
+	      	});
+   	});
+});
+
+
 describe('Users', function() {
   
   it('Obtener Usuario Registrado by email', function(done) {
