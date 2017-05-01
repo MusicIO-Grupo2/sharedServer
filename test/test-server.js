@@ -305,7 +305,7 @@ describe('Users', function() {
   it('Obtener Usuario Registrado by email', function(done) {
        chai.request(server)
       .post('/auth/login/')
-      .send({"Email":"marcospernica@yahoo.com.ar","Password":"test"})
+      .send({"Email":"nflabo@gmail.com","Password":"test"})
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
@@ -458,9 +458,12 @@ describe('Users', function() {
       });
    });
    it('Listado de Contactos', function(done) {
+	var tokenGenerado= helperToken.createToken(11);
        chai.request(server)
-      .get('/users/Contactos/7')
+      .get('/users/me/Contactos/')
+	.set('authorization', 'test ' + tokenGenerado)
       .end(function(err, res){
+	
         res.should.have.status(200);
         res.should.be.json;
         done();

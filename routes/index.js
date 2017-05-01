@@ -18,14 +18,18 @@ Router.get('/', function(req, res) {
 });
 
 Router.get('/users/Registrado/',functionsDatabase.getUser,  function(req, res,next) {});
-Router.get('/users/Contactos/:id',functionsDatabase.listarContactosUser,  function(req, res,next) {});
+Router.get('/users/me/Contactos/',functionsDatabase.listarContactosUser,  function(req, res,next) {});
+Router.get('/users/me/',functionsDatabase.getUserMe,  function(req, res,next) {});
 Router.post('/users/Registrar/',functionsDatabase.registerUser,  function(req, res,next) {});
 Router.delete('/users/Eliminar/:id',functionsDatabase.deleteUser,  function(req, res,next) {});
 Router.delete('/users/Eliminar/',functionsDatabase.deleteUserByMail,  function(req, res,next) {});
 Router.put('/users/Actualizar/:id',functionsDatabase.updateUser,  function(req, res,next) {});
+Router.put('/users/me/photo/',functionsDatabase.updateFotoPerfil,  function(req, res,next) {});
 Router.put('/users/Reactivar/:id',functionsDatabase.reactivarUser,  function(req, res,next) {});
 
+
 Router.get('/canciones/ObtenerCanciones/',functionsDatabase.getCanciones,  function(req, res,next) {});
+Router.get('/canciones/ObtenerCancionesPaginadas/',functionsDatabase.getCancionesPaginadas,  function(req, res,next) {});
 Router.get('/canciones/ObtenerCancion/:id',functionsDatabase.getCancion,  function(req, res,next) {});
 Router.post('/canciones/AltaCancion/',functionsDatabase.altaCancion,  function(req, res,next) {});
 Router.delete('/canciones/BajaCancion/:id',functionsDatabase.bajaCancion,  function(req, res,next) {});

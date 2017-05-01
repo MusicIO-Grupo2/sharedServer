@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true
+    },
+    Duracion: {
+      type: DataTypes.BIGINT,
+      allowNull: true
     }
   }, {
     tableName: 'Cancion'
