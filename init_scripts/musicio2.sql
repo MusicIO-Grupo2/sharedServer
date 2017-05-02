@@ -582,6 +582,7 @@ SELECT pg_catalog.setval('"Album_AlbumID_seq"', 1, false);
 --
 
 COPY "Artista" ("ArtistaID", "Nombre", "Apellido", "Edad", "Activo") FROM stdin;
+1	Ricky	Martin	30	t
 \.
 
 
@@ -590,6 +591,7 @@ COPY "Artista" ("ArtistaID", "Nombre", "Apellido", "Edad", "Activo") FROM stdin;
 --
 
 COPY "ArtistaCancion" ("ArtistaID", "CancionID") FROM stdin;
+1	2
 \.
 
 
@@ -605,7 +607,7 @@ COPY "ArtistaUser" ("ArtistaID", "UserID") FROM stdin;
 -- Name: Artista_ArtistaID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, false);
+SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, true);
 
 
 --
@@ -613,34 +615,35 @@ SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, false);
 --
 
 COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM stdin;
-23	i9J60sSDs553d28b3d49d5f643c4ba0b402eeee10	9OrRiIeco0e87eeeac8b6c9ea321642d60178b428	t	\N
-2	La Mordidita	Tema de moda	t	\N
-24	upz6trMdW88ccc84566e58994128052e43afb7e35	3SX40yA1v510ede9c9c49ff35e491270cc5b58ed2	t	\N
-3	Testeame	Testeame	f	\N
-4	Testeame	Testeame	t	\N
-25	aBeplb6Kfed9cf740d77aa21d3a7ce336e3f586ae	#4Q#.nd1y9ca20371e73a236411c45bdfa6cd38eb	t	\N
-26	TuDUB3j6Kbe932f87a3383df900e9a4880656e5d8	PHhyoT#7E35fd02d608322c2475d96935ed344c7b	t	\N
-5	MxO50EhTx7ca6912c4412f59c0718e14dad8a8d6c	5irHypMsia6f4caa682e44e6e70462ff26f5009b0	t	\N
-6	!YhbushkEff951f7e7033c2507e2e1cb7e5cbfee5	e#RAhWlWj34468a77720b6c0ca9a633c45f4df12b	t	\N
-27	JhH2Zxx.Gfdb55b44b1d757d7fca7c10bd3dadd94	tfDZhEX3Q815e2193817f7205e3cae388082555ad	t	\N
-7	#dgzQT7Nkd29b07b3107c8ffc233f3d843277498a	RgSBjUnxV429c54b0c1ad6aaf348284224764de34	t	\N
-8	HOZkoUUn25ad0fa7793ecb5a2b9258f8b8399a4a0	Su0MUxZd03cd7c5afc8ae705dd6a11b8ee5c59c3c	t	\N
-28	TfvmJtR!#f0c243a5f3244f6990caef56083ed29c	vR9mOK#eM970d651c63ca0b9bac1ffab053cd713e	t	\N
-9	sBn3fKgpZ0d9ee55c79d015fe35355c6d63692cb7	AYQBw#.WM4de7e70fabb2841587ebc94ace0474f4	t	\N
-1	testeame	testeame	f	\N
-10	WxudjZXRGe3e662d3637b9652784f75be968d60a5	RQru2off46bcae193660505b7a1d19ffb8fb07f04	t	\N
-11	M30C4FToQ6928aac298aee719158011634f52925e	aUg4fU6.#221cf06f9658f2fad81c57ad258cd894	t	\N
-12	#pSbuOFq8828499eee9b1111fc13954574907d36a	WngQRmr4Uec70cc7c0dd0a57b99cf64262883cc8d	t	\N
-13	coI!OPNru31cbcae7ad22bfa6bc6189cdf0bbcc08	klTAmA6Zjc674bcdff850d394f302bce7f25449bf	t	\N
-14	!Ml4santf247ad20ce1366405bb1b9481b14ae468	o.RXpoISX15e30bc26a8446a031cbb8579899d402	t	\N
-15	eovBmLh1x31e2e3a5eae7326ce4a6ef7c368f991a	u989TrCem90a76161612a5751050697f9107f494e	t	\N
-16	uozrbGXYr75a029507464a9fa7857a88134759f5f	mkou982zr4be42c9a14ee29a460ab1584adf46662	t	\N
-17	MWBrqrDpm63cedeed278dbb114905e1822a7f864f	fABLTDziJb232cd9a8ea8d08c930ed6b9e96144e6	t	\N
-18	23W5Zp2fv12ab4727a5c66a4056a4acc7b2a386f0	DiTFNVGaRd34cb95f9921277304d80d5ba8b507d6	t	\N
-19	kvkgpdOdU4a728e7b2345152ad73545eb082b9aa5	MCO3eMf3H5c0b5f5a0030280cb6f79289df127c77	t	\N
-20	ZQ7RuzKbQ2219cce55ee14a0d87d3f27ef0f688fc	O9HC1TXaU347ddf62b2e09d7380e29ac1d69e3137	t	\N
-21	Gh7RN.#DK426d525566613698ffacad9b55e7ec4c	ElI#Fwnkk718b66efaa9bac1661690a0a47b20111	t	\N
-22	uDdJA81jl1bbc8dbe4276d842bc7b248ef20f817c	GCPBbUAd195b0b1a7467e24e82ed6d7c6fc199bba	t	\N
+29	BHlicctsC38b8765329b56b36ca9b2526da0e0784	CF.pGyVHE136e20977164e16491074217a1953f1f	t	\N
+1	testeame	testeame	f	150
+23	i9J60sSDs553d28b3d49d5f643c4ba0b402eeee10	9OrRiIeco0e87eeeac8b6c9ea321642d60178b428	t	150
+2	La Mordidita	Tema de moda	t	150
+24	upz6trMdW88ccc84566e58994128052e43afb7e35	3SX40yA1v510ede9c9c49ff35e491270cc5b58ed2	t	150
+3	Testeame	Testeame	f	150
+4	Testeame	Testeame	t	150
+25	aBeplb6Kfed9cf740d77aa21d3a7ce336e3f586ae	#4Q#.nd1y9ca20371e73a236411c45bdfa6cd38eb	t	150
+26	TuDUB3j6Kbe932f87a3383df900e9a4880656e5d8	PHhyoT#7E35fd02d608322c2475d96935ed344c7b	t	150
+5	MxO50EhTx7ca6912c4412f59c0718e14dad8a8d6c	5irHypMsia6f4caa682e44e6e70462ff26f5009b0	t	150
+6	!YhbushkEff951f7e7033c2507e2e1cb7e5cbfee5	e#RAhWlWj34468a77720b6c0ca9a633c45f4df12b	t	150
+27	JhH2Zxx.Gfdb55b44b1d757d7fca7c10bd3dadd94	tfDZhEX3Q815e2193817f7205e3cae388082555ad	t	150
+7	#dgzQT7Nkd29b07b3107c8ffc233f3d843277498a	RgSBjUnxV429c54b0c1ad6aaf348284224764de34	t	150
+8	HOZkoUUn25ad0fa7793ecb5a2b9258f8b8399a4a0	Su0MUxZd03cd7c5afc8ae705dd6a11b8ee5c59c3c	t	150
+28	TfvmJtR!#f0c243a5f3244f6990caef56083ed29c	vR9mOK#eM970d651c63ca0b9bac1ffab053cd713e	t	150
+9	sBn3fKgpZ0d9ee55c79d015fe35355c6d63692cb7	AYQBw#.WM4de7e70fabb2841587ebc94ace0474f4	t	150
+10	WxudjZXRGe3e662d3637b9652784f75be968d60a5	RQru2off46bcae193660505b7a1d19ffb8fb07f04	t	150
+11	M30C4FToQ6928aac298aee719158011634f52925e	aUg4fU6.#221cf06f9658f2fad81c57ad258cd894	t	150
+12	#pSbuOFq8828499eee9b1111fc13954574907d36a	WngQRmr4Uec70cc7c0dd0a57b99cf64262883cc8d	t	150
+13	coI!OPNru31cbcae7ad22bfa6bc6189cdf0bbcc08	klTAmA6Zjc674bcdff850d394f302bce7f25449bf	t	150
+14	!Ml4santf247ad20ce1366405bb1b9481b14ae468	o.RXpoISX15e30bc26a8446a031cbb8579899d402	t	150
+15	eovBmLh1x31e2e3a5eae7326ce4a6ef7c368f991a	u989TrCem90a76161612a5751050697f9107f494e	t	150
+16	uozrbGXYr75a029507464a9fa7857a88134759f5f	mkou982zr4be42c9a14ee29a460ab1584adf46662	t	150
+17	MWBrqrDpm63cedeed278dbb114905e1822a7f864f	fABLTDziJb232cd9a8ea8d08c930ed6b9e96144e6	t	150
+18	23W5Zp2fv12ab4727a5c66a4056a4acc7b2a386f0	DiTFNVGaRd34cb95f9921277304d80d5ba8b507d6	t	150
+19	kvkgpdOdU4a728e7b2345152ad73545eb082b9aa5	MCO3eMf3H5c0b5f5a0030280cb6f79289df127c77	t	150
+20	ZQ7RuzKbQ2219cce55ee14a0d87d3f27ef0f688fc	O9HC1TXaU347ddf62b2e09d7380e29ac1d69e3137	t	150
+21	Gh7RN.#DK426d525566613698ffacad9b55e7ec4c	ElI#Fwnkk718b66efaa9bac1661690a0a47b20111	t	150
+22	uDdJA81jl1bbc8dbe4276d842bc7b248ef20f817c	GCPBbUAd195b0b1a7467e24e82ed6d7c6fc199bba	t	150
 \.
 
 
@@ -648,7 +651,7 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 -- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 28, true);
+SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 29, true);
 
 
 --
@@ -693,7 +696,7 @@ COPY "GeneroArtista" ("ArtistaID", "GeneroID") FROM stdin;
 --
 
 COPY "GeneroCancion" ("CancionID", "GeneroID") FROM stdin;
-1	3
+2	3
 \.
 
 
@@ -841,6 +844,7 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 89	taller	taller	testtaller2@taller2.com	NMpQyYQBk67243d7ff792c4ac411e37d707214121	1991-01-01	f	\N
 70	taller	taller	testtaller2@taller2.com	Q!!tOu9Fue862bf9dabb48fc539b99ee94bf917db	1991-01-01	f	\N
 71	taller	taller	testtaller2@taller2.com	7sE4gF3ek21ef45c2319f6cf07fc6469ef0542a48	1991-01-01	f	\N
+11	Nicolas	Fernandez	nflabo@gmail.com	BgaGQioRU57cd51ae0a4bd241c4e6f95bc9f392ce	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
 72	taller	taller	testtaller2@taller2.com	4Fd5C5o0c2c75913b00bba1bdc928082a55acbfd9	1991-01-01	f	\N
 90	taller	taller	testtaller2@taller2.com	!XoTZ9mwk4dc6720f2e845582ec241a5f16afc2a9	1991-01-01	f	\N
 73	taller	taller	testtaller2@taller2.com	YldZJT9SJd0a99795a692acf42fd38115aba19bc8	1991-01-01	f	\N
@@ -875,8 +879,8 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 101	taller	taller	testtaller2@taller2.com	jalgTsRIuab1540da978fcadeae3b6303b0fca739	1991-01-01	f	\N
 105	taller	taller	testtaller2@taller2.com	pEE432bSq21a17278711e18b1cad08487dfba3ec4	1991-01-01	f	\N
 106	taller	taller	testtaller2@taller2.com	1M0ayvUiz45740cb96234be7e69ca5a78e710e0e1	1991-01-01	f	\N
-107	taller	taller	testtaller2@taller2.com	uA7gMMZTde94218d97d8a34901553bfaae205e2f8	1991-01-01	t	\N
-11	Nicolas	Fernandez	nflabo@gmail.com	z1e3EkH1Ud5226bf063090a43fc87ef0a7e0cd147	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
+107	taller	taller	testtaller2@taller2.com	uA7gMMZTde94218d97d8a34901553bfaae205e2f8	1991-01-01	f	\N
+108	taller	taller	testtaller2@taller2.com	GIgcjb8FK9cbaeb67847c29b6022c347ccc8a93f8	1991-01-01	t	\N
 \.
 
 
@@ -884,7 +888,7 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_UserID_seq"', 107, true);
+SELECT pg_catalog.setval('"Users_UserID_seq"', 108, true);
 
 
 --
