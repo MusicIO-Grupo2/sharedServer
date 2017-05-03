@@ -17,20 +17,7 @@ describe('Password', function() {
 });
 
 describe('Tokens', function() {
-	it('Obtener Token by mail y password', function(done) {
-	       chai.request(server)
-	      .get('/users/Registrado?email=nflabo@gmail.com')
-	      .end(function(err, res){
-		res.should.have.status(200);
-		res.should.be.json;
-		res.body.should.have.property('Name');
-		    res.body.Name.should.equal('Nicolas');
-		    res.body.LastName.should.equal('Fernandez');
-
-		done();
-	      });
-	   });
-	it('Test Token NO OK', function(done) {
+	('Test Token NO OK', function(done) {
 	       chai.request(server)
 	      .get('/private/')
 	      .end(function(err, res){
@@ -62,10 +49,10 @@ describe('Tokens', function() {
 	   });
 });
 
-describe('Canciones', function() {
-	it('Obtener Canciones', function(done) {
+describe('tracks', function() {
+	it('Obtener tracks', function(done) {
 		       chai.request(server)
-		      .get('/canciones/ObtenerCanciones')
+		      .get('/tracks/')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -74,7 +61,7 @@ describe('Canciones', function() {
    	});
 	it('Re Activar Cancion ', function(done) {
 		       chai.request(server)
-		      .put('/canciones/ReactivarCancion/1')
+		      .put('/tracks/ReactivarCancion/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -83,7 +70,7 @@ describe('Canciones', function() {
    	});
 	it('Re Activar Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .put('/canciones/ReactivarCancion/0')
+		      .put('/tracks/ReactivarCancion/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -92,7 +79,7 @@ describe('Canciones', function() {
    	});
 	it('Obtener Cancion', function(done) {
 		       chai.request(server)
-		      .get('/canciones/ObtenerCancion/1')
+		      .get('/tracks/ObtenerCancion/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -101,7 +88,7 @@ describe('Canciones', function() {
    	});
 	it('Obtener Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .get('/canciones/ObtenerCancion/0')
+		      .get('/tracks/ObtenerCancion/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -110,7 +97,7 @@ describe('Canciones', function() {
    	});
 	it('Obtener Puntuacion Cancion', function(done) {
 		       chai.request(server)
-		      .get('/canciones/ObtenerPuntuacionCancion/1')
+		      .get('/tracks/ObtenerPuntuacionCancion/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -119,7 +106,7 @@ describe('Canciones', function() {
    	});
 	it('Obtener Puntuacion Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .get('/canciones/ObtenerPuntuacionCancion/0')
+		      .get('/tracks/ObtenerPuntuacionCancion/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -128,7 +115,7 @@ describe('Canciones', function() {
    	});
 	it('Marcar Cancion', function(done) {
 		       chai.request(server)
-		      .post('/canciones/MarcarCancion/')
+		      .post('/tracks/MarcarCancion/')
 		      .send({"UserID":"8","CancionID":"1"})
 		      .end(function(err, res){
 			res.should.have.status(200);
@@ -138,7 +125,7 @@ describe('Canciones', function() {
    	});
 	it('Marcar Cancion ya marcada', function(done) {
 		       chai.request(server)
-		      .post('/canciones/MarcarCancion/')
+		      .post('/tracks/MarcarCancion/')
 		      .send({"UserID":"8","CancionID":"1"})
 		      .end(function(err, res){
 				res.should.have.status(404);
@@ -148,7 +135,7 @@ describe('Canciones', function() {
    	});
 	it('DesMarcar Cancion', function(done) {
 		       chai.request(server)
-		      .post('/canciones/DesmarcarCancion/')
+		      .post('/tracks/DesmarcarCancion/')
 		      .send({"UserID":"8","CancionID":"1"})
 		      .end(function(err, res){
 			res.should.have.status(200);
@@ -158,7 +145,7 @@ describe('Canciones', function() {
    	});
 	it('DesMarcar Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .post('/canciones/DesmarcarCancion/')
+		      .post('/tracks/DesmarcarCancion/')
 		      .send({"UserID":"8","CancionID":"0"})
 		      .end(function(err, res){
 			res.should.have.status(404);
@@ -169,7 +156,7 @@ describe('Canciones', function() {
 	
 	it('Alta Cancion', function(done) {
 		       chai.request(server)
-		      .post('/canciones/AltaCancion/')
+		      .post('/tracks/AltaCancion/')
 		      .send({"Nombre":helperPass.hash("testeame"),"Descripcion":helperPass.hash("testeame")})
 		      .end(function(err, res){
 			if (res.status==404){
@@ -183,7 +170,7 @@ describe('Canciones', function() {
    	});
 	it('Alta Cancion existente', function(done) {
 		       chai.request(server)
-		      .post('/canciones/AltaCancion/')
+		      .post('/tracks/AltaCancion/')
 		      .send({"Nombre":"Testeame","Descripcion":"Testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
@@ -193,7 +180,7 @@ describe('Canciones', function() {
    	});
 	it('Puntuar Cancion', function(done) {
 		       chai.request(server)
-		      .post('/canciones/PuntuarCancion/')
+		      .post('/tracks/PuntuarCancion/')
 		      .send({"UserID":"8","CancionID":"1","Puntaje":"5"})
 		      .end(function(err, res){
 			if (res.status==404){
@@ -207,7 +194,7 @@ describe('Canciones', function() {
    	});
 	it('Alta Genero Cancion', function(done) {
 		       chai.request(server)
-		      .post('/canciones/AltaGeneroCancion/')
+		      .post('/tracks/AltaGeneroCancion/')
 		      .send({"CancionID":"1","GeneroID":"2"})
 		      .end(function(err, res){
 			if (res.status==404){
@@ -221,7 +208,7 @@ describe('Canciones', function() {
    	});
 	it('Alta Genero Cancion Existente', function(done) {
 		       chai.request(server)
-		      .post('/canciones/AltaGeneroCancion/')
+		      .post('/tracks/AltaGeneroCancion/')
 		      .send({"CancionID":"1","GeneroID":"2"})
 		      .end(function(err, res){
 			if (res.status==404){
@@ -235,7 +222,7 @@ describe('Canciones', function() {
    	});
 	it('Baja Genero Cancion', function(done) {
 		       chai.request(server)
-		      .delete('/canciones/BajaGeneroCancion?id=1&idGenero=2')
+		      .delete('/tracks/BajaGeneroCancion?id=1&idGenero=2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -248,7 +235,7 @@ describe('Canciones', function() {
    	});
 	it('Baja Genero Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .delete('/canciones/BajaGeneroCancion?id=1&idGenero=2')
+		      .delete('/tracks/BajaGeneroCancion?id=1&idGenero=2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -261,7 +248,7 @@ describe('Canciones', function() {
    	});
 	it('Actualizar Cancion', function(done) {
 		       chai.request(server)
-		      .put('/canciones/ActualizarCancion/1')
+		      .put('/tracks/ActualizarCancion/1')
 		      .send({"Nombre":"testeame","Descripcion":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(200);
@@ -271,7 +258,7 @@ describe('Canciones', function() {
    	});
 	it('Actualizar Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .put('/canciones/ActualizarCancion/0')
+		      .put('/tracks/ActualizarCancion/0')
 		      .send({"Nombre":"testeame","Descripcion":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
@@ -281,7 +268,7 @@ describe('Canciones', function() {
    	});
 	it('Baja Cancion', function(done) {
 		       chai.request(server)
-		      .delete('/canciones/BajaCancion/1')
+		      .delete('/tracks/BajaCancion/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -290,7 +277,7 @@ describe('Canciones', function() {
    	});
 	it('Baja Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .delete('/canciones/BajaCancion/0')
+		      .delete('/tracks/BajaCancion/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -304,7 +291,7 @@ describe('Users', function() {
   
   it('Obtener Usuario Registrado by email', function(done) {
        chai.request(server)
-      .post('/auth/login/')
+      .post('/token/')
       .send({"Email":"nflabo@gmail.com","Password":"test"})
       .end(function(err, res){
         res.should.have.status(200);
@@ -315,7 +302,7 @@ describe('Users', function() {
    });
   it('Error al autenticar Usuario Registrado by email', function(done) {
        chai.request(server)
-      .post('/auth/login/')
+      .post('/token/')
       .send({"Email":"marcospernica@yahoo.com","Password":"test"})
       .end(function(err, res){
         res.should.have.status(401);
@@ -325,7 +312,7 @@ describe('Users', function() {
    });
   it('Error al autenticar Usuario password Registrado by email', function(done) {
        chai.request(server)
-      .post('/auth/login/')
+      .post('/token/')
       .send({"Email":"marcospernica@yahoo.com.ar","Password":"testmal"})
       .end(function(err, res){
         res.should.have.status(401);
@@ -333,22 +320,22 @@ describe('Users', function() {
         done();
       });
    });
-  it('Obtener Usuario Registrado by id', function(done) {
+  it('Obtener Usuario Registrado by Mail', function(done) {
        chai.request(server)
-      .get('/users/Registrado?id=11')
+      .get('/users/mail/marcospernica@yahoo.com.ar')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('Name');
-            res.body.Name.should.equal('Nicolas');
-            res.body.LastName.should.equal('Fernandez');
+            res.body.Name.should.equal('Marcos');
+            res.body.LastName.should.equal('Pernica');
 
         done();
       });
    });
    it('Obtener Usuario Registrado by id no encontrado', function(done) {
        chai.request(server)
-      .get('/users/Registrado?id=0')
+      .get('/users/mail/nflabo@yahoo.com.ar')
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
@@ -357,7 +344,7 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by Mail', function(done) {
        chai.request(server)
-      .delete('/users/Eliminar?Email=testtaller2@taller2.com')
+      .delete('/users/mail/testtaller2@taller2.com')
       .end(function(err, res){
         res.should.be.json;
         done();
@@ -365,7 +352,7 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by Mail', function(done) {
        chai.request(server)
-      .delete('/users/Eliminar?Email=inexistente')
+      .delete('/users/mail/mail=inexistente')
       .end(function(err, res){
         res.should.be.json;
         done();
@@ -373,7 +360,7 @@ describe('Users', function() {
    });
    it('Registrar Usuario', function(done) {
        chai.request(server)
-      .post('/users/Registrar/')
+      .post('/users/')
       .send({"Email":"testtaller2@taller2.com","Password":"test","Nombre":"taller","Apellido":"taller","FechaNacimiento":"1991-01-01"})
       .end(function(err, res){
         res.should.have.status(200);
@@ -385,7 +372,7 @@ describe('Users', function() {
    });
    it('Registrar Usuario Registrado', function(done) {
        chai.request(server)
-      .post('/users/Registrar/')
+      .post('/users/')
       .send({"Email":"testtaller2@taller2.com","Password":"test","Nombre":"taller","Apellido":"taller","FechaNacimiento":"1991-01-01"})
       .end(function(err, res){
         res.should.have.status(401);
@@ -395,7 +382,7 @@ describe('Users', function() {
    });
    it('Actualizar Usuario by id', function(done) {
        chai.request(server)
-      .put('/users/Actualizar/11')
+      .put('/users/11')
       .send({"Email":"nflabo@gmail.com","Password":"test","Nombre":"Nicolas","Apellido":"Fernandez","FechaNacimiento":"1991-01-01"})
       .end(function(err, res){
         res.should.have.status(200);
@@ -409,7 +396,7 @@ describe('Users', function() {
    });
    it('Actualizar Usuario by id inexistente', function(done) {
        chai.request(server)
-      .put('/users/Actualizar/0')
+      .put('/users/0')
       .send({"Email":"nflabo@gmail.com","Password":"test","Nombre":"Nicolas","Apellido":"Fernandez","FechaNacimiento":"1991-01-01"})
       .end(function(err, res){
         res.should.have.status(401);
@@ -419,7 +406,7 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by id', function(done) {
        chai.request(server)
-      .delete('/users/Eliminar/10')
+      .delete('/users/10')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
@@ -430,7 +417,7 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by id inexistente', function(done) {
        chai.request(server)
-      .delete('/users/Eliminar/0')
+      .delete('/users/0')
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
@@ -460,7 +447,7 @@ describe('Users', function() {
    it('Listado de Contactos', function(done) {
 	var tokenGenerado= helperToken.createToken(11);
        chai.request(server)
-      .get('/users/me/Contactos/')
+      .get('/users/me/contacts/')
 	.set('authorization', 'test ' + tokenGenerado)
       .end(function(err, res){
 	

@@ -616,6 +616,13 @@ SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, true);
 
 COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM stdin;
 29	BHlicctsC38b8765329b56b36ca9b2526da0e0784	CF.pGyVHE136e20977164e16491074217a1953f1f	t	\N
+41	MSwdSzKfq88985da9c30399ef10a85081b7b117b7	o3zUzB5jV11f18167275991357edaf0865a1a1df1	t	\N
+30	pfX0wI0Om7e2c0f767588629cf06735347efb247f	I!ehOJRA!87e2e8bbe0932fc74f164c5173ad649d	t	\N
+31	uZG!sBVc6251119cbfdbc267291f5aa6bc5374f97	QSN7HbLtGbdf04195f779bc487e997ab083476f97	t	\N
+42	FFLfcHeAHafd3b630242e5f7dfe462de198516668	5q!tH9AP512fcb46b0dc491e3ac000338b48e4367	t	\N
+32	24QkdtU0Cd3733d708bc49e48a56a2b850a347b3c	dynBTCXpHf460f5906e5a745c356187d1b050c02f	t	\N
+43	fe8LKg5!y855ef2db2426e2f47cbe364715670e58	FZNfB2nqy4ba1a37c8418ac2eddc8519173c1dd67	t	\N
+33	Ccep5iQdoc6cc8c3ee0d5d871683176902b7d9288	.Y1IOFsLxd908d8583ef0e69754077f41d527e39a	t	\N
 1	testeame	testeame	f	150
 23	i9J60sSDs553d28b3d49d5f643c4ba0b402eeee10	9OrRiIeco0e87eeeac8b6c9ea321642d60178b428	t	150
 2	La Mordidita	Tema de moda	t	150
@@ -644,6 +651,13 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 20	ZQ7RuzKbQ2219cce55ee14a0d87d3f27ef0f688fc	O9HC1TXaU347ddf62b2e09d7380e29ac1d69e3137	t	150
 21	Gh7RN.#DK426d525566613698ffacad9b55e7ec4c	ElI#Fwnkk718b66efaa9bac1661690a0a47b20111	t	150
 22	uDdJA81jl1bbc8dbe4276d842bc7b248ef20f817c	GCPBbUAd195b0b1a7467e24e82ed6d7c6fc199bba	t	150
+34	UUQs1s3nOc7a72cccce496939fbb07324baa6f7b9	hugV0kZDy154f9cfedef1f4efbc6752ffdbd635f1	t	\N
+35	0#HZjcKjEbfe80d5c9d26686ff4d41b8b4ad49d78	OAzO4HZuI3f54313d5220e7440ead4e01d0b4449b	t	\N
+36	scolmTUtGe0df48450b9f574704a252e901162fa1	hBwAF7TX!e2cba96dfc7e62487fc7a81f4621e2d6	t	\N
+37	EW7nejl8C8efed85fad2891b7de8f62cc5a7821e2	Qr6eFCUkM0c8e565db1f849d69d8a0108fd01ed7b	t	\N
+38	FcWUaCmVu4d769918929dedf262a735d61c2e5a28	Huajgqo5f29e66260d906f933f44db535bec38644	t	\N
+39	l.vE9QjSDae42774eceff1fa58af5c8af5c05cd66	UBTCTNk7ude64b77404a568c3d622b99dfba25eec	t	\N
+40	mOIuIJI0x26a53d7b45ed981773a3ba6bf00e4a38	yVUjBNl5Edc10873b81ec0148b86a1e1933fe9095	t	\N
 \.
 
 
@@ -651,7 +665,7 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 -- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 29, true);
+SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 43, true);
 
 
 --
@@ -840,11 +854,10 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 67	taller	taller	testtaller2@taller2.com	Ai2XUT5VB337080607cabb5a25a19f8ca519c1dca	1991-01-01	f	\N
 68	taller	taller	testtaller2@taller2.com	Vr2srJ2u3da2f5ccd908545613dcf8e4ed658b6d8	1991-01-01	f	\N
 69	taller	taller	testtaller2@taller2.com	9Iqk0#Xpc157ff9cfca8811b06e01d5f4c4409af9	1991-01-01	f	\N
-7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-a443bb1fb45e9a5838ab15233f37c531d874d592.png
 89	taller	taller	testtaller2@taller2.com	NMpQyYQBk67243d7ff792c4ac411e37d707214121	1991-01-01	f	\N
 70	taller	taller	testtaller2@taller2.com	Q!!tOu9Fue862bf9dabb48fc539b99ee94bf917db	1991-01-01	f	\N
 71	taller	taller	testtaller2@taller2.com	7sE4gF3ek21ef45c2319f6cf07fc6469ef0542a48	1991-01-01	f	\N
-11	Nicolas	Fernandez	nflabo@gmail.com	BgaGQioRU57cd51ae0a4bd241c4e6f95bc9f392ce	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
+116	taller	taller	testtaller2@taller2.com	ID.nzFXqv30187cba58f6642102873b2ab8f30788	1991-01-01	f	\N
 72	taller	taller	testtaller2@taller2.com	4Fd5C5o0c2c75913b00bba1bdc928082a55acbfd9	1991-01-01	f	\N
 90	taller	taller	testtaller2@taller2.com	!XoTZ9mwk4dc6720f2e845582ec241a5f16afc2a9	1991-01-01	f	\N
 73	taller	taller	testtaller2@taller2.com	YldZJT9SJd0a99795a692acf42fd38115aba19bc8	1991-01-01	f	\N
@@ -858,10 +871,12 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 92	taller	taller	testtaller2@taller2.com	ml#dagF#Na4f95c24c5f601b07910d57fd72eaa31	1991-01-01	f	\N
 79	taller	taller	testtaller2@taller2.com	KuPuLazTo3754d921ad6d16f300fe6c75d73431a2	1991-01-01	f	\N
 80	taller	taller	testtaller2@taller2.com	pilHUYVgB7e5b61f7bda2d4d263d8d05003f00b9c	1991-01-01	f	\N
+7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-a443bb1fb45e9a5838ab15233f37c531d874d592.png
 81	taller	taller	testtaller2@taller2.com	Uocuo77kscc789233d86cc4e3b46ddb72ded686ef	1991-01-01	f	\N
 93	taller	taller	testtaller2@taller2.com	8OOyJHiIw7f25225a7e5c4f788956f26b45ba59ba	1991-01-01	f	\N
 82	taller	taller	testtaller2@taller2.com	msVvBs1oPb110d7514f46ef93f9617f1eb6a15875	1991-01-01	f	\N
 83	taller	taller	testtaller2@taller2.com	USmUvGhy0323ebe716bf42be44a2f14a2d930b7f3	1991-01-01	f	\N
+108	taller	taller	testtaller2@taller2.com	GIgcjb8FK9cbaeb67847c29b6022c347ccc8a93f8	1991-01-01	f	\N
 84	taller	taller	testtaller2@taller2.com	c1kMZ0b!A2d6b040abab9eff7e389d553b0347953	1991-01-01	f	\N
 94	taller	taller	testtaller2@taller2.com	JaLVuN0Vk4fe71b2ad45cea29ed7043cb4a3ab414	1991-01-01	f	\N
 85	taller	taller	testtaller2@taller2.com	ieljiwloj047130f8526d2ee6f21aac3687366700	1991-01-01	f	\N
@@ -869,6 +884,8 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 87	taller	taller	testtaller2@taller2.com	2E2wv6r9oa5ce0ca3a53ff96de1c6a50d8e5013d8	1991-01-01	f	\N
 95	taller	taller	testtaller2@taller2.com	19D7Iy2fje6ce6d49c3554f8c7f2d411662a4e967	1991-01-01	f	\N
 88	taller	taller	testtaller2@taller2.com	it7uw4PbPb622e94f93518374862b807e85239430	1991-01-01	f	\N
+113	taller	taller	testtaller2@taller2.com	uoJwjfbTNc3b7ef4b815fc76f3be002315ee11393	1991-01-01	f	\N
+109	taller	taller	testtaller2@taller2.com	fFUqAroPt5c9066a4d53604b118b287f18796d606	1991-01-01	f	\N
 96	taller	taller	testtaller2@taller2.com	FEubEfNeZ1416ec3dea25d9b6afbb05436e5b2a20	1991-01-01	f	\N
 103	taller	taller	testtaller2@taller2.com	EpDgL2ZCnc372882c24f62e1cbb04b638e815eed3	1991-01-01	f	\N
 97	taller	taller	testtaller2@taller2.com	3RX8#lVgz97cb46667b92b4d82b47be9a947208c1	1991-01-01	f	\N
@@ -877,10 +894,20 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 104	taller	taller	testtaller2@taller2.com	nzuINGmdDd290551a9dcb6fd55fd197e51e4a189c	1991-01-01	f	\N
 100	taller	taller	testtaller2@taller2.com	#oEb7tpZu8e7f92fd221f91f6acfc4efecfeee15f	1991-01-01	f	\N
 101	taller	taller	testtaller2@taller2.com	jalgTsRIuab1540da978fcadeae3b6303b0fca739	1991-01-01	f	\N
+110	taller	taller	testtaller2@taller2.com	wKyJxajGqeef6c278f277c84aae2d4486a4988513	1991-01-01	f	\N
 105	taller	taller	testtaller2@taller2.com	pEE432bSq21a17278711e18b1cad08487dfba3ec4	1991-01-01	f	\N
 106	taller	taller	testtaller2@taller2.com	1M0ayvUiz45740cb96234be7e69ca5a78e710e0e1	1991-01-01	f	\N
 107	taller	taller	testtaller2@taller2.com	uA7gMMZTde94218d97d8a34901553bfaae205e2f8	1991-01-01	f	\N
-108	taller	taller	testtaller2@taller2.com	GIgcjb8FK9cbaeb67847c29b6022c347ccc8a93f8	1991-01-01	t	\N
+114	taller	taller	testtaller2@taller2.com	PgmsXwm3Jc6fda0a6a4fda4a74b2447fa0eaebe1d	1991-01-01	f	\N
+111	taller	taller	testtaller2@taller2.com	18ZIsQ3N5c642d561416f4b0a207a7be3d4403e1c	1991-01-01	f	\N
+118	taller	taller	testtaller2@taller2.com	gM1Mi9Y4Ue4e824a55fe3dc44038e9903d01aa688	1991-01-01	f	\N
+112	taller	taller	testtaller2@taller2.com	W2TZD8CXm3e10178b779429f8ceeab2bd77f4dfae	1991-01-01	f	\N
+115	taller	taller	testtaller2@taller2.com	uuMG8sN7342a427f208ed301ba88fb60afe9cf0d8	1991-01-01	f	\N
+120	taller	taller	testtaller2@taller2.com	WqcvjXgIO36bf9d81a07f39038c012bdea1036416	1991-01-01	f	\N
+117	taller	taller	testtaller2@taller2.com	gPB7HNTcqe1cf1dac8a24e6fd362230f8a9104a2a	1991-01-01	f	\N
+121	taller	taller	testtaller2@taller2.com	ZJSh6Uan8ed20d317d1551a4f999abc9bb4fd5d63	1991-01-01	t	\N
+119	taller	taller	testtaller2@taller2.com	WvJ4GXSxzef3ab9274cd3f23588e9d541ba560f1f	1991-01-01	f	\N
+11	Nicolas	Fernandez	nflabo@gmail.com	wIiIcutBgfd142c65c89558a7a2c69ce84683feda	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
 \.
 
 
@@ -888,7 +915,7 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_UserID_seq"', 108, true);
+SELECT pg_catalog.setval('"Users_UserID_seq"', 121, true);
 
 
 --
