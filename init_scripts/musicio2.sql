@@ -615,15 +615,25 @@ SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, true);
 --
 
 COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM stdin;
+55	VaalfoDctb36060c2207a5880c31da491a522106d	Nm4evxi8Cba181aa0a5675dce1660ef8ebc6eaf7b	t	\N
 29	BHlicctsC38b8765329b56b36ca9b2526da0e0784	CF.pGyVHE136e20977164e16491074217a1953f1f	t	\N
+52	YztSsofmqf7e8f6f816649e385481860ad5ae0cf9	CuQBrdlsc91115d9d44c648a97af216ff4685eb70	t	\N
+59	cy#W7hMQGa47f6d42894dd0310ab725a1d72447fe	fxxzZU2J63132fb6fee1b240729de0d25fdbf2589	t	\N
 41	MSwdSzKfq88985da9c30399ef10a85081b7b117b7	o3zUzB5jV11f18167275991357edaf0865a1a1df1	t	\N
 30	pfX0wI0Om7e2c0f767588629cf06735347efb247f	I!ehOJRA!87e2e8bbe0932fc74f164c5173ad649d	t	\N
+48	y5BK7PtT#db7ac91835e22eac67b23e44db390f5f	vDYwXefs0fdfcbefe7e6a153e8bd4df6f5932ac6d	t	\N
+53	dmv7srOzVb49fe2f8faa80c28494ebe8cfda6de4f	nQy6ZUehW665dbd36148f851bf60f1863666fcd6a	t	\N
+58	FIvOm8!a290dd2afbb9ee532c4edffed4815826dd	9h.94#Vk4f5a73d996c433194bd9971477c427cc5	t	\N
 31	uZG!sBVc6251119cbfdbc267291f5aa6bc5374f97	QSN7HbLtGbdf04195f779bc487e997ab083476f97	t	\N
 42	FFLfcHeAHafd3b630242e5f7dfe462de198516668	5q!tH9AP512fcb46b0dc491e3ac000338b48e4367	t	\N
+57	xYC0Toqj82de70248e72be89e9cb48dfdf6a879ad	CQfc9NALX1be63d782654d3d0aea8ab8348b695d7	t	\N
+49	iTvtFtSdwb4236a3a01d53d3cbe9e31087657774a	ZGmU1Alzoa258d622c97d788a90a3df19d77bf40d	t	\N
 32	24QkdtU0Cd3733d708bc49e48a56a2b850a347b3c	dynBTCXpHf460f5906e5a745c356187d1b050c02f	t	\N
+56	3vxqBudS960e7c0ae9e4245ceb541c5378b3e0e62	xNY9o1S8mb3b1de14115ebdacef1727d0aa4b6f9b	t	\N
 43	fe8LKg5!y855ef2db2426e2f47cbe364715670e58	FZNfB2nqy4ba1a37c8418ac2eddc8519173c1dd67	t	\N
+54	BzctIcNUT07b1588f9557d9dbae7e2ff337150601	mj5Gb!GUk7a99065019a213406d1b76a78c34db2e	t	\N
 33	Ccep5iQdoc6cc8c3ee0d5d871683176902b7d9288	.Y1IOFsLxd908d8583ef0e69754077f41d527e39a	t	\N
-1	testeame	testeame	f	150
+60	2l7TbxhYH75068c146f7f4021fc7e90bc8817580d	R0rpDokO2bbd3c507cdbc6d5622aab1d5b1fc6828	t	\N
 23	i9J60sSDs553d28b3d49d5f643c4ba0b402eeee10	9OrRiIeco0e87eeeac8b6c9ea321642d60178b428	t	150
 2	La Mordidita	Tema de moda	t	150
 24	upz6trMdW88ccc84566e58994128052e43afb7e35	3SX40yA1v510ede9c9c49ff35e491270cc5b58ed2	t	150
@@ -638,6 +648,7 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 8	HOZkoUUn25ad0fa7793ecb5a2b9258f8b8399a4a0	Su0MUxZd03cd7c5afc8ae705dd6a11b8ee5c59c3c	t	150
 28	TfvmJtR!#f0c243a5f3244f6990caef56083ed29c	vR9mOK#eM970d651c63ca0b9bac1ffab053cd713e	t	150
 9	sBn3fKgpZ0d9ee55c79d015fe35355c6d63692cb7	AYQBw#.WM4de7e70fabb2841587ebc94ace0474f4	t	150
+50	sqC1c7r!E439c1ba5d93a2592c06ffefb4bb4b4d3	pUocauF5pb4b24a16bfedc20fc60362223ce179db	t	\N
 10	WxudjZXRGe3e662d3637b9652784f75be968d60a5	RQru2off46bcae193660505b7a1d19ffb8fb07f04	t	150
 11	M30C4FToQ6928aac298aee719158011634f52925e	aUg4fU6.#221cf06f9658f2fad81c57ad258cd894	t	150
 12	#pSbuOFq8828499eee9b1111fc13954574907d36a	WngQRmr4Uec70cc7c0dd0a57b99cf64262883cc8d	t	150
@@ -651,13 +662,46 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 20	ZQ7RuzKbQ2219cce55ee14a0d87d3f27ef0f688fc	O9HC1TXaU347ddf62b2e09d7380e29ac1d69e3137	t	150
 21	Gh7RN.#DK426d525566613698ffacad9b55e7ec4c	ElI#Fwnkk718b66efaa9bac1661690a0a47b20111	t	150
 22	uDdJA81jl1bbc8dbe4276d842bc7b248ef20f817c	GCPBbUAd195b0b1a7467e24e82ed6d7c6fc199bba	t	150
+44	KmBlb.f.#f03776c22a595eb8e6a4488e4a2db198	SaPkl8L6ud8e16cd2209902c24e39d53b6e26567e	t	\N
+61	uF7wXW28nfab0f4db0bf2cc6e1ff867aeb369d35a	#7n0MiN!of03df434b167a2aaa38489898dee91df	t	\N
 34	UUQs1s3nOc7a72cccce496939fbb07324baa6f7b9	hugV0kZDy154f9cfedef1f4efbc6752ffdbd635f1	t	\N
+62	!Hkai6dUv67284096202d6ab9180753abe5e0802e	U#Dvi9EdHa799febda5c75d1b99c26541cfd56291	t	\N
+63	SXC9k.psi1c9efd074235bd7fd99aaf3fc50bbbf5	wzgiJZ3zvc61a1dce60f6b121e6f2e796c9a7c276	t	\N
+45	So6fQy4UNfc96cea47eac7f372d4bbc065c03851b	FyiY2xf.57fb5efb905f768efac2dabdb19249767	t	\N
 35	0#HZjcKjEbfe80d5c9d26686ff4d41b8b4ad49d78	OAzO4HZuI3f54313d5220e7440ead4e01d0b4449b	t	\N
+51	JDlfPXaf9c1903a2d50ba71322e6752fad9f4c9aa	7N6BxZ8jV45070032ada053cb1b7c4b0deba6c283	t	\N
+64	2GH2yoVCuec93aa188fc98a5110e35d8a9d5d73b8	GRtxVOs7Q97dce48ee93c94111be555f962b9c818	t	\N
 36	scolmTUtGe0df48450b9f574704a252e901162fa1	hBwAF7TX!e2cba96dfc7e62487fc7a81f4621e2d6	t	\N
+46	cmwmONGts7c7ad674108f909a795d4f19132e9506	4jrGnuSCma199d84c322b426d6000790dd2225961	t	\N
+1	testeame	testeame	f	150
 37	EW7nejl8C8efed85fad2891b7de8f62cc5a7821e2	Qr6eFCUkM0c8e565db1f849d69d8a0108fd01ed7b	t	\N
+47	!UniTu42ia26ac2acace2e66a24ae35dc213684e3	VJPTjm#Un1bc63a880b1041e8198ac35bd23878cf	t	\N
 38	FcWUaCmVu4d769918929dedf262a735d61c2e5a28	Huajgqo5f29e66260d906f933f44db535bec38644	t	\N
 39	l.vE9QjSDae42774eceff1fa58af5c8af5c05cd66	UBTCTNk7ude64b77404a568c3d622b99dfba25eec	t	\N
 40	mOIuIJI0x26a53d7b45ed981773a3ba6bf00e4a38	yVUjBNl5Edc10873b81ec0148b86a1e1933fe9095	t	\N
+65	OG!29uIX4699ddac71c6e946884c9cd41fbdfa81b	zrtTfIiRz6333352dc48d2560c4ee34418d1e5935	t	\N
+66	GHkU8N!Ti4c4b5618df894d393278c20c1e2d262a	feK5K6uku42ae8fb9e3bdb6b9c055af3f237a4a5f	t	\N
+67	Uwo1TCG#66452051ec306fb47c8ded3de141df0fb	9e1D2pzuEec174b752025141fab883f6e54f68c8e	t	\N
+68	1hRTUwPwO839ecc82f021bf064fafdbae8eda92eb	cddP2ba42ca6a52a4b0890059fd307e54108b574c	t	\N
+69	32wbhVdy166ef0b55d63782bab6a60d4328d280b4	4fauBH2s#62ad1fe81794350fefc6d97eda56ff9e	t	\N
+70	Uw!hMCh1deb678b1376fb71484c1e9a995ba08b6f	bRaydvRGv1c429d5f155920fbcb76f0962a906fda	t	\N
+71	!mGP6SmjIe0f1b9da6dddba67093456a0c7759640	5u11AXv5#030f5a97d3e20df4ce50ec40ea3167ce	t	\N
+72	YB3hU0WKpc3d7758689f4099ae63ad8dbef976136	xDdFlPnPJf118eba1b04e87df1238efd6f6604c17	t	\N
+73	2pJrtbf5I3e8021baff4f8c58cd4d095c4f4fc3bc	3Xsar!jyu0a567e2f460de2582f24d54ce84f2ed0	t	\N
+74	q7.OkEpxTdde28c3164cddd976f419a54ae2f1a0f	plBwjfyWx26066c9d44ab51554f3d220772bc5b71	t	\N
+75	TwuW8So9gd649e129440fb125fb114a39eaa374c6	i3csG29Nfc90299dc37aadb7758ac033db2016eca	t	\N
+76	CaRaLDh#t0091209d8bf8de97ca80bfbdfb55da9d	U#7AOFA1ua3f134a3c31f5dc7b10fbd3fbfc07e59	t	\N
+77	9.x1Iidfj810850abff24b01ab6b0dae0f95ce945	GYabwdDzse15a58f47d73526cc914805495be3f00	t	\N
+78	Ud8o44py7a472a593f4b849d35baed01d7d1c3e33	21VRiuQA258f26160841a4babb84bb3370e498d10	t	\N
+79	OWu#qBKkY9af8747aa7187cb6db93e6a00e68d339	02ru!Xf.4ab3a91a872aacea58c3e77df1a9d9e9c	t	\N
+80	n9hA#!dxf239af7834a3cac23f7eb03947e76cdac	bLGm5OW9M84030a3c37a14d5c2daf573be986dd2e	t	\N
+81	pUPZXDuf5328f19bc17eb77f584b4de7cf06c98e9	Ova829TKv4392d41033926958ea4e888509122dff	t	\N
+82	tABuz5QrF1ef04efc272a792df1f058832610ebfc	K5xJDQMEq485d40a2771e3d5afc7f10ece5c830c5	t	\N
+83	rSwU1EQsP7f63f0f838dcd8ba84faf6e8d571c341	W9fTEpGUT0a49c64e73e3a7bd996d36bc95360dbd	t	\N
+84	NeNUb.QO100a1f8ee065929a868ebc6ff8567b2ed	iF6s7c43u9b04e2b54d13ad12695e38d7cc2b2ef3	t	\N
+85	sVNLac#R!8e3e8da54f0419e5ef8fce6d2bd14cf4	p5.IZqWW89b3d37bc1cfc7123bda4cfac0af64b81	t	\N
+86	nZ6rgVayUded4128c9470385c7741305e1ca08ad6	ZFF4rDXpVf3fd8e986c19117792a22921f7e1d932	t	\N
+87	v9y.Rbrc1ffc5cd8b4b252a10668fabab49846f23	U14gWcG0q49f90659bede677af01b216c33d27059	t	\N
 \.
 
 
@@ -665,7 +709,7 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 -- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 43, true);
+SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 87, true);
 
 
 --
@@ -711,6 +755,7 @@ COPY "GeneroArtista" ("ArtistaID", "GeneroID") FROM stdin;
 
 COPY "GeneroCancion" ("CancionID", "GeneroID") FROM stdin;
 2	3
+1	2
 \.
 
 
@@ -726,7 +771,7 @@ SELECT pg_catalog.setval('"Genero_GeneroID_seq"', 1, true);
 --
 
 COPY "MarcaCancion" ("UserID", "CancionID") FROM stdin;
-7	1
+8	1
 \.
 
 
@@ -871,7 +916,6 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 92	taller	taller	testtaller2@taller2.com	ml#dagF#Na4f95c24c5f601b07910d57fd72eaa31	1991-01-01	f	\N
 79	taller	taller	testtaller2@taller2.com	KuPuLazTo3754d921ad6d16f300fe6c75d73431a2	1991-01-01	f	\N
 80	taller	taller	testtaller2@taller2.com	pilHUYVgB7e5b61f7bda2d4d263d8d05003f00b9c	1991-01-01	f	\N
-7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-a443bb1fb45e9a5838ab15233f37c531d874d592.png
 81	taller	taller	testtaller2@taller2.com	Uocuo77kscc789233d86cc4e3b46ddb72ded686ef	1991-01-01	f	\N
 93	taller	taller	testtaller2@taller2.com	8OOyJHiIw7f25225a7e5c4f788956f26b45ba59ba	1991-01-01	f	\N
 82	taller	taller	testtaller2@taller2.com	msVvBs1oPb110d7514f46ef93f9617f1eb6a15875	1991-01-01	f	\N
@@ -905,9 +949,54 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 115	taller	taller	testtaller2@taller2.com	uuMG8sN7342a427f208ed301ba88fb60afe9cf0d8	1991-01-01	f	\N
 120	taller	taller	testtaller2@taller2.com	WqcvjXgIO36bf9d81a07f39038c012bdea1036416	1991-01-01	f	\N
 117	taller	taller	testtaller2@taller2.com	gPB7HNTcqe1cf1dac8a24e6fd362230f8a9104a2a	1991-01-01	f	\N
-121	taller	taller	testtaller2@taller2.com	ZJSh6Uan8ed20d317d1551a4f999abc9bb4fd5d63	1991-01-01	t	\N
 119	taller	taller	testtaller2@taller2.com	WvJ4GXSxzef3ab9274cd3f23588e9d541ba560f1f	1991-01-01	f	\N
-11	Nicolas	Fernandez	nflabo@gmail.com	wIiIcutBgfd142c65c89558a7a2c69ce84683feda	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
+121	taller	taller	testtaller2@taller2.com	ZJSh6Uan8ed20d317d1551a4f999abc9bb4fd5d63	1991-01-01	f	\N
+123	taller	taller	testtaller2@taller2.com	CDIDUHS0ef3f8914f39bdef310c21f4bd70713a57	1991-01-01	f	\N
+122	taller	taller	testtaller2@taller2.com	GcIoKe9OZb7e8d1fe05442de99f560c2e2b868283	1991-01-01	f	\N
+124	taller	taller	testtaller2@taller2.com	f9ILmoW6Rb98fc3c8736a79c8cb2d4a9323cf9bb9	1991-01-01	f	\N
+125	taller	taller	testtaller2@taller2.com	0FmxP1BAZ3982d932511a956ea669800925f64a8d	1991-01-01	f	\N
+126	taller	taller	testtaller2@taller2.com	gb7Ra2wgL0700d7dd6ab393b088f31931c3fdf05e	1991-01-01	f	\N
+127	taller	taller	testtaller2@taller2.com	ufa!rAO.Kf1315d23570714b3dd23411863ec696b	1991-01-01	f	\N
+128	taller	taller	testtaller2@taller2.com	KHXMqkejC6bb0c326ec89be609ebd239ba8eca1cf	1991-01-01	f	\N
+129	taller	taller	testtaller2@taller2.com	!Lu2U3TuE9fcdf1fd3d082fc3365945bacbcbdfd8	1991-01-01	f	\N
+7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-67f36c667dc04639eb923c739accbb677e544abc.png
+130	taller	taller	testtaller2@taller2.com	on5hNfGUJfd9d6c32ea5a98b749f1da89350eee34	1991-01-01	f	\N
+147	taller	taller	testtaller2@taller2.com	cDt4e9ugxd0a4f9d823218cd114ce76dae6fd29af	1991-01-01	f	\N
+131	taller	taller	testtaller2@taller2.com	P7MBNpCRufb25eed9dd8d72ab67516244d4fc41d2	1991-01-01	f	\N
+132	taller	taller	testtaller2@taller2.com	opmv1ylk04b1f4113f735dca000409632c2117b5f	1991-01-01	f	\N
+133	taller	taller	testtaller2@taller2.com	UqF.9PPSF7c660d2f9e63e51d3caaca34b6e118b8	1991-01-01	f	\N
+148	taller	taller	testtaller2@taller2.com	aHAi7ti2u50a7cd0e343dcb9ba11b7fc1bf26b356	1991-01-01	f	\N
+134	taller	taller	testtaller2@taller2.com	rYE5i2i0E2273a3e67d5a0945945eb6ad6b250be4	1991-01-01	f	\N
+135	taller	taller	testtaller2@taller2.com	egC7BJ56N36a60857900cce4160ecfafada7e3724	1991-01-01	f	\N
+159	taller	taller	testtaller2@taller2.com	!HQ7AP3Zx27c5044d4348ae7036282287cd9d4b59	1991-01-01	f	\N
+136	taller	taller	testtaller2@taller2.com	dRi6UNoL02d5738609f30e94850aa05f101ad95b3	1991-01-01	f	\N
+149	taller	taller	testtaller2@taller2.com	bJ4.PubkR653086836c0d6dd2f353183737a5a43f	1991-01-01	f	\N
+137	taller	taller	testtaller2@taller2.com	hEhsIZQjJ24f19d6cc8bf484776d6df57dd3afff9	1991-01-01	f	\N
+138	taller	taller	testtaller2@taller2.com	v3M4BigHe7b3ecb5f2cc671d21714ddd365883f05	1991-01-01	f	\N
+139	taller	taller	testtaller2@taller2.com	GJpmOcRpc6f8e4d252512f76c38afe8c62fa3d05c	1991-01-01	f	\N
+150	taller	taller	testtaller2@taller2.com	hg.1rdJfW9ab637269ff461fdee823653fb1bd2b5	1991-01-01	f	\N
+140	taller	taller	testtaller2@taller2.com	vGX7svUV#d7190d6db02c51f12d6fc8f78b47c900	1991-01-01	f	\N
+141	taller	taller	testtaller2@taller2.com	cjOJrtuam5348134ab3dc35dbcc1cd2a002456d82	1991-01-01	f	\N
+142	taller	taller	testtaller2@taller2.com	i97fGLXZW411022f03fe8edee480a73511223853b	1991-01-01	f	\N
+151	taller	taller	testtaller2@taller2.com	08C3hVV2re0d71785be06fcd3d401eb796e2af2e0	1991-01-01	f	\N
+143	taller	taller	testtaller2@taller2.com	rNk5uuGuH9fd8d9dc6340aa9a648d02c0a982159c	1991-01-01	f	\N
+144	taller	taller	testtaller2@taller2.com	2MpUUxdNn02712b92ddb9da496a61044d6a6bba75	1991-01-01	f	\N
+160	taller	taller	testtaller2@taller2.com	Ed4VF!3ZL613fbe94711c152e58fef6c44c4063a4	1991-01-01	f	\N
+145	taller	taller	testtaller2@taller2.com	PcIxPqI#p805dedf2d8293405c8ad0b080e20b157	1991-01-01	f	\N
+146	taller	taller	testtaller2@taller2.com	KEz#0liAId5177d8ad742337936a65b9db06b8b0d	1991-01-01	f	\N
+152	taller	taller	testtaller2@taller2.com	UzLiyrSLt723ee59c69f0e5e51d5c78796dd2d5e9	1991-01-01	f	\N
+153	taller	taller	testtaller2@taller2.com	7z54lcN3Ob1b9d083166c9e227686b30e939812eb	1991-01-01	f	\N
+161	taller	taller	testtaller2@taller2.com	GSJzwlgdL9a6c9116529f29e1cb73b5b4d50a156d	1991-01-01	f	\N
+154	taller	taller	testtaller2@taller2.com	nS9XkFovJf975100f31e3bf3cb6995913e03bfb13	1991-01-01	f	\N
+155	taller	taller	testtaller2@taller2.com	ZTRCAZUNub9b29575f05bcdb588904eb96a4a27d0	1991-01-01	f	\N
+156	taller	taller	testtaller2@taller2.com	Spj6ylpJs7a657ffd6728c7ada5253646d00406be	1991-01-01	f	\N
+162	taller	taller	testtaller2@taller2.com	aulV2DzoQf8831b3f573c0289978376d11105a39e	1991-01-01	f	\N
+157	taller	taller	testtaller2@taller2.com	Vauj.uRS76aec40325400a7739da1506c2dcd62a9	1991-01-01	f	\N
+158	taller	taller	testtaller2@taller2.com	rjPSm.ejZ75b916434c8405ed42a4c9c7586f0029	1991-01-01	f	\N
+163	taller	taller	testtaller2@taller2.com	pzODYnh6#4004be13050bc7cb1a6fdb8279e63af5	1991-01-01	f	\N
+164	taller	taller	testtaller2@taller2.com	CzBbIZNfi7e7765af40b22d54b3548ed5c270fba3	1991-01-01	f	\N
+165	taller	taller	testtaller2@taller2.com	6TPST7BHV7958754969b2b7596973938cc95b1154	1991-01-01	t	\N
+11	Nicolas	Fernandez	nflabo@gmail.com	TajGp0ceg31e33a683c02329b0c22e42a46b327fc	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
 \.
 
 
@@ -915,7 +1004,7 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_UserID_seq"', 121, true);
+SELECT pg_catalog.setval('"Users_UserID_seq"', 165, true);
 
 
 --

@@ -19,7 +19,6 @@ Router.get('/', function(req, res) {
 
 Router.get('/users/',functionsDatabase.getUsers,  function(req, res,next) {});
 Router.get('/users/mail/:mail',functionsDatabase.getUserByMail,  function(req, res,next) {});
-Router.get('/users/:id',functionsDatabase.getUserById,  function(req, res,next) {});
 Router.get('/users/me/contacts/',functionsDatabase.listarContactosUser,  function(req, res,next) {});
 Router.get('/users/me/',functionsDatabase.getUserMe,  function(req, res,next) {});
 Router.post('/users/',functionsDatabase.registerUser,  function(req, res,next) {});
@@ -32,16 +31,16 @@ Router.put('/users/Reactivar/:id',functionsDatabase.reactivarUser,  function(req
 
 Router.get('/tracks/',functionsDatabase.getCanciones,  function(req, res,next) {});
 Router.get('/tracks/paginate/',functionsDatabase.getCancionesPaginadas,  function(req, res,next) {});
-Router.get('/tracks/ObtenerCancion/:id',functionsDatabase.getCancion,  function(req, res,next) {});
-Router.post('/tracks/AltaCancion/',functionsDatabase.altaCancion,  function(req, res,next) {});
-Router.delete('/tracks/BajaCancion/:id',functionsDatabase.bajaCancion,  function(req, res,next) {});
-Router.put('/tracks/ActualizarCancion/:id',functionsDatabase.actualizarCancion,  function(req, res,next) {});
+Router.get('/tracks/:id',functionsDatabase.getCancion,  function(req, res,next) {});
+Router.post('/tracks/',functionsDatabase.altaCancion,  function(req, res,next) {});
+Router.delete('/tracks/:id',functionsDatabase.bajaCancion,  function(req, res,next) {});
+Router.put('/tracks/:id',functionsDatabase.actualizarCancion,  function(req, res,next) {});
 Router.put('/tracks/ReactivarCancion/:id',functionsDatabase.reactivarCancion,  function(req, res,next) {});
-Router.post('/tracks/AltaGeneroCancion/',functionsDatabase.altaGeneroCancion,  function(req, res,next) {});
-Router.delete('/tracks/BajaGeneroCancion/',functionsDatabase.bajaGeneroCancion,  function(req, res,next) {});
-Router.post('/tracks/PuntuarCancion/',functionsDatabase.puntuarCancion,  function(req, res,next) {});
-Router.post('/tracks/MarcarCancion/',functionsDatabase.marcarCancion,  function(req, res,next) {});
-Router.post('/tracks/DesmarcarCancion/',functionsDatabase.desmarcarCancion,  function(req, res,next) {}); //La hacemos por post porque usamos el body.
+Router.post('/tracks/:id/genero/:generoid/',functionsDatabase.altaGeneroCancion,  function(req, res,next) {});
+Router.delete('/tracks/:id/genero/:generoid/',functionsDatabase.bajaGeneroCancion,  function(req, res,next) {});
+Router.post('/tracks/:id/popularity',functionsDatabase.puntuarCancion,  function(req, res,next) {});
+Router.post('/tracks/:id/like',functionsDatabase.marcarCancion,  function(req, res,next) {});
+Router.post('/tracks/:id/unlike',functionsDatabase.desmarcarCancion,  function(req, res,next) {}); //La hacemos por post porque usamos el body.
 Router.get('/tracks/ObtenerPuntuacionCancion/:id',functionsDatabase.obtenerPuntuacionCancion,  function(req, res,next) {});
 
 

@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../app');
 var helperToken = require('../lib/service');
+var helperAuth = require('../lib/middleware');
 var helperPass= require('../lib/password');
 var should = chai.should();
 
@@ -17,10 +18,20 @@ describe('Password', function() {
 });
 
 describe('Tokens', function() {
-	('Test Token NO OK', function(done) {
+	it('Test Token NO OK', function(done) {
 	       chai.request(server)
 	      .get('/private/')
 	      .end(function(err, res){
+		res.should.have.status(401);
+		res.should.be.json;
+		done();
+	      });
+	   });
+	('Test Token Sin Header', function(done) {
+		chai.request(server)
+		.post('/tracks/1/like')
+		.set('authorization', 'test ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEwLCJpYXQiOjE0OTIyODc5NTAsImV4cCI6MTQ5MjI4Nzk1MH0.kNRiDUt-LJ6bVc81sSgCVdPxeIwiZceJRswlAjstSbo')
+		.end(function(err, res){
 		res.should.have.status(401);
 		res.should.be.json;
 		done();
@@ -50,6 +61,15 @@ describe('Tokens', function() {
 });
 
 describe('tracks', function() {
+	it('Obtener tracks Paginados', function(done) {
+		       chai.request(server)
+		      .get('/tracks/paginate?cantidadporpagina=10&pagina=0')
+		      .end(function(err, res){
+			res.should.have.status(200);
+			res.should.be.json;
+			done();
+	      	});
+   	});
 	it('Obtener tracks', function(done) {
 		       chai.request(server)
 		      .get('/tracks/')
@@ -79,7 +99,7 @@ describe('tracks', function() {
    	});
 	it('Obtener Cancion', function(done) {
 		       chai.request(server)
-		      .get('/tracks/ObtenerCancion/1')
+		      .get('/tracks/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -88,7 +108,7 @@ describe('tracks', function() {
    	});
 	it('Obtener Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .get('/tracks/ObtenerCancion/0')
+		      .get('/tracks/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -114,9 +134,10 @@ describe('tracks', function() {
 	      	});
    	});
 	it('Marcar Cancion', function(done) {
+		   var tokenGenerado= helperToken.createToken(7);
 		       chai.request(server)
-		      .post('/tracks/MarcarCancion/')
-		      .send({"UserID":"8","CancionID":"1"})
+		      .post('/tracks/1/like')
+		      .set('authorization', 'test ' + tokenGenerado)
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -124,9 +145,10 @@ describe('tracks', function() {
 	      	});
    	});
 	it('Marcar Cancion ya marcada', function(done) {
+		   var tokenGenerado= helperToken.createToken(7);
 		       chai.request(server)
-		      .post('/tracks/MarcarCancion/')
-		      .send({"UserID":"8","CancionID":"1"})
+		      .post('/tracks/1/like')
+		      .set('authorization', 'test ' + tokenGenerado)
 		      .end(function(err, res){
 				res.should.have.status(404);
 			res.should.be.json;
@@ -134,9 +156,10 @@ describe('tracks', function() {
 	      	});
    	});
 	it('DesMarcar Cancion', function(done) {
+			var tokenGenerado= helperToken.createToken(7);
 		       chai.request(server)
-		      .post('/tracks/DesmarcarCancion/')
-		      .send({"UserID":"8","CancionID":"1"})
+		      .post('/tracks/1/unlike')
+		      .set('authorization', 'test ' + tokenGenerado)
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -144,9 +167,10 @@ describe('tracks', function() {
 	      	});
    	});
 	it('DesMarcar Cancion Inexistente', function(done) {
+			var tokenGenerado= helperToken.createToken(7);
 		       chai.request(server)
-		      .post('/tracks/DesmarcarCancion/')
-		      .send({"UserID":"8","CancionID":"0"})
+		      .post('/tracks/1/unlike')
+			.set('authorization', 'test ' + tokenGenerado)
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -156,7 +180,7 @@ describe('tracks', function() {
 	
 	it('Alta Cancion', function(done) {
 		       chai.request(server)
-		      .post('/tracks/AltaCancion/')
+		      .post('/tracks/')
 		      .send({"Nombre":helperPass.hash("testeame"),"Descripcion":helperPass.hash("testeame")})
 		      .end(function(err, res){
 			if (res.status==404){
@@ -170,7 +194,7 @@ describe('tracks', function() {
    	});
 	it('Alta Cancion existente', function(done) {
 		       chai.request(server)
-		      .post('/tracks/AltaCancion/')
+		      .post('/tracks/')
 		      .send({"Nombre":"Testeame","Descripcion":"Testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
@@ -179,9 +203,11 @@ describe('tracks', function() {
 	      	});
    	});
 	it('Puntuar Cancion', function(done) {
+			var tokenGenerado= helperToken.createToken(7);
 		       chai.request(server)
-		      .post('/tracks/PuntuarCancion/')
-		      .send({"UserID":"8","CancionID":"1","Puntaje":"5"})
+		      .post('/tracks/1/popularity')
+			.set('authorization', 'test ' + tokenGenerado)
+		      .send({"rate":"5"})
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -194,8 +220,7 @@ describe('tracks', function() {
    	});
 	it('Alta Genero Cancion', function(done) {
 		       chai.request(server)
-		      .post('/tracks/AltaGeneroCancion/')
-		      .send({"CancionID":"1","GeneroID":"2"})
+		      .post('/tracks/1/genero/2/')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -208,8 +233,7 @@ describe('tracks', function() {
    	});
 	it('Alta Genero Cancion Existente', function(done) {
 		       chai.request(server)
-		      .post('/tracks/AltaGeneroCancion/')
-		      .send({"CancionID":"1","GeneroID":"2"})
+		      .post('/tracks/1/genero/2/')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -222,7 +246,7 @@ describe('tracks', function() {
    	});
 	it('Baja Genero Cancion', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/BajaGeneroCancion?id=1&idGenero=2')
+		      .delete('/tracks/1/genero/2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -235,7 +259,7 @@ describe('tracks', function() {
    	});
 	it('Baja Genero Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/BajaGeneroCancion?id=1&idGenero=2')
+		      .delete('/tracks/tracks/1/genero/2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -248,7 +272,7 @@ describe('tracks', function() {
    	});
 	it('Actualizar Cancion', function(done) {
 		       chai.request(server)
-		      .put('/tracks/ActualizarCancion/1')
+		      .put('/tracks/1')
 		      .send({"Nombre":"testeame","Descripcion":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(200);
@@ -258,7 +282,7 @@ describe('tracks', function() {
    	});
 	it('Actualizar Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .put('/tracks/ActualizarCancion/0')
+		      .put('/tracks/0')
 		      .send({"Nombre":"testeame","Descripcion":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
@@ -268,7 +292,7 @@ describe('tracks', function() {
    	});
 	it('Baja Cancion', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/BajaCancion/1')
+		      .delete('/tracks/1')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -277,7 +301,7 @@ describe('tracks', function() {
    	});
 	it('Baja Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/BajaCancion/0')
+		      .delete('/tracks/0')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -288,6 +312,19 @@ describe('tracks', function() {
 
 
 describe('Users', function() {
+
+  it('Usuario Actualizar Foto', function(done) {
+	var tokenGenerado= helperToken.createToken(7);
+       chai.request(server)
+      .put('/users/me/photo/')
+	.set('authorization', 'test ' + tokenGenerado)
+      .send({"Imagen":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})
+      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
+        done();
+      });
+   });
   
   it('Obtener Usuario Registrado by email', function(done) {
        chai.request(server)
@@ -297,6 +334,28 @@ describe('Users', function() {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
+        done();
+      });
+   });
+  it('Obtener Usuarios by ids', function(done) {
+	var tokenGenerado= helperToken.createToken(7);
+       chai.request(server)
+      .get('/users?ids=7,8,9')
+	.set('authorization', 'test ' + tokenGenerado)
+      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
+        done();
+      });
+   });
+  it('Obtener Usuario me', function(done) {
+	var tokenGenerado= helperToken.createToken(7);
+       chai.request(server)
+      .get('/users/me/')
+	.set('authorization', 'test ' + tokenGenerado)
+      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
         done();
       });
    });
