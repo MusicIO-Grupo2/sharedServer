@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Aplicacion para Materia Taller 2-Facultad de Ingenieria UBA- Grupo 2 1er cuatrimestre 2017.",
   "main": "index.js",
-
   "scripts": {
-     "test": "nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --timeout=5000 --compilers ts:typescript-require",
-     "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --reporter=html --reporter=text ./node_modules/.bin/mocha --timeout=5000 --compilers ts:typescript-require",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,7 @@
     "jade": "^1.11.0",
     "log4js": "^1.1.1",
     "pg": "6.1.5",
+    "satellizer": "^0.15.5",
     "sequelize-cli": "^2.7.0"
   },
   "devDependencies": {

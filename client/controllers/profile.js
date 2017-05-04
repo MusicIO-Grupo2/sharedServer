@@ -3,6 +3,7 @@ angular.module('MyApp')
     $scope.getProfile = function() {
       Account.getProfile()
         .then(function(response) {
+	  console.log(response.data);
           $scope.user = response.data;
         })
         .catch(function(response) {
