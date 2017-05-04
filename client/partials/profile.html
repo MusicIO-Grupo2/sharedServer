@@ -1,12 +1,37 @@
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">Profile</div>
+    <div class="panel-heading">View Profile</div>
     <div class="panel-body">
       <legend><i class="ion-clipboard"></i> Edit Profile</legend>
       <form method="post" ng-submit="updateProfile()">
+	<div class="form-group">
+          <label class="control-label"><i class="ion-person"></i> Image</label>
+		<div ng-if="user.image == ''">
+			<img data-ng-src="img/noimage.png" height="100" width="100">
+		</div>
+		<div ng-if="user.image != ''">
+			<img data-ng-src="data:image/png;base64,{{user.image}}" height="100" width="100"/>		
+		</div>	
+        </div>
         <div class="form-group">
-          <label class="control-label"><i class="ion-person"></i> Display Name</label>
-          <input type="text" class="form-control" ng-model="user.firstName" />
+          <label class="control-label"><i class="ion-person"></i> User Name</label>
+          <input type="text" class="form-control" ng-model="user.userName" />
+        </div>
+	<div class="form-group">
+          <label class="control-label"><i class="ion-at"></i> First Name</label>
+          <input type="email" class="form-control" ng-model="user.firstName" />
+        </div>
+	<div class="form-group">
+          <label class="control-label"><i class="ion-at"></i> Last Name</label>
+          <input type="email" class="form-control" ng-model="user.lastName" />
+        </div>
+	<div class="form-group">
+          <label class="control-label"><i class="ion-at"></i> Country</label>
+          <input type="email" class="form-control" ng-model="user.country" />
+        </div>
+	<div class="form-group">
+          <label class="control-label"><i class="ion-at"></i> Birthdate</label>
+          <input type="email" class="form-control" ng-model="user.birthdate" />
         </div>
         <div class="form-group">
           <label class="control-label"><i class="ion-at"></i> Email Address</label>
