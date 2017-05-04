@@ -18,12 +18,12 @@ Router.get('/', function(req, res) {
 });
 
 Router.get('/users/',functionsDatabase.getUsers,  function(req, res,next) {});
-Router.get('/users/mail/:mail',functionsDatabase.getUserByMail,  function(req, res,next) {});
+Router.get('/users/mail/:email',functionsDatabase.getUserByMail,  function(req, res,next) {});
 Router.get('/users/me/contacts/',functionsDatabase.listarContactosUser,  function(req, res,next) {});
 Router.get('/users/me/',functionsDatabase.getUserMe,  function(req, res,next) {});
 Router.post('/users/',functionsDatabase.registerUser,  function(req, res,next) {});
 Router.delete('/users/:id',functionsDatabase.deleteUser,  function(req, res,next) {});
-Router.delete('/users/mail/:mail',functionsDatabase.deleteUserByMail,  function(req, res,next) {});
+Router.delete('/users/email/:email',functionsDatabase.deleteUserByMail,  function(req, res,next) {});
 Router.put('/users/:id',functionsDatabase.updateUser,  function(req, res,next) {});
 Router.put('/users/me/photo/',functionsDatabase.updateFotoPerfil,  function(req, res,next) {});
 Router.put('/users/Reactivar/:id',functionsDatabase.reactivarUser,  function(req, res,next) {});

@@ -507,13 +507,15 @@ ALTER TABLE "Users_UserID_seq" OWNER TO postgres;
 
 CREATE TABLE "Users" (
     "UserID" bigint DEFAULT nextval('"Users_UserID_seq"'::regclass) NOT NULL,
-    "Name" character varying(100),
-    "LastName" character varying(100),
-    "Email" character varying(100),
-    "Passwd" character varying,
-    "FechaNacimiento" date,
-    "Activo" boolean DEFAULT false NOT NULL,
-    "ImageName" character varying
+    "firstName" character varying(100),
+    "lastName" character varying(100),
+    email character varying(100),
+    password character varying,
+    birthdate date,
+    active boolean DEFAULT false NOT NULL,
+    image character varying,
+    "userName" character varying,
+    country character varying
 );
 
 
@@ -671,9 +673,9 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 35	0#HZjcKjEbfe80d5c9d26686ff4d41b8b4ad49d78	OAzO4HZuI3f54313d5220e7440ead4e01d0b4449b	t	\N
 51	JDlfPXaf9c1903a2d50ba71322e6752fad9f4c9aa	7N6BxZ8jV45070032ada053cb1b7c4b0deba6c283	t	\N
 64	2GH2yoVCuec93aa188fc98a5110e35d8a9d5d73b8	GRtxVOs7Q97dce48ee93c94111be555f962b9c818	t	\N
+1	testeame	testeame	f	150
 36	scolmTUtGe0df48450b9f574704a252e901162fa1	hBwAF7TX!e2cba96dfc7e62487fc7a81f4621e2d6	t	\N
 46	cmwmONGts7c7ad674108f909a795d4f19132e9506	4jrGnuSCma199d84c322b426d6000790dd2225961	t	\N
-1	testeame	testeame	f	150
 37	EW7nejl8C8efed85fad2891b7de8f62cc5a7821e2	Qr6eFCUkM0c8e565db1f849d69d8a0108fd01ed7b	t	\N
 47	!UniTu42ia26ac2acace2e66a24ae35dc213684e3	VJPTjm#Un1bc63a880b1041e8198ac35bd23878cf	t	\N
 38	FcWUaCmVu4d769918929dedf262a735d61c2e5a28	Huajgqo5f29e66260d906f933f44db535bec38644	t	\N
@@ -702,6 +704,65 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 85	sVNLac#R!8e3e8da54f0419e5ef8fce6d2bd14cf4	p5.IZqWW89b3d37bc1cfc7123bda4cfac0af64b81	t	\N
 86	nZ6rgVayUded4128c9470385c7741305e1ca08ad6	ZFF4rDXpVf3fd8e986c19117792a22921f7e1d932	t	\N
 87	v9y.Rbrc1ffc5cd8b4b252a10668fabab49846f23	U14gWcG0q49f90659bede677af01b216c33d27059	t	\N
+88	1AlGHaxQ#fc4d10603286d324d932a737e5e7c5f1	JimqI0bkMb2daf6daf079d53b1f423352ae2133a5	t	\N
+89	eFhtcRuU7e93652576e88caa62850d445accc60c7	G3l6Y4HYEeb9980618ac44b038d5e1523ca7d927d	t	\N
+90	eAly6yPX39645fccf78fc790c8de59accc274c34a	.EjUo40xuf6f096f01cf6a4cb1411f382ca55a378	t	\N
+91	1jkSuntG926d066e933efdd05db0a94cf86b7cf0b	uvg09UHKxf5d10578ff8345d46514b8c31e06c1b0	t	\N
+92	slRux3DzLa9c7b15f79298c5200a2509d5e589577	h7q1iejjF098e4300beda3142f9cb19d2fa7435da	t	\N
+93	zX1kAAdSi72bc847467d7c4947c6a36bd604adf02	IbR!z8cIgebb63e3d39b6c081667c5ba294256162	t	\N
+94	BH3d47hmJf6932dd98dad605558a356b4d6b58d0c	.NouaIGZH323e9825fc33736e1b036ef66f29997a	t	\N
+95	UUwOLgxJn15383295d01863e46ced251de32912e5	j!SXwIPuxbd7a2d47ae84fed53e1b7dbfc296e8ef	t	\N
+96	SobQOXRrR99115b370a8dc92b7ad088bcdee281ee	wp2uNihvy16aeb923f2c3252fda7621f908f69016	t	\N
+97	4PebZLAjUea21c752dbf3591815212a2c198ce5b0	KE4G6tDV7082e7bcd397b5123a616263f85378838	t	\N
+98	cVn#iTBima5b62b2f2d57f095ae18811b45b33512	0B3yGlGjMbb4360ecef45a0b9d2ad0cc6e91ea2c8	t	\N
+99	D1AzN9jCPb4d1810ea502d8491c03627180ee8e24	HaE!uEuy0ac25e0fc4d3a7325e0755b3303cad7b4	t	\N
+100	lhzJmIH3k9682bb5de7295bdde0bcbbf691cc1967	U89OUuBjp8a80cc6ed399c1e8b75756f90c77c4d5	t	\N
+101	RrRl9gEAEa6ce2ea52ba72c492a77a9a76fb304a1	u6ze#JPDJ5a8d5bc0d176aa79ae1cd3210564d7bc	t	\N
+102	T9HPbEpie93d58e764c995cd0c75930f347412143	vUcM!1KBU429f28426bacb69132a09815efaa5e47	t	\N
+103	YFFqHDZfQ17e3addcc4a6bbee90be9bba58c77458	3ZmpZ!sbn597c2443b72ffaa8657fcfe861c2e51a	t	\N
+104	YljuvRlE47b2b711defda3978f11c25e3e32e9b0f	5zDu6tiB!2c4d7424cc57cd7352c8b5048da4b0d0	t	\N
+105	kTIZ9JVO2e3bc55f93c3e9e57475bcdcd5e7e63a7	pQZ5yeuvmf517f109067e35a70bc0f7d3269f5aed	t	\N
+106	t7ag2HgUle9ba7a4ec579b607de9eabde35b5491f	F8Dg3fFRE721e3815b31de98f5ddb558964828a1d	t	\N
+107	uKWavI0WCa193dd9ddedd1926813a8c6378cbaf35	GWhvi3iWT2251b6be0025a06fca03d2d0549c2c6b	t	\N
+108	mnqiZi1vDe63d142f312affb2a60b00fbaa417fc0	KRaUge6cu0129d3de5a3b3a95daa2822385ec370f	t	\N
+109	vWLfYz0CF5a8ddca91798bba93d7a28a032a8d42a	475EsRwp288e314eb4fb10e061ea9b119c48b815d	t	\N
+110	eGizwBgPj8012cac776c9879d917b25466b251bfc	C!BEZvAyh9ecd6fe56c72a6220eb3ebf039d19a43	t	\N
+111	V!eZKV2KGf16009c6996a8961aa4cf13067893095	!Veyt817w77f9ddd8a42efe5b421f9ad6ad759f18	t	\N
+112	Uv8SKII6z2a78950bd85af8028abf9630042ad197	aOzDcDNVU8b85f06e13f359a0549a17eaaae148ad	t	\N
+113	kS3#ZOMTjb02c047eed188117a998a5e0e0797a26	WJThj0rz64c7c084aab310dbe533c20d82a3b7ba6	t	\N
+114	xiws175u575f889c6bdbad1b589a31d67c8cb1bb4	NiZU0znBb7c24401e8ffc089fc4d4b850306bc6d3	t	\N
+115	rDZwqj7VP87fd78ca7a0c6cd23cc5682f05bc35bc	2Tu6sU1zA9bf1f752eb47f291ef3c70c23ed3dd4d	t	\N
+116	iYPxQ!6iB51df107501b8c815119f3f771ca87124	3A1Silj1Y9956e207081938369876d7eda156ab74	t	\N
+117	8J#RVkFFC67a2b8de2031bc72acc39dc9d947dc81	BB0mmuCp8166ddb97e802926a798c31f93ad0e263	t	\N
+118	7ubiJKd1ibed9321bedc7686482bfb64fca7cdcb8	cuNf!qL.#03c44fdbc0c56b0b6f5f954f7f886d49	t	\N
+119	iufJ40bOfd85d1a99c5ee5f7d2e80be14e29d1480	FuMhuRJgwc980d2f311885266a5215126e8555575	t	\N
+120	l5#uM8KBt9f0971cc8dad5fc98813654ff94f39bf	muZ7xe!cAee56a736369a21fe638b067a774149a3	t	\N
+121	EEDLVdQ3Nb9dd63c07dcf1eb30045d42023f7deec	LdBhNOehPcc49d74a3ec661bad648366d66016491	t	\N
+122	YrBv!5SBMf65ca5eb7c3d8fc750f899f86c95d24c	VzQFdGon06bd425342de11f3b82e18d691037e75a	t	\N
+123	lpBCQtxSQecaf1b8f4afef61f4bfb285201b9fdb6	zW0k8tv5Yc0d9038431b2a4881eccde55e52b1d62	t	\N
+124	nlI#kh7R0852e034106170bfdc553540f62871682	lBPlkbwhC343ad41d21cc20c1a521dd4034366cf2	t	\N
+125	yMgwU73jO4f46aa327162dae124aefba17994531a	.xOjLULNdec5e116742ded413c62f933101a385c4	t	\N
+126	i5XnAZz4!69757bdedaa58ac97685088af68e7596	dQUp3FiEk67f42009766dcb1f55427f4924b4be32	t	\N
+127	s9IygYNmWf9c28e122eeb92fc0128b290c17fd923	I6wni8kpd9191e97e4dee7c3f7f35f499ab401322	t	\N
+128	zWXeFxzhq0c88af84105e772f925b486fc6146437	pBL.sNtQQ6c7138b481b7052a80ea553935be50da	t	\N
+129	PGYO8uePgd24805f6eb1c0d9581f083e27446e372	YHF3!Nxg1c5e3b90df235d217fe5a5d0107809b08	t	\N
+130	UZZp77Oqu5b83e1d97cb4ace5055a63d18c1ebb88	iN.A.dguE679f3db92b8af99776353984f70b1367	t	\N
+131	zpdNUesIs1f141c1fec86b87c83cc8cc2650bc09b	iIQiIMTUu5bdd5a3edc7cc85fee7504921bda9fc5	t	\N
+132	87QcuOjVH29e475a7206b6e9272003eef30718bc4	uMGEl3OGw450e6892f2b6a9a7c77d766236e71870	t	\N
+133	qBv0ZMQdHfcd3ea6a51849dfd20b36c56eecf7531	p6Y9AQjcSeec6e2a6ee6453a2443608d6ef147ea0	t	\N
+134	aXujJpmO2ee8943a3466cef4abf077998e064008f	ftrHgp63cc81b036b8c74b1f084c1bbbc67cd1304	t	\N
+135	KQ1.Ot4Ppecceb2ce6e8d7fc34d9572e6ee9a91a1	h1GyEc!M!4e2472263c3f90fc25429923001d55e5	t	\N
+136	W.Xl7kONG9795dd9b68e51567a63626e71aea7d57	ZADuV5ySuf72ef2eb8aa4a1b963f01f9b7db10257	t	\N
+137	fuHpEKAwU51f0488f5465d6081b9cb6fcc7070b41	IEd2FjUhwccc63e9f8ccd9143ac01ddc7d14fa27a	t	\N
+138	hXNf#EcVE7e513dc10f6cbb872ae6a69233f13a4e	Y9wz!1CuW8f11e5caac8e33fe211ea93ed0b36a03	t	\N
+139	m0pnpG!kPc0fa31c353c0a2f0359b7fbdd7018c62	UiizSzjTa631b2634688a7c53ea61b002d8f9e3ca	t	\N
+140	qir.Di9d7df09f27ad2fed2a67ad8c4c45489af58	F1cE05n.U5f56bd0d42cdacdc5dcf71a70c46e53b	t	\N
+141	f!sjXSmSY63329ce17583681cae3d9939ec1b9499	9aRSQVFzN6035ff929f3cf0f3b7ef490bd72de85a	t	\N
+142	eSlvPAKF4e4b646e39c3f7ba2bfb1b76c7b682d65	ONSFp8X6I7d561d9107240902513e8ee4ec0c6a43	t	\N
+143	ASpa0j3nU0744cd9e4596a14c28fa11eebba440b8	.4jl!UK3qdc29d52a42a0298a020a6cda60e4bec8	t	\N
+144	#gcUi7f15d7029d9992401b856f6c2648142b269d	NRSit8o!c17bbbe990aa2590a33a1f2136cb28dc2	t	\N
+145	shtA5zsETcf26d7756313bb4e06416a9e8f4f13a4	ccAKXTdOcda45da26e0f63c59f7529ba5033853c0	t	\N
+146	!Um8d9Yjnc7dcf73c04b6fed45baf364c6146cdef	r5OgSUcTxdc1b6ad3becbd53a80cb5aef92458cd8	t	\N
 \.
 
 
@@ -709,7 +770,7 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 -- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 87, true);
+SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 146, true);
 
 
 --
@@ -837,166 +898,23 @@ COPY "SequelizeMeta" (name) FROM stdin;
 -- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento", "Activo", "ImageName") FROM stdin;
-8	Nicolas	Fernandez	nflabo@gmail.comr	U8UuVq7U!da0a1189708d3ec8814ab962331fbd49	1991-01-01	t	\N
-9	Nicolas	Alvarez	nicolasgalvarez91@gmail.com	SXTfXwugP1b4021919cdee8cf5a2bf0ed26df2fbd	1991-01-01	t	\N
-14	taller	taller	testtaller2@taller2.com	j78#VA!uV3872c24d6ca429d698e354dab900b44d	1991-01-01	f	\N
-51	taller	taller	testtaller2@taller2.com	O4d2LnOgW2a13d03e9a9ba3e4931b4527610bcda5	1991-01-01	f	\N
-39	taller	taller	testtaller2@taller2.com	VUpsKdz7Nd6d5d7352d8bc3db97c320483beb4cea	1991-01-01	f	\N
-15	taller	taller	testtaller2@taller2.com	NS3zebC3h055178bdaf68a775722eec08b821dbad	1991-01-01	f	\N
-25	taller	taller	testtaller2@taller2.com	8nwB!8cdNf6d211bd7a60b186f227190cb7fc063b	1991-01-01	f	\N
-16	taller	taller	testtaller2@taller2.com	aa3krjVUb9d2d193fae1e7a38efac070e1c8ae518	1991-01-01	f	\N
-33	taller	taller	testtaller2@taller2.com	ZfU2E1Euf0472963380c015316f851c3d1f29b2e3	1991-01-01	f	\N
-44	taller	taller	testtaller2@taller2.com	TC9r662Uae5172a2288e49044ad953f3987749d8d	1991-01-01	f	\N
-17	taller	taller	testtaller2@taller2.com	M1hhbgatE634e001b39eb62822f129be65036b54a	1991-01-01	f	\N
-26	taller	taller	testtaller2@taller2.com	ow0XNo3ut89919ab495417b22442c115d2f84f22b	1991-01-01	f	\N
-18	taller	taller	testtaller2@taller2.com	FAwdhf72w5f990c893628749abe69ae07135f25bc	1991-01-01	f	\N
-48	taller	taller	testtaller2@taller2.com	GPjKrYoHy751a4afcbaa6e66a93b1e2548bfa2044	1991-01-01	f	\N
-34	taller	taller	testtaller2@taller2.com	0PaH68aPm18bafcdc4a7af8bf4353dcf4b7dc4f09	1991-01-01	f	\N
-27	taller	taller	testtaller2@taller2.com	e0Nc.DQNPafb53c5c19ec36f8afd513a6f5bce67e	1991-01-01	f	\N
-19	taller	taller	testtaller2@taller2.com	62kkZhUNR8e9da6fc87e687c8ac7d244774217926	1991-01-01	f	\N
-40	taller	taller	testtaller2@taller2.com	74ylwIFAU420a4aefe6cb9df770e4b8ce9f4e0c90	1991-01-01	f	\N
-20	taller	taller	testtaller2@taller2.com	v3RYpo6bWe488af558a2b785a70b8441b3384a13f	1991-01-01	f	\N
-28	taller	taller	testtaller2@taller2.com	QUzgnosdIa880bf9cb156d5423b0f7036d7e8fd29	1991-01-01	f	\N
-21	taller	taller	testtaller2@taller2.com	.FKR7Oc7nfde999440dae415ce2154a48d1109c83	1991-01-01	f	\N
-12	taller	taller	testtaller2@taller2.com	9hvcwJ6CMde95f3b2d4edabc87af9f3703b16e3b9	1991-01-01	f	\N
-35	taller	taller	testtaller2@taller2.com	ED5.5leDB21fd2dcdc3be89fd0087a6e417a96cf9	1991-01-01	f	\N
-22	taller	taller	testtaller2@taller2.com	CWTUpfX!m73151a9e882c798497f7aacbae062c30	1991-01-01	f	\N
-13	taller	taller	testtaller2@taller2.com	.hO!549y9c42652431ddd37429c6e7b9a4c7e7869	1991-01-01	f	\N
-29	taller	taller	testtaller2@taller2.com	X0dK2fyUW925c174a3b86d07a311c5dc0f00ba3ed	1991-01-01	f	\N
-45	taller	taller	testtaller2@taller2.com	UI1qH65Nu5249b0567fa8835c77c712d3dc496d78	1991-01-01	f	\N
-41	taller	taller	testtaller2@taller2.com	96c3VccIW471120ff9ccb53a3119327e792f06c39	1991-01-01	f	\N
-23	taller	taller	testtaller2@taller2.com	SzLJ5hXU.3ad2d95f1039762bcc608074403fd7d5	1991-01-01	f	\N
-36	taller	taller	testtaller2@taller2.com	RvbsC8ZRL8f7c7610749500a9adca9f79ea3c0ed0	1991-01-01	f	\N
-30	taller	taller	testtaller2@taller2.com	1RF1scRxt254ebbda46a6cd2efa35926f2fd37ced	1991-01-01	f	\N
-24	taller	taller	testtaller2@taller2.com	ySDsikB#Obc9c4813b5024f72ca7deaac0c21cb77	1991-01-01	f	\N
-31	taller	taller	testtaller2@taller2.com	BwPF5S.!n000ffe4d415b49dd76c772accd8bdcb9	1991-01-01	f	\N
-62	taller	taller	testtaller2@taller2.com	0RHolrT!B192339a91eaded90fcbc6ce1306a2891	1991-01-01	f	\N
-37	taller	taller	testtaller2@taller2.com	0#eNBGKVu4c8f8669c2a6b706f70ab9e651ee13c4	1991-01-01	f	\N
-42	taller	taller	testtaller2@taller2.com	BdI0EtyVk1f50c90777460e9ac68ced599055cdaf	1991-01-01	f	\N
-32	taller	taller	testtaller2@taller2.com	8c7ouc6hVfb894332bb9c0d598e2d143282a1446f	1991-01-01	f	\N
-49	taller	taller	testtaller2@taller2.com	paHVejlI4c3422c02a40eb41da2d1a9bab245c6a7	1991-01-01	f	\N
-46	taller	taller	testtaller2@taller2.com	lloti7SC61d8493abdd1d3f809a359defb280efd3	1991-01-01	f	\N
-38	taller	taller	testtaller2@taller2.com	6Tb324Bj.76c44aa9a4e15af377c83203f9a3d253	1991-01-01	f	\N
-54	taller	taller	testtaller2@taller2.com	vPI9L7vcdf6342b3af3069beaa1b43b6f254ae0d3	1991-01-01	f	\N
-43	taller	taller	testtaller2@taller2.com	Hfc1W1iqac5c9a184491fdf26a83b03bab65b495d	1991-01-01	f	\N
-52	taller	taller	testtaller2@taller2.com	!a#m7SRG54fcbc5c23b69a1cae7918ac756cfa5bd	1991-01-01	f	\N
-50	taller	taller	testtaller2@taller2.com	z6nt6qVIka2a7e18018449a0f6b658ce541fe3fa1	1991-01-01	f	\N
-47	taller	taller	testtaller2@taller2.com	nptmMrmhi57fd912d1b218c2c22b2a164749d9f15	1991-01-01	f	\N
-56	taller	taller	testtaller2@taller2.com	mmVahyLuR3ce5a6279e51bac53b6302f5d45cae32	1991-01-01	f	\N
-61	taller	taller	testtaller2@taller2.com	UdQ77YT6I73bda76b4ff61548368bf503b4602d32	1991-01-01	f	\N
-59	taller	taller	testtaller2@taller2.com	g207GvQ.E88eed9bfdc88e15e6f2936e7b200292d	1991-01-01	f	\N
-53	taller	taller	testtaller2@taller2.com	SFo#gxehvc0a753d221f9f5e7b06d8e9be8013864	1991-01-01	f	\N
-55	taller	taller	testtaller2@taller2.com	DCGD4ogkrb616aa02e7653ef82a759b2766cf3253	1991-01-01	f	\N
-58	taller	taller	testtaller2@taller2.com	5ewgac!NA77687cd72d52b2c6a4c2ee50f1099e9c	1991-01-01	f	\N
-57	taller	taller	testtaller2@taller2.com	98!Oy9aLR6f73c788bae90bcc2c739874f1d53e98	1991-01-01	f	\N
-60	taller	taller	testtaller2@taller2.com	GYoVc5PmZd016ac460a56d27d1e3b309a5b59926b	1991-01-01	f	\N
-63	taller	taller	testtaller2@taller2.com	#SCPsepXG58c650bbcd16b8086f3b5e5988e7eabe	1991-01-01	f	\N
-10	Nicolas	Alvarez	nicofer87@gmail.com	Z37A1CAS339702816bcd539cc4b760c47faef7f01	1991-01-01	t	\N
-64	taller	taller	testtaller2@taller2.com	jQwu4YPwU9f8d00d9c5b23a7e929409e0f2cacff1	1991-01-01	f	\N
-65	taller	taller	testtaller2@taller2.com	a26euA9em909131ec1951b3926a5bfcb45b13a5fd	1991-01-01	f	\N
-66	taller	taller	testtaller2@taller2.com	2cUTnwZ.O114426359398f83422be3d88306f9b1a	1991-01-01	f	\N
-67	taller	taller	testtaller2@taller2.com	Ai2XUT5VB337080607cabb5a25a19f8ca519c1dca	1991-01-01	f	\N
-68	taller	taller	testtaller2@taller2.com	Vr2srJ2u3da2f5ccd908545613dcf8e4ed658b6d8	1991-01-01	f	\N
-69	taller	taller	testtaller2@taller2.com	9Iqk0#Xpc157ff9cfca8811b06e01d5f4c4409af9	1991-01-01	f	\N
-89	taller	taller	testtaller2@taller2.com	NMpQyYQBk67243d7ff792c4ac411e37d707214121	1991-01-01	f	\N
-70	taller	taller	testtaller2@taller2.com	Q!!tOu9Fue862bf9dabb48fc539b99ee94bf917db	1991-01-01	f	\N
-71	taller	taller	testtaller2@taller2.com	7sE4gF3ek21ef45c2319f6cf07fc6469ef0542a48	1991-01-01	f	\N
-116	taller	taller	testtaller2@taller2.com	ID.nzFXqv30187cba58f6642102873b2ab8f30788	1991-01-01	f	\N
-72	taller	taller	testtaller2@taller2.com	4Fd5C5o0c2c75913b00bba1bdc928082a55acbfd9	1991-01-01	f	\N
-90	taller	taller	testtaller2@taller2.com	!XoTZ9mwk4dc6720f2e845582ec241a5f16afc2a9	1991-01-01	f	\N
-73	taller	taller	testtaller2@taller2.com	YldZJT9SJd0a99795a692acf42fd38115aba19bc8	1991-01-01	f	\N
-74	taller	taller	testtaller2@taller2.com	7E6xR1mOY7422be136c065dcdc37518c1469de098	1991-01-01	f	\N
-102	taller	taller	testtaller2@taller2.com	ci4YD89kA8cddb112f9802d67f2684b38472029ef	1991-01-01	f	\N
-75	taller	taller	testtaller2@taller2.com	jYQYlDAffe0e2213d0c626d4282e8b49200b7ab85	1991-01-01	f	\N
-91	taller	taller	testtaller2@taller2.com	uu#z7h3dK7efd3c57abe0dc9e16a7042d60d9a0e3	1991-01-01	f	\N
-76	taller	taller	testtaller2@taller2.com	sz8fnDKBQfdd688087bdf9dc0d23dee0f59295918	1991-01-01	f	\N
-77	taller	taller	testtaller2@taller2.com	0W7ix..xY26aa272ff37bd67ff7dcb9f830fa3ae5	1991-01-01	f	\N
-78	taller	taller	testtaller2@taller2.com	a7CrkJwORae29942be25a99f643fa02a77f2c44e9	1991-01-01	f	\N
-92	taller	taller	testtaller2@taller2.com	ml#dagF#Na4f95c24c5f601b07910d57fd72eaa31	1991-01-01	f	\N
-79	taller	taller	testtaller2@taller2.com	KuPuLazTo3754d921ad6d16f300fe6c75d73431a2	1991-01-01	f	\N
-80	taller	taller	testtaller2@taller2.com	pilHUYVgB7e5b61f7bda2d4d263d8d05003f00b9c	1991-01-01	f	\N
-81	taller	taller	testtaller2@taller2.com	Uocuo77kscc789233d86cc4e3b46ddb72ded686ef	1991-01-01	f	\N
-93	taller	taller	testtaller2@taller2.com	8OOyJHiIw7f25225a7e5c4f788956f26b45ba59ba	1991-01-01	f	\N
-82	taller	taller	testtaller2@taller2.com	msVvBs1oPb110d7514f46ef93f9617f1eb6a15875	1991-01-01	f	\N
-83	taller	taller	testtaller2@taller2.com	USmUvGhy0323ebe716bf42be44a2f14a2d930b7f3	1991-01-01	f	\N
-108	taller	taller	testtaller2@taller2.com	GIgcjb8FK9cbaeb67847c29b6022c347ccc8a93f8	1991-01-01	f	\N
-84	taller	taller	testtaller2@taller2.com	c1kMZ0b!A2d6b040abab9eff7e389d553b0347953	1991-01-01	f	\N
-94	taller	taller	testtaller2@taller2.com	JaLVuN0Vk4fe71b2ad45cea29ed7043cb4a3ab414	1991-01-01	f	\N
-85	taller	taller	testtaller2@taller2.com	ieljiwloj047130f8526d2ee6f21aac3687366700	1991-01-01	f	\N
-86	taller	taller	testtaller2@taller2.com	Dc#Of4wmY1a712fba968b2c3a468a7e94eda44bc0	1991-01-01	f	\N
-87	taller	taller	testtaller2@taller2.com	2E2wv6r9oa5ce0ca3a53ff96de1c6a50d8e5013d8	1991-01-01	f	\N
-95	taller	taller	testtaller2@taller2.com	19D7Iy2fje6ce6d49c3554f8c7f2d411662a4e967	1991-01-01	f	\N
-88	taller	taller	testtaller2@taller2.com	it7uw4PbPb622e94f93518374862b807e85239430	1991-01-01	f	\N
-113	taller	taller	testtaller2@taller2.com	uoJwjfbTNc3b7ef4b815fc76f3be002315ee11393	1991-01-01	f	\N
-109	taller	taller	testtaller2@taller2.com	fFUqAroPt5c9066a4d53604b118b287f18796d606	1991-01-01	f	\N
-96	taller	taller	testtaller2@taller2.com	FEubEfNeZ1416ec3dea25d9b6afbb05436e5b2a20	1991-01-01	f	\N
-103	taller	taller	testtaller2@taller2.com	EpDgL2ZCnc372882c24f62e1cbb04b638e815eed3	1991-01-01	f	\N
-97	taller	taller	testtaller2@taller2.com	3RX8#lVgz97cb46667b92b4d82b47be9a947208c1	1991-01-01	f	\N
-98	taller	taller	testtaller2@taller2.com	6RdDuSbU77da274aa7304f15520e1526a14471a9c	1991-01-01	f	\N
-99	taller	taller	testtaller2@taller2.com	34JZXboyS7afa3ca0c40d57608ff9a1e17fc3371b	1991-01-01	f	\N
-104	taller	taller	testtaller2@taller2.com	nzuINGmdDd290551a9dcb6fd55fd197e51e4a189c	1991-01-01	f	\N
-100	taller	taller	testtaller2@taller2.com	#oEb7tpZu8e7f92fd221f91f6acfc4efecfeee15f	1991-01-01	f	\N
-101	taller	taller	testtaller2@taller2.com	jalgTsRIuab1540da978fcadeae3b6303b0fca739	1991-01-01	f	\N
-110	taller	taller	testtaller2@taller2.com	wKyJxajGqeef6c278f277c84aae2d4486a4988513	1991-01-01	f	\N
-105	taller	taller	testtaller2@taller2.com	pEE432bSq21a17278711e18b1cad08487dfba3ec4	1991-01-01	f	\N
-106	taller	taller	testtaller2@taller2.com	1M0ayvUiz45740cb96234be7e69ca5a78e710e0e1	1991-01-01	f	\N
-107	taller	taller	testtaller2@taller2.com	uA7gMMZTde94218d97d8a34901553bfaae205e2f8	1991-01-01	f	\N
-114	taller	taller	testtaller2@taller2.com	PgmsXwm3Jc6fda0a6a4fda4a74b2447fa0eaebe1d	1991-01-01	f	\N
-111	taller	taller	testtaller2@taller2.com	18ZIsQ3N5c642d561416f4b0a207a7be3d4403e1c	1991-01-01	f	\N
-118	taller	taller	testtaller2@taller2.com	gM1Mi9Y4Ue4e824a55fe3dc44038e9903d01aa688	1991-01-01	f	\N
-112	taller	taller	testtaller2@taller2.com	W2TZD8CXm3e10178b779429f8ceeab2bd77f4dfae	1991-01-01	f	\N
-115	taller	taller	testtaller2@taller2.com	uuMG8sN7342a427f208ed301ba88fb60afe9cf0d8	1991-01-01	f	\N
-120	taller	taller	testtaller2@taller2.com	WqcvjXgIO36bf9d81a07f39038c012bdea1036416	1991-01-01	f	\N
-117	taller	taller	testtaller2@taller2.com	gPB7HNTcqe1cf1dac8a24e6fd362230f8a9104a2a	1991-01-01	f	\N
-119	taller	taller	testtaller2@taller2.com	WvJ4GXSxzef3ab9274cd3f23588e9d541ba560f1f	1991-01-01	f	\N
-121	taller	taller	testtaller2@taller2.com	ZJSh6Uan8ed20d317d1551a4f999abc9bb4fd5d63	1991-01-01	f	\N
-123	taller	taller	testtaller2@taller2.com	CDIDUHS0ef3f8914f39bdef310c21f4bd70713a57	1991-01-01	f	\N
-122	taller	taller	testtaller2@taller2.com	GcIoKe9OZb7e8d1fe05442de99f560c2e2b868283	1991-01-01	f	\N
-124	taller	taller	testtaller2@taller2.com	f9ILmoW6Rb98fc3c8736a79c8cb2d4a9323cf9bb9	1991-01-01	f	\N
-125	taller	taller	testtaller2@taller2.com	0FmxP1BAZ3982d932511a956ea669800925f64a8d	1991-01-01	f	\N
-126	taller	taller	testtaller2@taller2.com	gb7Ra2wgL0700d7dd6ab393b088f31931c3fdf05e	1991-01-01	f	\N
-127	taller	taller	testtaller2@taller2.com	ufa!rAO.Kf1315d23570714b3dd23411863ec696b	1991-01-01	f	\N
-128	taller	taller	testtaller2@taller2.com	KHXMqkejC6bb0c326ec89be609ebd239ba8eca1cf	1991-01-01	f	\N
-129	taller	taller	testtaller2@taller2.com	!Lu2U3TuE9fcdf1fd3d082fc3365945bacbcbdfd8	1991-01-01	f	\N
-7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-67f36c667dc04639eb923c739accbb677e544abc.png
-130	taller	taller	testtaller2@taller2.com	on5hNfGUJfd9d6c32ea5a98b749f1da89350eee34	1991-01-01	f	\N
-147	taller	taller	testtaller2@taller2.com	cDt4e9ugxd0a4f9d823218cd114ce76dae6fd29af	1991-01-01	f	\N
-131	taller	taller	testtaller2@taller2.com	P7MBNpCRufb25eed9dd8d72ab67516244d4fc41d2	1991-01-01	f	\N
-132	taller	taller	testtaller2@taller2.com	opmv1ylk04b1f4113f735dca000409632c2117b5f	1991-01-01	f	\N
-133	taller	taller	testtaller2@taller2.com	UqF.9PPSF7c660d2f9e63e51d3caaca34b6e118b8	1991-01-01	f	\N
-148	taller	taller	testtaller2@taller2.com	aHAi7ti2u50a7cd0e343dcb9ba11b7fc1bf26b356	1991-01-01	f	\N
-134	taller	taller	testtaller2@taller2.com	rYE5i2i0E2273a3e67d5a0945945eb6ad6b250be4	1991-01-01	f	\N
-135	taller	taller	testtaller2@taller2.com	egC7BJ56N36a60857900cce4160ecfafada7e3724	1991-01-01	f	\N
-159	taller	taller	testtaller2@taller2.com	!HQ7AP3Zx27c5044d4348ae7036282287cd9d4b59	1991-01-01	f	\N
-136	taller	taller	testtaller2@taller2.com	dRi6UNoL02d5738609f30e94850aa05f101ad95b3	1991-01-01	f	\N
-149	taller	taller	testtaller2@taller2.com	bJ4.PubkR653086836c0d6dd2f353183737a5a43f	1991-01-01	f	\N
-137	taller	taller	testtaller2@taller2.com	hEhsIZQjJ24f19d6cc8bf484776d6df57dd3afff9	1991-01-01	f	\N
-138	taller	taller	testtaller2@taller2.com	v3M4BigHe7b3ecb5f2cc671d21714ddd365883f05	1991-01-01	f	\N
-139	taller	taller	testtaller2@taller2.com	GJpmOcRpc6f8e4d252512f76c38afe8c62fa3d05c	1991-01-01	f	\N
-150	taller	taller	testtaller2@taller2.com	hg.1rdJfW9ab637269ff461fdee823653fb1bd2b5	1991-01-01	f	\N
-140	taller	taller	testtaller2@taller2.com	vGX7svUV#d7190d6db02c51f12d6fc8f78b47c900	1991-01-01	f	\N
-141	taller	taller	testtaller2@taller2.com	cjOJrtuam5348134ab3dc35dbcc1cd2a002456d82	1991-01-01	f	\N
-142	taller	taller	testtaller2@taller2.com	i97fGLXZW411022f03fe8edee480a73511223853b	1991-01-01	f	\N
-151	taller	taller	testtaller2@taller2.com	08C3hVV2re0d71785be06fcd3d401eb796e2af2e0	1991-01-01	f	\N
-143	taller	taller	testtaller2@taller2.com	rNk5uuGuH9fd8d9dc6340aa9a648d02c0a982159c	1991-01-01	f	\N
-144	taller	taller	testtaller2@taller2.com	2MpUUxdNn02712b92ddb9da496a61044d6a6bba75	1991-01-01	f	\N
-160	taller	taller	testtaller2@taller2.com	Ed4VF!3ZL613fbe94711c152e58fef6c44c4063a4	1991-01-01	f	\N
-145	taller	taller	testtaller2@taller2.com	PcIxPqI#p805dedf2d8293405c8ad0b080e20b157	1991-01-01	f	\N
-146	taller	taller	testtaller2@taller2.com	KEz#0liAId5177d8ad742337936a65b9db06b8b0d	1991-01-01	f	\N
-152	taller	taller	testtaller2@taller2.com	UzLiyrSLt723ee59c69f0e5e51d5c78796dd2d5e9	1991-01-01	f	\N
-153	taller	taller	testtaller2@taller2.com	7z54lcN3Ob1b9d083166c9e227686b30e939812eb	1991-01-01	f	\N
-161	taller	taller	testtaller2@taller2.com	GSJzwlgdL9a6c9116529f29e1cb73b5b4d50a156d	1991-01-01	f	\N
-154	taller	taller	testtaller2@taller2.com	nS9XkFovJf975100f31e3bf3cb6995913e03bfb13	1991-01-01	f	\N
-155	taller	taller	testtaller2@taller2.com	ZTRCAZUNub9b29575f05bcdb588904eb96a4a27d0	1991-01-01	f	\N
-156	taller	taller	testtaller2@taller2.com	Spj6ylpJs7a657ffd6728c7ada5253646d00406be	1991-01-01	f	\N
-162	taller	taller	testtaller2@taller2.com	aulV2DzoQf8831b3f573c0289978376d11105a39e	1991-01-01	f	\N
-157	taller	taller	testtaller2@taller2.com	Vauj.uRS76aec40325400a7739da1506c2dcd62a9	1991-01-01	f	\N
-158	taller	taller	testtaller2@taller2.com	rjPSm.ejZ75b916434c8405ed42a4c9c7586f0029	1991-01-01	f	\N
-163	taller	taller	testtaller2@taller2.com	pzODYnh6#4004be13050bc7cb1a6fdb8279e63af5	1991-01-01	f	\N
-164	taller	taller	testtaller2@taller2.com	CzBbIZNfi7e7765af40b22d54b3548ed5c270fba3	1991-01-01	f	\N
-165	taller	taller	testtaller2@taller2.com	6TPST7BHV7958754969b2b7596973938cc95b1154	1991-01-01	t	\N
-11	Nicolas	Fernandez	nflabo@gmail.com	TajGp0ceg31e33a683c02329b0c22e42a46b327fc	1991-01-01	t	image-f87e4b7e0d4db0148a69c35a374a2f811fc46e64.png
+COPY "Users" ("UserID", "firstName", "lastName", email, password, birthdate, active, image, "userName", country) FROM stdin;
+221	taller	taller	testtaller2@taller2.com	IiNMNwjul04fecdb13a4efd749bd9d70a220e2a8d	1991-01-01	f	image-e9c7bf1542c708418689742c406f83bbecb85bc9.png	\N	Argentina
+10	Nicolas	Alvarez	nicofer87@gmail.com	Z37A1CAS339702816bcd539cc4b760c47faef7f01	1991-01-01	f	\N	\N	\N
+225	taller	taller	jPOtVbtFW6a4619c2c475044fbfa9ca7d02f5b2f4	Rh##zvGP6a3eca411fa8eaaca3e1c9c35cb333abf	1991-01-01	t	image-88e2e5666d375cacced30ebdb471e17363150263.png	\N	Argentina
+9	Nicolas	Alvarez	nicolasgalvarez91@gmail.com	SXTfXwugP1b4021919cdee8cf5a2bf0ed26df2fbd	1991-01-01	t	\N	\N	\N
+226	taller	taller	testtaller2@taller2.com	dTZy!O0Vz46067d117c09cbeb197e3fb92e719343	1991-01-01	f	image-bb37a91175242d0fb02d54cf11401dadb6573bc6.png	\N	Argentina
+229	taller	taller	Ex8GymviS21b014ea4e70abb501415bddef9d186e	kd!zryC2e286beba9fd62290324fcf3cc107ff8e2	1991-01-01	t	image-cfc085242ee604bde63ed0f3cc4ca27aec6ecd3b.png	\N	Argentina
+8	Nicolas	Fernandez	nflabo@gmail.com	lKNjAxrNu371ac65cf02189af3fcb38051eac9bd7	1991-01-01	t	image-6fc42401c1a14648ebb30e732fbf89c42eebcdec.png	\N	\N
+222	taller	taller	uO38Kv3dGc214ae5e48b707a89e0af5b334fd7f81	2eJRWeCgr5618211ce474aafc8de21c0f2d2b2e07	1991-01-01	t	image-d0ad182047e5d63f2f481addb622636b51103c01.png	\N	Argentina
+223	taller	taller	testtaller2@taller2.com	4ve9M5yJu3e2656a0ceb9bcde17e8b5be64ff0b3d	1991-01-01	f	image-8681938b9633e6c57687f21aec813d17867c4e69.png	\N	Argentina
+227	taller	taller	sDS4FErmp08d71c85086a047217111e140493a74f	BU!qUNPn381e71a25f6e624e828706784373bdb92	1991-01-01	t	image-86408a3511d4adcb6fed8de3a4f5c52b98c8db61.png	\N	Argentina
+7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-47b705f211158bf7f734b5d500121a80cba8bac2.png	\N	\N
+220	taller	taller	testtaller2@taller2.com	vLYg5IoFPdfa16c6e9462ce12196f720f3f4f8a34	1991-01-01	f	image-96e7d27555a7a6f12cbb562c7e77f02179a2e444.png	\N	Argentina
+230	taller	taller	UIC.0dFnNd63d66c7fa27d01ed9c072ecd9006157	HMw8w4p3ia02894a7eaed3b21c3fc15d43a9ee562	1991-01-01	t	image-964091b37750d0824abff362249eac0e88149c83.png	\N	Argentina
+11	taller	taller	testtaller2@taller2.com	5ozpNwv0I24a52bfd2ffbdc402cc6d31faf8fa57e	1991-01-01	t	image-9c9b320ce3d86cd8caaa0364fb7685002c2023ef.png	\N	Argentina
+224	taller	taller	ObruH.pePfe75c2c1080cc085173ea58aaa43cfb5	a8BWxJjuD729c39a25ba4fbcac15eaec46254ef8b	1991-01-01	t	image-41055e2218db871564981f82638a6a4974f99a54.png	\N	Argentina
+228	taller	taller	Aow2ff9Dsa1ee17932673fb1784a0525be40cdf30	DBu#YoMJq9bda765886352c7455e7df65d8fa11e6	1991-01-01	t	image-838c96ff6d57fa8fe107d851611aec247a6d0402.png	\N	Argentina
 \.
 
 
@@ -1004,7 +922,7 @@ COPY "Users" ("UserID", "Name", "LastName", "Email", "Passwd", "FechaNacimiento"
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_UserID_seq"', 165, true);
+SELECT pg_catalog.setval('"Users_UserID_seq"', 230, true);
 
 
 --

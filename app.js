@@ -10,7 +10,13 @@ var app = express();
 env(__dirname + '/process.env');
 
 app.set('port', (process.env.PORT || 5000));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(
+bodyParser.urlencoded({
+    parameterLimit: 100000,
+    limit: '50mb',
+    extended: true
+  })
+);
 app.use(bodyParser.json())
 app.use(express.static(__dirname + '/public'));
 app.use(cors());  

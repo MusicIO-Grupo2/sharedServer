@@ -2,6 +2,7 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../app');
 var helperToken = require('../lib/service');
+var fileHelper = require('../lib/filehelper');
 var helperAuth = require('../lib/middleware');
 var helperPass= require('../lib/password');
 var should = chai.should();
@@ -10,9 +11,11 @@ chai.use(chaiHttp);
 
 describe('Password', function() {
 	it('Test hash y validate', function() {
+		;		
 		var passwHash= helperPass.hash("test1");	       
-		var assert = chai.assert;		
-		 assert.equal(helperPass.validate('eMtJupw9v0dde3743f0569de80abeaca10eca65db','test1'),true);
+		var assert = chai.assert;
+		assert.equal(helperPass.validate('eMtJupw9v0dde3743f0569de80abeaca10eca65db','test1'),true);
+		 
 	   });
 
 });
@@ -318,7 +321,7 @@ describe('Users', function() {
        chai.request(server)
       .put('/users/me/photo/')
 	.set('authorization', 'test ' + tokenGenerado)
-      .send({"Imagen":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})
+      .send({"image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
@@ -329,7 +332,7 @@ describe('Users', function() {
   it('Obtener Usuario Registrado by email', function(done) {
        chai.request(server)
       .post('/token/')
-      .send({"Email":"nflabo@gmail.com","Password":"test"})
+      .send({"email":"nflabo@gmail.com","password":"test"})
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
@@ -362,7 +365,7 @@ describe('Users', function() {
   it('Error al autenticar Usuario Registrado by email', function(done) {
        chai.request(server)
       .post('/token/')
-      .send({"Email":"marcospernica@yahoo.com","Password":"test"})
+      .send({"email":"marcospernica@yahoo.com","password":"test"})
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
@@ -372,7 +375,7 @@ describe('Users', function() {
   it('Error al autenticar Usuario password Registrado by email', function(done) {
        chai.request(server)
       .post('/token/')
-      .send({"Email":"marcospernica@yahoo.com.ar","Password":"testmal"})
+      .send({"email":"marcospernica@yahoo.com.ar","password":"testmal"})
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
@@ -385,9 +388,9 @@ describe('Users', function() {
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
-        res.body.should.have.property('Name');
-            res.body.Name.should.equal('Marcos');
-            res.body.LastName.should.equal('Pernica');
+        res.body.should.have.property('firstName');
+            res.body.firstName.should.equal('Marcos');
+            res.body.lastName.should.equal('Pernica');
 
         done();
       });
@@ -403,7 +406,7 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by Mail', function(done) {
        chai.request(server)
-      .delete('/users/mail/testtaller2@taller2.com')
+      .delete('/users/email/testtaller2@taller2.com')
       .end(function(err, res){
         res.should.be.json;
         done();
@@ -417,38 +420,51 @@ describe('Users', function() {
         done();
       });
    });
+   
    it('Registrar Usuario', function(done) {
        chai.request(server)
       .post('/users/')
-      .send({"Email":"testtaller2@taller2.com","Password":"test","Nombre":"taller","Apellido":"taller","FechaNacimiento":"1991-01-01"})
+      .send({"email":helperPass.hash("talli"),"password":"test","firstName":"taller","lastName":"taller","birthdate":"1991-01-01","country":"Argentina","image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.Name.should.equal('taller');
+        res.body.user.firstName.should.equal('taller');
        done();
       });
    });
    it('Registrar Usuario Registrado', function(done) {
        chai.request(server)
       .post('/users/')
-      .send({"Email":"testtaller2@taller2.com","Password":"test","Nombre":"taller","Apellido":"taller","FechaNacimiento":"1991-01-01"})
+            .send({"email":"nflabo@gmail.com","password":"test","firstName":"taller","lastName":"taller","birthdate":"1991-01-01","country":"Argentina","image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
         done();
       });
    });
-   it('Actualizar Usuario by id', function(done) {
+it('Reactivar Usuario by id', function(done) {
        chai.request(server)
-      .put('/users/11')
-      .send({"Email":"nflabo@gmail.com","Password":"test","Nombre":"Nicolas","Apellido":"Fernandez","FechaNacimiento":"1991-01-01"})
+      .put('/users/Reactivar/11')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-            res.body.user.Name.should.equal('Nicolas');
-            res.body.user.LastName.should.equal('Fernandez');
+        res.body.user.UserID.should.equal('11');
+        done();
+      });
+   });
+   it('Actualizar Usuario by id', function(done) {
+	var tokenGenerado= helperToken.createToken(11);
+       chai.request(server)
+	.put('/users/11')
+	.set('authorization', 'test ' + tokenGenerado)
+	.send({"email":"testtaller2@taller2.com","password":"test","firstName":"taller","lastName":"taller","birthdate":"1991-01-01","country":"Argentina","image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAB3RJTUUH1QEHDxEhOnxCRgAAAAlwSFlzAAAK8AAACvABQqw0mAAAAXBJREFUeNrtV0FywzAIxJ3+K/pZyctKXqamji0htEik9qEHc3JkWC2LRPCS6Zh9HIy/AP4FwKf75iHEr6eU6Mt1WzIOFjFL7IFkYBx3zWBVkkeXAUCXwl1tvz2qdBLfJrzK7ixNUmVdTIAB8PMtxHgAsFNNkoExRKA+HocriOQAiC+1kShhACwSRGAEwPP96zYIoE8Pmph9qEWWKcCWRAfA/mkfJ0F6dSoA8KW3CRhn3ZHcW2is9VOsAgoqHblncAsyaCgcbqpUZQnWoGTcp/AnuwCoOUjhIvCvN59UBeoPZ/AYyLm3cWVAjxhpqREVaP0974iVwH51d4AVNaSC8TRNNYDQEFdlzDW9ob10YlvGQm0mQ+elSpcCCBtDgQD7cDFojdx7NIeHJkqi96cOGNkfZOroZsHtlPYoR7TOp3Vmfa5+49uoSSRyjfvc0A1kLx4KC6sNSeDieD1AWhrJLe0y+uy7b9GjP83l+m68AJ72AwSRPN5g7uwUAAAAAElFTkSuQmCC"})      .end(function(err, res){
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.have.property('user');
+            res.body.user.firstName.should.equal('taller');
+            res.body.user.lastName.should.equal('taller');
 
         done();
       });
@@ -456,7 +472,7 @@ describe('Users', function() {
    it('Actualizar Usuario by id inexistente', function(done) {
        chai.request(server)
       .put('/users/0')
-      .send({"Email":"nflabo@gmail.com","Password":"test","Nombre":"Nicolas","Apellido":"Fernandez","FechaNacimiento":"1991-01-01"})
+      .send({"email":"testtaller2@taller2.com","password":"test","firstName":"taller","lastName":"taller","birthdate":"1991-01-01","country":"Argentina"})
       .end(function(err, res){
         res.should.have.status(401);
         res.should.be.json;
@@ -465,12 +481,12 @@ describe('Users', function() {
    });
    it('Eliminar Usuario by id', function(done) {
        chai.request(server)
-      .delete('/users/10')
+      .delete('/users/11')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.UserID.should.equal('10');
+        res.body.user.UserID.should.equal('11');
         done();
       });
    });
@@ -485,12 +501,12 @@ describe('Users', function() {
    });
    it('Reactivar Usuario by id', function(done) {
        chai.request(server)
-      .put('/users/Reactivar/10')
+      .put('/users/Reactivar/11')
       .end(function(err, res){
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.UserID.should.equal('10');
+        res.body.user.UserID.should.equal('11');
         done();
       });
    });

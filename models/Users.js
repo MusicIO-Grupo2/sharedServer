@@ -8,32 +8,40 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    Name: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    LastName: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    Email: {
+    email: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    Passwd: {
+    password: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    FechaNacimiento: {
+    birthdate: {
       type: DataTypes.DATE,
       allowNull: true
     },
-    Activo: {
+    active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false
     },
-    ImageName: {
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    country: {
       type: DataTypes.STRING,
       allowNull: true
     }
