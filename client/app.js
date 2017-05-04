@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer'])
+angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer','naif.base64'])
   .config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
     /**
@@ -57,6 +57,14 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
       .state('profile', {
         url: '/profile',
         templateUrl: 'partials/profile.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          loginRequired: loginRequired
+        }
+	})
+	.state('editProfile', {
+        url: '/profile/:id/edit',
+        templateUrl: 'partials/profile-edit.html',
         controller: 'ProfileCtrl',
         resolve: {
           loginRequired: loginRequired
