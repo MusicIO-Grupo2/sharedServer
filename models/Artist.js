@@ -1,27 +1,31 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Album', {
-    albumId: {
+  return sequelize.define('Artist', {
+    artistId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    firstName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
-    dateRelease: {
-      type: DataTypes.DATE,
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    age: {
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     active: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
       defaultValue: true
     }
   }, {
-    tableName: 'Album'
+    tableName: 'Artist'
   });
 };

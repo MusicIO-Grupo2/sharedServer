@@ -39,10 +39,10 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE "Album" (
-    "AlbumID" bigint NOT NULL,
-    "Nombre" character varying(100) NOT NULL,
-    "FechaLanzamiento" date,
-    "Activo" boolean DEFAULT true
+    "albumId" bigint NOT NULL,
+    name character varying(100) NOT NULL,
+    "dateRelease" date,
+    active boolean DEFAULT true
 );
 
 
@@ -56,22 +56,22 @@ COMMENT ON TABLE "Album" IS 'Tabla para albumes';
 
 
 --
--- Name: AlbumCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: AlbumTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "AlbumCancion" (
-    "AlbumID" bigint NOT NULL,
-    "CancionID" bigint NOT NULL
+CREATE TABLE "AlbumTrack" (
+    "albumId" bigint NOT NULL,
+    "trackId" bigint NOT NULL
 );
 
 
-ALTER TABLE "AlbumCancion" OWNER TO postgres;
+ALTER TABLE "AlbumTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "AlbumCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "AlbumTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "AlbumCancion" IS 'Tabla de canciones que estan para un album.';
+COMMENT ON TABLE "AlbumTrack" IS 'Tabla de canciones que estan para un album.';
 
 
 --
@@ -92,67 +92,67 @@ ALTER TABLE "Album_AlbumID_seq" OWNER TO postgres;
 -- Name: Album_AlbumID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Album_AlbumID_seq" OWNED BY "Album"."AlbumID";
+ALTER SEQUENCE "Album_AlbumID_seq" OWNED BY "Album"."albumId";
 
 
 --
--- Name: Artista; Type: TABLE; Schema: public; Owner: postgres
+-- Name: Artist; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Artista" (
-    "ArtistaID" bigint NOT NULL,
-    "Nombre" character varying(100),
-    "Apellido" character varying(100),
-    "Edad" smallint,
-    "Activo" boolean DEFAULT true NOT NULL
+CREATE TABLE "Artist" (
+    "artistId" bigint NOT NULL,
+    "firstName" character varying(100),
+    "lastName" character varying(100),
+    age smallint,
+    active boolean DEFAULT true NOT NULL
 );
 
 
-ALTER TABLE "Artista" OWNER TO postgres;
+ALTER TABLE "Artist" OWNER TO postgres;
 
 --
--- Name: TABLE "Artista"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "Artist"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "Artista" IS 'Tabla para datos de Artistas';
+COMMENT ON TABLE "Artist" IS 'Tabla para datos de Artistas';
 
 
 --
--- Name: ArtistaCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ArtistTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "ArtistaCancion" (
-    "ArtistaID" bigint NOT NULL,
-    "CancionID" bigint NOT NULL
+CREATE TABLE "ArtistTrack" (
+    "artistId" bigint NOT NULL,
+    "trackId" bigint NOT NULL
 );
 
 
-ALTER TABLE "ArtistaCancion" OWNER TO postgres;
+ALTER TABLE "ArtistTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "ArtistaCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "ArtistTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "ArtistaCancion" IS 'Tabla para los artistas que compusieron las canciones.';
+COMMENT ON TABLE "ArtistTrack" IS 'Tabla para los artistas que compusieron las canciones.';
 
 
 --
--- Name: ArtistaUser; Type: TABLE; Schema: public; Owner: postgres
+-- Name: ArtistUser; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "ArtistaUser" (
-    "ArtistaID" bigint NOT NULL,
-    "UserID" bigint NOT NULL
+CREATE TABLE "ArtistUser" (
+    "artistId" bigint NOT NULL,
+    "userId" bigint NOT NULL
 );
 
 
-ALTER TABLE "ArtistaUser" OWNER TO postgres;
+ALTER TABLE "ArtistUser" OWNER TO postgres;
 
 --
--- Name: TABLE "ArtistaUser"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "ArtistUser"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "ArtistaUser" IS 'Artistas seguidos por el UserID. Borrado fisico on delete.';
+COMMENT ON TABLE "ArtistUser" IS 'Artistas seguidos por el UserID. Borrado fisico on delete.';
 
 
 --
@@ -173,29 +173,29 @@ ALTER TABLE "Artista_ArtistaID_seq" OWNER TO postgres;
 -- Name: Artista_ArtistaID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Artista_ArtistaID_seq" OWNED BY "Artista"."ArtistaID";
+ALTER SEQUENCE "Artista_ArtistaID_seq" OWNED BY "Artist"."artistId";
 
 
 --
--- Name: Cancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: Track; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Cancion" (
-    "CancionID" bigint NOT NULL,
-    "Nombre" character varying(100) NOT NULL,
-    "Descripcion" character varying(500),
-    "Activo" boolean DEFAULT true NOT NULL,
-    "Duracion" bigint
+CREATE TABLE "Track" (
+    "trackId" bigint NOT NULL,
+    name character varying(100) NOT NULL,
+    description character varying(500),
+    active boolean DEFAULT true NOT NULL,
+    duration bigint
 );
 
 
-ALTER TABLE "Cancion" OWNER TO postgres;
+ALTER TABLE "Track" OWNER TO postgres;
 
 --
--- Name: TABLE "Cancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "Track"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "Cancion" IS 'Tabla para canciones';
+COMMENT ON TABLE "Track" IS 'Tabla para canciones';
 
 
 --
@@ -216,104 +216,123 @@ ALTER TABLE "Cancion_CancionID_seq" OWNER TO postgres;
 -- Name: Cancion_CancionID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Cancion_CancionID_seq" OWNED BY "Cancion"."CancionID";
+ALTER SEQUENCE "Cancion_CancionID_seq" OWNED BY "Track"."trackId";
 
 
 --
--- Name: Contacto; Type: TABLE; Schema: public; Owner: postgres
+-- Name: Contact; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Contacto" (
-    "UserID" bigint NOT NULL,
-    "ContactoID" bigint NOT NULL,
-    "Activo" boolean DEFAULT true NOT NULL
+CREATE TABLE "Contact" (
+    "userId" bigint NOT NULL,
+    "contactId" bigint NOT NULL,
+    active boolean DEFAULT true NOT NULL
 );
 
 
-ALTER TABLE "Contacto" OWNER TO postgres;
+ALTER TABLE "Contact" OWNER TO postgres;
 
 --
--- Name: TABLE "Contacto"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "Contact"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "Contacto" IS 'Tabla de contactos para un usuario dado.';
+COMMENT ON TABLE "Contact" IS 'Tabla de contactos para un usuario dado.';
 
 
 --
--- Name: Genero; Type: TABLE; Schema: public; Owner: postgres
+-- Name: FavoriteTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "Genero" (
-    "GeneroID" bigint NOT NULL,
-    "Descripcion" character varying(100) NOT NULL,
-    "Activo" boolean DEFAULT true NOT NULL
+CREATE TABLE "FavoriteTrack" (
+    "userId" bigint NOT NULL,
+    "trackId" bigint NOT NULL
 );
 
 
-ALTER TABLE "Genero" OWNER TO postgres;
+ALTER TABLE "FavoriteTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "Genero"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "FavoriteTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "Genero" IS 'Tabla para generos musicales.';
+COMMENT ON TABLE "FavoriteTrack" IS 'Tabla con marcas de canciones por los usuario (like). Borrado fisico on delete.';
 
 
 --
--- Name: GeneroAlbum; Type: TABLE; Schema: public; Owner: postgres
+-- Name: Gender; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "GeneroAlbum" (
-    "AlbumID" bigint NOT NULL,
-    "GeneroID" bigint NOT NULL
+CREATE TABLE "Gender" (
+    "genderId" bigint NOT NULL,
+    description character varying(100) NOT NULL,
+    active boolean DEFAULT true NOT NULL
 );
 
 
-ALTER TABLE "GeneroAlbum" OWNER TO postgres;
+ALTER TABLE "Gender" OWNER TO postgres;
 
 --
--- Name: TABLE "GeneroAlbum"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "Gender"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "GeneroAlbum" IS 'Tabla para generos de un album. Borrado fisico on delete.';
+COMMENT ON TABLE "Gender" IS 'Tabla para generos musicales.';
 
 
 --
--- Name: GeneroArtista; Type: TABLE; Schema: public; Owner: postgres
+-- Name: GenderAlbum; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "GeneroArtista" (
-    "ArtistaID" bigint NOT NULL,
-    "GeneroID" bigint NOT NULL
+CREATE TABLE "GenderAlbum" (
+    "albumId" bigint NOT NULL,
+    "genderId" bigint NOT NULL
 );
 
 
-ALTER TABLE "GeneroArtista" OWNER TO postgres;
+ALTER TABLE "GenderAlbum" OWNER TO postgres;
 
 --
--- Name: TABLE "GeneroArtista"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "GenderAlbum"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "GeneroArtista" IS 'Tabla para generos de un artista. Borrado fisico on delete.';
+COMMENT ON TABLE "GenderAlbum" IS 'Tabla para generos de un album. Borrado fisico on delete.';
 
 
 --
--- Name: GeneroCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: GenderArtist; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "GeneroCancion" (
-    "CancionID" bigint NOT NULL,
-    "GeneroID" bigint NOT NULL
+CREATE TABLE "GenderArtist" (
+    "artistId" bigint NOT NULL,
+    "genderId" bigint NOT NULL
 );
 
 
-ALTER TABLE "GeneroCancion" OWNER TO postgres;
+ALTER TABLE "GenderArtist" OWNER TO postgres;
 
 --
--- Name: TABLE "GeneroCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "GenderArtist"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "GeneroCancion" IS 'Tabla para generos de la cancion. Borrado fisico on delete.';
+COMMENT ON TABLE "GenderArtist" IS 'Tabla para generos de un artista. Borrado fisico on delete.';
+
+
+--
+-- Name: GenderTrack; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE "GenderTrack" (
+    "trackId" bigint NOT NULL,
+    "genderId" bigint NOT NULL
+);
+
+
+ALTER TABLE "GenderTrack" OWNER TO postgres;
+
+--
+-- Name: TABLE "GenderTrack"; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE "GenderTrack" IS 'Tabla para generos de la cancion. Borrado fisico on delete.';
 
 
 --
@@ -334,26 +353,27 @@ ALTER TABLE "Genero_GeneroID_seq" OWNER TO postgres;
 -- Name: Genero_GeneroID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Genero_GeneroID_seq" OWNED BY "Genero"."GeneroID";
+ALTER SEQUENCE "Genero_GeneroID_seq" OWNED BY "Gender"."genderId";
 
 
 --
--- Name: MarcaCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: PlayTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "MarcaCancion" (
-    "UserID" bigint NOT NULL,
-    "CancionID" bigint NOT NULL
+CREATE TABLE "PlayTrack" (
+    "trackId" bigint NOT NULL,
+    "userId" bigint NOT NULL,
+    date date NOT NULL
 );
 
 
-ALTER TABLE "MarcaCancion" OWNER TO postgres;
+ALTER TABLE "PlayTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "MarcaCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "PlayTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "MarcaCancion" IS 'Tabla con marcas de canciones por los usuario (like). Borrado fisico on delete.';
+COMMENT ON TABLE "PlayTrack" IS 'Tabla con la reproduccion de las canciones por un usuario.';
 
 
 --
@@ -361,10 +381,10 @@ COMMENT ON TABLE "MarcaCancion" IS 'Tabla con marcas de canciones por los usuari
 --
 
 CREATE TABLE "Playlist" (
-    "PlaylistID" bigint NOT NULL,
-    "Nombre" character varying(100) NOT NULL,
-    "UserCreacion" bigint NOT NULL,
-    "Activo" boolean DEFAULT true NOT NULL
+    "playlistId" bigint NOT NULL,
+    name character varying(100) NOT NULL,
+    owner bigint NOT NULL,
+    active boolean DEFAULT true NOT NULL
 );
 
 
@@ -382,8 +402,8 @@ COMMENT ON TABLE "Playlist" IS 'Tabla para datos de playlist';
 --
 
 CREATE TABLE "PlaylistAlbum" (
-    "PlaylistID" bigint NOT NULL,
-    "AlbumID" bigint NOT NULL
+    "playlistId" bigint NOT NULL,
+    "albumId" bigint NOT NULL
 );
 
 
@@ -397,22 +417,22 @@ COMMENT ON TABLE "PlaylistAlbum" IS 'Tabla de relacion de playlist y album. Borr
 
 
 --
--- Name: PlaylistCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: PlaylistTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "PlaylistCancion" (
-    "PlaylistID" bigint NOT NULL,
-    "CancionID" bigint NOT NULL
+CREATE TABLE "PlaylistTrack" (
+    "playlistId" bigint NOT NULL,
+    "trackId" bigint NOT NULL
 );
 
 
-ALTER TABLE "PlaylistCancion" OWNER TO postgres;
+ALTER TABLE "PlaylistTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "PlaylistCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "PlaylistTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "PlaylistCancion" IS 'Tabla relacional playlist cancion';
+COMMENT ON TABLE "PlaylistTrack" IS 'Tabla relacional playlist cancion';
 
 
 --
@@ -433,47 +453,27 @@ ALTER TABLE "Playlist_PlaylistID_seq" OWNER TO postgres;
 -- Name: Playlist_PlaylistID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE "Playlist_PlaylistID_seq" OWNED BY "Playlist"."PlaylistID";
+ALTER SEQUENCE "Playlist_PlaylistID_seq" OWNED BY "Playlist"."playlistId";
 
 
 --
--- Name: PuntuacionCancion; Type: TABLE; Schema: public; Owner: postgres
+-- Name: RateTrack; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE "PuntuacionCancion" (
-    "UserID" bigint NOT NULL,
-    "CancionID" bigint NOT NULL,
-    "Puntaje" smallint NOT NULL
+CREATE TABLE "RateTrack" (
+    "userId" bigint NOT NULL,
+    "trackId" bigint NOT NULL,
+    rate smallint NOT NULL
 );
 
 
-ALTER TABLE "PuntuacionCancion" OWNER TO postgres;
+ALTER TABLE "RateTrack" OWNER TO postgres;
 
 --
--- Name: TABLE "PuntuacionCancion"; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: TABLE "RateTrack"; Type: COMMENT; Schema: public; Owner: postgres
 --
 
-COMMENT ON TABLE "PuntuacionCancion" IS 'Tabla de puntuacion de canciones.';
-
-
---
--- Name: ReproduccionCancion; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE "ReproduccionCancion" (
-    "CancionID" bigint NOT NULL,
-    "UserID" bigint NOT NULL,
-    "Fecha" date NOT NULL
-);
-
-
-ALTER TABLE "ReproduccionCancion" OWNER TO postgres;
-
---
--- Name: TABLE "ReproduccionCancion"; Type: COMMENT; Schema: public; Owner: postgres
---
-
-COMMENT ON TABLE "ReproduccionCancion" IS 'Tabla con la reproduccion de las canciones por un usuario.';
+COMMENT ON TABLE "RateTrack" IS 'Tabla de puntuacion de canciones.';
 
 
 --
@@ -506,7 +506,7 @@ ALTER TABLE "Users_UserID_seq" OWNER TO postgres;
 --
 
 CREATE TABLE "Users" (
-    "UserID" bigint DEFAULT nextval('"Users_UserID_seq"'::regclass) NOT NULL,
+    "userId" bigint DEFAULT nextval('"Users_UserID_seq"'::regclass) NOT NULL,
     "firstName" character varying(100),
     "lastName" character varying(100),
     email character varying(100),
@@ -522,53 +522,53 @@ CREATE TABLE "Users" (
 ALTER TABLE "Users" OWNER TO postgres;
 
 --
--- Name: Album AlbumID; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: Album albumId; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Album" ALTER COLUMN "AlbumID" SET DEFAULT nextval('"Album_AlbumID_seq"'::regclass);
-
-
---
--- Name: Artista ArtistaID; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Artista" ALTER COLUMN "ArtistaID" SET DEFAULT nextval('"Artista_ArtistaID_seq"'::regclass);
+ALTER TABLE ONLY "Album" ALTER COLUMN "albumId" SET DEFAULT nextval('"Album_AlbumID_seq"'::regclass);
 
 
 --
--- Name: Cancion CancionID; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: Artist artistId; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Cancion" ALTER COLUMN "CancionID" SET DEFAULT nextval('"Cancion_CancionID_seq"'::regclass);
-
-
---
--- Name: Genero GeneroID; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Genero" ALTER COLUMN "GeneroID" SET DEFAULT nextval('"Genero_GeneroID_seq"'::regclass);
+ALTER TABLE ONLY "Artist" ALTER COLUMN "artistId" SET DEFAULT nextval('"Artista_ArtistaID_seq"'::regclass);
 
 
 --
--- Name: Playlist PlaylistID; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: Gender genderId; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Playlist" ALTER COLUMN "PlaylistID" SET DEFAULT nextval('"Playlist_PlaylistID_seq"'::regclass);
+ALTER TABLE ONLY "Gender" ALTER COLUMN "genderId" SET DEFAULT nextval('"Genero_GeneroID_seq"'::regclass);
+
+
+--
+-- Name: Playlist playlistId; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Playlist" ALTER COLUMN "playlistId" SET DEFAULT nextval('"Playlist_PlaylistID_seq"'::regclass);
+
+
+--
+-- Name: Track trackId; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Track" ALTER COLUMN "trackId" SET DEFAULT nextval('"Cancion_CancionID_seq"'::regclass);
 
 
 --
 -- Data for Name: Album; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "Album" ("AlbumID", "Nombre", "FechaLanzamiento", "Activo") FROM stdin;
+COPY "Album" ("albumId", name, "dateRelease", active) FROM stdin;
 \.
 
 
 --
--- Data for Name: AlbumCancion; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: AlbumTrack; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "AlbumCancion" ("AlbumID", "CancionID") FROM stdin;
+COPY "AlbumTrack" ("albumId", "trackId") FROM stdin;
 \.
 
 
@@ -580,28 +580,28 @@ SELECT pg_catalog.setval('"Album_AlbumID_seq"', 1, false);
 
 
 --
--- Data for Name: Artista; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: Artist; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "Artista" ("ArtistaID", "Nombre", "Apellido", "Edad", "Activo") FROM stdin;
+COPY "Artist" ("artistId", "firstName", "lastName", age, active) FROM stdin;
 1	Ricky	Martin	30	t
 \.
 
 
 --
--- Data for Name: ArtistaCancion; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: ArtistTrack; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "ArtistaCancion" ("ArtistaID", "CancionID") FROM stdin;
+COPY "ArtistTrack" ("artistId", "trackId") FROM stdin;
 1	2
 \.
 
 
 --
--- Data for Name: ArtistaUser; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: ArtistUser; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "ArtistaUser" ("ArtistaID", "UserID") FROM stdin;
+COPY "ArtistUser" ("artistId", "userId") FROM stdin;
 \.
 
 
@@ -613,10 +613,138 @@ SELECT pg_catalog.setval('"Artista_ArtistaID_seq"', 1, true);
 
 
 --
--- Data for Name: Cancion; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM stdin;
+SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 149, true);
+
+
+--
+-- Data for Name: Contact; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Contact" ("userId", "contactId", active) FROM stdin;
+11	8	t
+11	9	t
+\.
+
+
+--
+-- Data for Name: FavoriteTrack; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "FavoriteTrack" ("userId", "trackId") FROM stdin;
+8	1
+\.
+
+
+--
+-- Data for Name: Gender; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Gender" ("genderId", description, active) FROM stdin;
+1	Folklore	t
+2	Pop	t
+3	Latino	t
+\.
+
+
+--
+-- Data for Name: GenderAlbum; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "GenderAlbum" ("albumId", "genderId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: GenderArtist; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "GenderArtist" ("artistId", "genderId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: GenderTrack; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "GenderTrack" ("trackId", "genderId") FROM stdin;
+2	3
+1	2
+\.
+
+
+--
+-- Name: Genero_GeneroID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Genero_GeneroID_seq"', 1, true);
+
+
+--
+-- Data for Name: PlayTrack; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "PlayTrack" ("trackId", "userId", date) FROM stdin;
+\.
+
+
+--
+-- Data for Name: Playlist; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Playlist" ("playlistId", name, owner, active) FROM stdin;
+\.
+
+
+--
+-- Data for Name: PlaylistAlbum; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "PlaylistAlbum" ("playlistId", "albumId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: PlaylistTrack; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "PlaylistTrack" ("playlistId", "trackId") FROM stdin;
+\.
+
+
+--
+-- Name: Playlist_PlaylistID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"Playlist_PlaylistID_seq"', 1, false);
+
+
+--
+-- Data for Name: RateTrack; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "RateTrack" ("userId", "trackId", rate) FROM stdin;
+7	1	5
+8	1	10
+\.
+
+
+--
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "SequelizeMeta" (name) FROM stdin;
+20170403005935-AddColumnFechaNacimiento.js
+\.
+
+
+--
+-- Data for Name: Track; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Track" ("trackId", name, description, active, duration) FROM stdin;
 55	VaalfoDctb36060c2207a5880c31da491a522106d	Nm4evxi8Cba181aa0a5675dce1660ef8ebc6eaf7b	t	\N
 29	BHlicctsC38b8765329b56b36ca9b2526da0e0784	CF.pGyVHE136e20977164e16491074217a1953f1f	t	\N
 52	YztSsofmqf7e8f6f816649e385481860ad5ae0cf9	CuQBrdlsc91115d9d44c648a97af216ff4685eb70	t	\N
@@ -763,134 +891,9 @@ COPY "Cancion" ("CancionID", "Nombre", "Descripcion", "Activo", "Duracion") FROM
 144	#gcUi7f15d7029d9992401b856f6c2648142b269d	NRSit8o!c17bbbe990aa2590a33a1f2136cb28dc2	t	\N
 145	shtA5zsETcf26d7756313bb4e06416a9e8f4f13a4	ccAKXTdOcda45da26e0f63c59f7529ba5033853c0	t	\N
 146	!Um8d9Yjnc7dcf73c04b6fed45baf364c6146cdef	r5OgSUcTxdc1b6ad3becbd53a80cb5aef92458cd8	t	\N
-\.
-
-
---
--- Name: Cancion_CancionID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Cancion_CancionID_seq"', 146, true);
-
-
---
--- Data for Name: Contacto; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "Contacto" ("UserID", "ContactoID", "Activo") FROM stdin;
-11	8	t
-11	9	t
-\.
-
-
---
--- Data for Name: Genero; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "Genero" ("GeneroID", "Descripcion", "Activo") FROM stdin;
-1	Folklore	t
-2	Pop	t
-3	Latino	t
-\.
-
-
---
--- Data for Name: GeneroAlbum; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "GeneroAlbum" ("AlbumID", "GeneroID") FROM stdin;
-\.
-
-
---
--- Data for Name: GeneroArtista; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "GeneroArtista" ("ArtistaID", "GeneroID") FROM stdin;
-\.
-
-
---
--- Data for Name: GeneroCancion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "GeneroCancion" ("CancionID", "GeneroID") FROM stdin;
-2	3
-1	2
-\.
-
-
---
--- Name: Genero_GeneroID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Genero_GeneroID_seq"', 1, true);
-
-
---
--- Data for Name: MarcaCancion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "MarcaCancion" ("UserID", "CancionID") FROM stdin;
-8	1
-\.
-
-
---
--- Data for Name: Playlist; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "Playlist" ("PlaylistID", "Nombre", "UserCreacion", "Activo") FROM stdin;
-\.
-
-
---
--- Data for Name: PlaylistAlbum; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "PlaylistAlbum" ("PlaylistID", "AlbumID") FROM stdin;
-\.
-
-
---
--- Data for Name: PlaylistCancion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "PlaylistCancion" ("PlaylistID", "CancionID") FROM stdin;
-\.
-
-
---
--- Name: Playlist_PlaylistID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('"Playlist_PlaylistID_seq"', 1, false);
-
-
---
--- Data for Name: PuntuacionCancion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "PuntuacionCancion" ("UserID", "CancionID", "Puntaje") FROM stdin;
-7	1	5
-8	1	10
-\.
-
-
---
--- Data for Name: ReproduccionCancion; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "ReproduccionCancion" ("CancionID", "UserID", "Fecha") FROM stdin;
-\.
-
-
---
--- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY "SequelizeMeta" (name) FROM stdin;
-20170403005935-AddColumnFechaNacimiento.js
+147	WgygVzDS3f42fd21b2553267f99214b802313395d	HPj!KHrnQ913441d762671ef91f7d7f6ff5214c1a	t	\N
+148	HXe80A5Aw90d60c597ba79335e7a6f0806ee1bbf9	v6zuE2jULfc6b76bec60e934a1607d87a4de27fba	t	\N
+149	NCiMHJ#Rg5ed8b6fbe27c9ed2b0d5b7a6b28ffcc6	iGug7erwc8563ce41b2a856e508fde21a7a770afb	t	\N
 \.
 
 
@@ -898,23 +901,36 @@ COPY "SequelizeMeta" (name) FROM stdin;
 -- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY "Users" ("UserID", "firstName", "lastName", email, password, birthdate, active, image, "userName", country) FROM stdin;
+COPY "Users" ("userId", "firstName", "lastName", email, password, birthdate, active, image, "userName", country) FROM stdin;
 221	taller	taller	testtaller2@taller2.com	IiNMNwjul04fecdb13a4efd749bd9d70a220e2a8d	1991-01-01	f	image-e9c7bf1542c708418689742c406f83bbecb85bc9.png	\N	Argentina
 10	Nicolas	Alvarez	nicofer87@gmail.com	Z37A1CAS339702816bcd539cc4b760c47faef7f01	1991-01-01	f	\N	\N	\N
 225	taller	taller	jPOtVbtFW6a4619c2c475044fbfa9ca7d02f5b2f4	Rh##zvGP6a3eca411fa8eaaca3e1c9c35cb333abf	1991-01-01	t	image-88e2e5666d375cacced30ebdb471e17363150263.png	\N	Argentina
 9	Nicolas	Alvarez	nicolasgalvarez91@gmail.com	SXTfXwugP1b4021919cdee8cf5a2bf0ed26df2fbd	1991-01-01	t	\N	\N	\N
+235	taller	taller	Jb2uk.!vgc17055dee5fbe43cd73a0dd36dc3b397	Y9WZqZygC3fe078dcadcd0c695f812e803ff5b3a7	1991-01-01	t	image-674f0bd535bd51713cb2a90ef09b4bd3835b006b.png	\N	Argentina
 226	taller	taller	testtaller2@taller2.com	dTZy!O0Vz46067d117c09cbeb197e3fb92e719343	1991-01-01	f	image-bb37a91175242d0fb02d54cf11401dadb6573bc6.png	\N	Argentina
 229	taller	taller	Ex8GymviS21b014ea4e70abb501415bddef9d186e	kd!zryC2e286beba9fd62290324fcf3cc107ff8e2	1991-01-01	t	image-cfc085242ee604bde63ed0f3cc4ca27aec6ecd3b.png	\N	Argentina
+232	taller	taller	LXsJmDTmfc8749537e8f317a7c233eb5d8bf19a7b	SHWRViZMYb319f548b3d2828a50f33c9a4e9992e0	1991-01-01	t	image-79f6b191c369d99917b9437678d6293d7b3c64e2.png	\N	Argentina
 8	Nicolas	Fernandez	nflabo@gmail.com	lKNjAxrNu371ac65cf02189af3fcb38051eac9bd7	1991-01-01	t	image-6fc42401c1a14648ebb30e732fbf89c42eebcdec.png	\N	\N
+238	taller	taller	xjPzt.Pd.f51144ad2c16ecde35e87ccfcf0b47a7	UObdohLGd011e54336089302b00ebe0091d25b272	1991-01-01	t	image-77c8f8609a4b7a04bef41b869bbc946654e20923.png	\N	Argentina
+241	taller	taller	2oNubcSbi09b83710c41ee909196dc44fb06d649e	SByouIor8333fdb593ca5a488be1f57685e509264	1991-01-01	t	image-d670debe65be866520c1dd50220ae0fa7a49b24b.png	\N	Argentina
 222	taller	taller	uO38Kv3dGc214ae5e48b707a89e0af5b334fd7f81	2eJRWeCgr5618211ce474aafc8de21c0f2d2b2e07	1991-01-01	t	image-d0ad182047e5d63f2f481addb622636b51103c01.png	\N	Argentina
+236	taller	taller	sZj7mRgDA6ec77b8fcdbbba997e255b68a256dadd	ZJxlugNzl3f5fcfb827db1baabecb39527d0c5c6b	1991-01-01	t	image-ef76c37da9ed4a8efdd29159dc32aa6d0cf53695.png	\N	Argentina
 223	taller	taller	testtaller2@taller2.com	4ve9M5yJu3e2656a0ceb9bcde17e8b5be64ff0b3d	1991-01-01	f	image-8681938b9633e6c57687f21aec813d17867c4e69.png	\N	Argentina
 227	taller	taller	sDS4FErmp08d71c85086a047217111e140493a74f	BU!qUNPn381e71a25f6e624e828706784373bdb92	1991-01-01	t	image-86408a3511d4adcb6fed8de3a4f5c52b98c8db61.png	\N	Argentina
-7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-47b705f211158bf7f734b5d500121a80cba8bac2.png	\N	\N
+239	taller	taller	fCSG0oLoQ22012f144b7a2c5f88d89e2882940417	h3!jwSU4G4e4842bdbec9d1d64714f4758306fdda	1991-01-01	t	image-64a4f65bdf0e8d7ecfad6cc22911645a6bee92d4.png	\N	Argentina
 220	taller	taller	testtaller2@taller2.com	vLYg5IoFPdfa16c6e9462ce12196f720f3f4f8a34	1991-01-01	f	image-96e7d27555a7a6f12cbb562c7e77f02179a2e444.png	\N	Argentina
 230	taller	taller	UIC.0dFnNd63d66c7fa27d01ed9c072ecd9006157	HMw8w4p3ia02894a7eaed3b21c3fc15d43a9ee562	1991-01-01	t	image-964091b37750d0824abff362249eac0e88149c83.png	\N	Argentina
-11	taller	taller	testtaller2@taller2.com	5ozpNwv0I24a52bfd2ffbdc402cc6d31faf8fa57e	1991-01-01	t	image-9c9b320ce3d86cd8caaa0364fb7685002c2023ef.png	\N	Argentina
+233	taller	taller	do1FuQsf!ce1b5906640a751a2cd35967d4c6662c	i0RKaNU2S9c124836a1bf192843e5a7a2f5bcf5cd	1991-01-01	t	image-8637ef15b562587c7649afd769e2912d3ab10f9b.png	\N	Argentina
+242	taller	taller	gB5ximVpN57c8abd21b1ca6ee7c0596fe02634512	Ua0VZg7E1ffc360c0525c714ea8e093d3e1c4786e	1991-01-01	t	image-1f6a47248cfd97e5fdb13bbe299bf55022477738.png	\N	Argentina
+7	Marcos	Pernica	marcospernica@yahoo.com.ar	ez0wD8!G#f7999c46846ac1ca868ce3b747c059db	1991-01-01	t	image-542daa53b45a85c47202b451c2f6cccfdedc99c1.png	\N	\N
+231	taller	taller	U9y!jrlaT0010592106e6bc6597fb3e8f3911f9b2	xcyuDez3c262c62b6ccd9bb2d58118d588b82f7c0	1991-01-01	t	image-2f456c78618dd0c47de5b7a3e466b1c08bcdc413.png	\N	Argentina
 224	taller	taller	ObruH.pePfe75c2c1080cc085173ea58aaa43cfb5	a8BWxJjuD729c39a25ba4fbcac15eaec46254ef8b	1991-01-01	t	image-41055e2218db871564981f82638a6a4974f99a54.png	\N	Argentina
+237	taller	taller	wf5D9zHP.6c9bf21d00ed0bf067dd3322b1ec9ec3	jO9e#9OiTb3c7f5e3a49049958cc2446e616c4c3b	1991-01-01	t	image-94b6dedeb378f1a6147023d8c70c534faceba7f6.png	\N	Argentina
+243	taller	taller	2kU37cCDD50f73e64c40a6b85d4a688d84cace91b	01#O3sjDHbeb9f8efd629b9e5b7c02d2a6e45546e	1991-01-01	t	image-fa89869df35e7de2ebf1b0c42e4f1d8488b1436b.png	\N	Argentina
+11	taller	taller	testtaller2@taller2.com	xhd5wGLRH59df3a4a6feccbbef459aacac4e958f2	1991-01-01	t	image-a54ab4d7e268893c382a9c160e28f1bed79e5ff2.png	\N	Argentina
 228	taller	taller	Aow2ff9Dsa1ee17932673fb1784a0525be40cdf30	DBu#YoMJq9bda765886352c7455e7df65d8fa11e6	1991-01-01	t	image-838c96ff6d57fa8fe107d851611aec247a6d0402.png	\N	Argentina
+234	taller	taller	xmZq!pyMXafb88592303d3c1fccd1ab8bbb7e634a	Iw3XUukvnbc617af5c7e5be29a4d5a998ea6a4628	1991-01-01	t	image-d300210ad1ad5c232d28185e6bb01cc6c8038616.png	\N	Argentina
+240	taller	taller	yGUAlmNakc652a5a693e171e0fef90eac760fbcc4	iu5deMlm0b5bab3c561f3ab9ed6917a974e27d7bf	1991-01-01	t	image-34abbfa713a500582d33de1aac987f2147000f9e.png	\N	Argentina
 \.
 
 
@@ -922,15 +938,15 @@ COPY "Users" ("UserID", "firstName", "lastName", email, password, birthdate, act
 -- Name: Users_UserID_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"Users_UserID_seq"', 230, true);
+SELECT pg_catalog.setval('"Users_UserID_seq"', 243, true);
 
 
 --
--- Name: AlbumCancion AlbumCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: AlbumTrack AlbumCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "AlbumCancion"
-    ADD CONSTRAINT "AlbumCancion_pkey" PRIMARY KEY ("AlbumID", "CancionID");
+ALTER TABLE ONLY "AlbumTrack"
+    ADD CONSTRAINT "AlbumCancion_pkey" PRIMARY KEY ("albumId", "trackId");
 
 
 --
@@ -938,87 +954,87 @@ ALTER TABLE ONLY "AlbumCancion"
 --
 
 ALTER TABLE ONLY "Album"
-    ADD CONSTRAINT "Album_pkey" PRIMARY KEY ("AlbumID");
+    ADD CONSTRAINT "Album_pkey" PRIMARY KEY ("albumId");
 
 
 --
--- Name: ArtistaCancion ArtistaCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistTrack ArtistaCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ArtistaCancion"
-    ADD CONSTRAINT "ArtistaCancion_pkey" PRIMARY KEY ("ArtistaID", "CancionID");
-
-
---
--- Name: ArtistaUser ArtistaUser_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ArtistaUser"
-    ADD CONSTRAINT "ArtistaUser_pkey" PRIMARY KEY ("ArtistaID", "UserID");
+ALTER TABLE ONLY "ArtistTrack"
+    ADD CONSTRAINT "ArtistaCancion_pkey" PRIMARY KEY ("artistId", "trackId");
 
 
 --
--- Name: Artista Artista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistUser ArtistaUser_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Artista"
-    ADD CONSTRAINT "Artista_pkey" PRIMARY KEY ("ArtistaID");
-
-
---
--- Name: Cancion Cancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Cancion"
-    ADD CONSTRAINT "Cancion_pkey" PRIMARY KEY ("CancionID");
+ALTER TABLE ONLY "ArtistUser"
+    ADD CONSTRAINT "ArtistaUser_pkey" PRIMARY KEY ("artistId", "userId");
 
 
 --
--- Name: Contacto Contacto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: Artist Artista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Contacto"
-    ADD CONSTRAINT "Contacto_pkey" PRIMARY KEY ("UserID", "ContactoID");
-
-
---
--- Name: GeneroAlbum GeneroAlbum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "GeneroAlbum"
-    ADD CONSTRAINT "GeneroAlbum_pkey" PRIMARY KEY ("AlbumID", "GeneroID");
+ALTER TABLE ONLY "Artist"
+    ADD CONSTRAINT "Artista_pkey" PRIMARY KEY ("artistId");
 
 
 --
--- Name: GeneroArtista GeneroArtista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: Track Cancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "GeneroArtista"
-    ADD CONSTRAINT "GeneroArtista_pkey" PRIMARY KEY ("ArtistaID", "GeneroID");
-
-
---
--- Name: GeneroCancion GeneroCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "GeneroCancion"
-    ADD CONSTRAINT "GeneroCancion_pkey" PRIMARY KEY ("CancionID", "GeneroID");
+ALTER TABLE ONLY "Track"
+    ADD CONSTRAINT "Cancion_pkey" PRIMARY KEY ("trackId");
 
 
 --
--- Name: Genero Genero_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: Contact Contacto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Genero"
-    ADD CONSTRAINT "Genero_pkey" PRIMARY KEY ("GeneroID");
+ALTER TABLE ONLY "Contact"
+    ADD CONSTRAINT "Contacto_pkey" PRIMARY KEY ("userId", "contactId");
 
 
 --
--- Name: MarcaCancion MarcaCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: GenderAlbum GeneroAlbum_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MarcaCancion"
-    ADD CONSTRAINT "MarcaCancion_pkey" PRIMARY KEY ("UserID", "CancionID");
+ALTER TABLE ONLY "GenderAlbum"
+    ADD CONSTRAINT "GeneroAlbum_pkey" PRIMARY KEY ("albumId", "genderId");
+
+
+--
+-- Name: GenderArtist GeneroArtista_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "GenderArtist"
+    ADD CONSTRAINT "GeneroArtista_pkey" PRIMARY KEY ("artistId", "genderId");
+
+
+--
+-- Name: GenderTrack GeneroCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "GenderTrack"
+    ADD CONSTRAINT "GeneroCancion_pkey" PRIMARY KEY ("trackId", "genderId");
+
+
+--
+-- Name: Gender Genero_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Gender"
+    ADD CONSTRAINT "Genero_pkey" PRIMARY KEY ("genderId");
+
+
+--
+-- Name: FavoriteTrack MarcaCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "FavoriteTrack"
+    ADD CONSTRAINT "MarcaCancion_pkey" PRIMARY KEY ("userId", "trackId");
 
 
 --
@@ -1026,7 +1042,7 @@ ALTER TABLE ONLY "MarcaCancion"
 --
 
 ALTER TABLE ONLY "Users"
-    ADD CONSTRAINT "PKUserID" PRIMARY KEY ("UserID");
+    ADD CONSTRAINT "PKUserID" PRIMARY KEY ("userId");
 
 
 --
@@ -1034,15 +1050,15 @@ ALTER TABLE ONLY "Users"
 --
 
 ALTER TABLE ONLY "PlaylistAlbum"
-    ADD CONSTRAINT "PlaylistAlbum_pkey" PRIMARY KEY ("PlaylistID", "AlbumID");
+    ADD CONSTRAINT "PlaylistAlbum_pkey" PRIMARY KEY ("playlistId", "albumId");
 
 
 --
--- Name: PlaylistCancion PlaylistCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: PlaylistTrack PlaylistCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "PlaylistCancion"
-    ADD CONSTRAINT "PlaylistCancion_pkey" PRIMARY KEY ("PlaylistID", "CancionID");
+ALTER TABLE ONLY "PlaylistTrack"
+    ADD CONSTRAINT "PlaylistCancion_pkey" PRIMARY KEY ("playlistId", "trackId");
 
 
 --
@@ -1050,23 +1066,23 @@ ALTER TABLE ONLY "PlaylistCancion"
 --
 
 ALTER TABLE ONLY "Playlist"
-    ADD CONSTRAINT "Playlist_pkey" PRIMARY KEY ("PlaylistID");
+    ADD CONSTRAINT "Playlist_pkey" PRIMARY KEY ("playlistId");
 
 
 --
--- Name: PuntuacionCancion PuntuacionCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: RateTrack PuntuacionCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "PuntuacionCancion"
-    ADD CONSTRAINT "PuntuacionCancion_pkey" PRIMARY KEY ("UserID", "CancionID");
+ALTER TABLE ONLY "RateTrack"
+    ADD CONSTRAINT "PuntuacionCancion_pkey" PRIMARY KEY ("userId", "trackId");
 
 
 --
--- Name: ReproduccionCancion ReproduccionCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: PlayTrack ReproduccionCancion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ReproduccionCancion"
-    ADD CONSTRAINT "ReproduccionCancion_pkey" PRIMARY KEY ("CancionID", "UserID");
+ALTER TABLE ONLY "PlayTrack"
+    ADD CONSTRAINT "ReproduccionCancion_pkey" PRIMARY KEY ("trackId", "userId");
 
 
 --
@@ -1082,7 +1098,7 @@ ALTER TABLE ONLY "SequelizeMeta"
 --
 
 ALTER TABLE ONLY "PlaylistAlbum"
-    ADD CONSTRAINT "FKPlaylistAlbumIDAlbum" FOREIGN KEY ("AlbumID") REFERENCES "Album"("AlbumID");
+    ADD CONSTRAINT "FKPlaylistAlbumIDAlbum" FOREIGN KEY ("albumId") REFERENCES "Album"("albumId");
 
 
 --
@@ -1090,183 +1106,183 @@ ALTER TABLE ONLY "PlaylistAlbum"
 --
 
 ALTER TABLE ONLY "PlaylistAlbum"
-    ADD CONSTRAINT "FKPlaylistAlbumIDPlaylist" FOREIGN KEY ("PlaylistID") REFERENCES "Playlist"("PlaylistID");
+    ADD CONSTRAINT "FKPlaylistAlbumIDPlaylist" FOREIGN KEY ("playlistId") REFERENCES "Playlist"("playlistId");
 
 
 --
--- Name: AlbumCancion FK_AlbumCancionIDAlbum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: AlbumTrack FK_AlbumCancionIDAlbum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "AlbumCancion"
-    ADD CONSTRAINT "FK_AlbumCancionIDAlbum" FOREIGN KEY ("AlbumID") REFERENCES "Album"("AlbumID");
-
-
---
--- Name: AlbumCancion FK_AlbumCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "AlbumCancion"
-    ADD CONSTRAINT "FK_AlbumCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
+ALTER TABLE ONLY "AlbumTrack"
+    ADD CONSTRAINT "FK_AlbumCancionIDAlbum" FOREIGN KEY ("albumId") REFERENCES "Album"("albumId");
 
 
 --
--- Name: ArtistaCancion FK_ArtistaCancionIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: AlbumTrack FK_AlbumCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ArtistaCancion"
-    ADD CONSTRAINT "FK_ArtistaCancionIDArtista" FOREIGN KEY ("ArtistaID") REFERENCES "Artista"("ArtistaID");
-
-
---
--- Name: ArtistaCancion FK_ArtistaCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ArtistaCancion"
-    ADD CONSTRAINT "FK_ArtistaCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
+ALTER TABLE ONLY "AlbumTrack"
+    ADD CONSTRAINT "FK_AlbumCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
 
 
 --
--- Name: ArtistaUser FK_ArtistaUserIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistTrack FK_ArtistaCancionIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ArtistaUser"
-    ADD CONSTRAINT "FK_ArtistaUserIDArtista" FOREIGN KEY ("ArtistaID") REFERENCES "Artista"("ArtistaID");
-
-
---
--- Name: ArtistaUser FK_ArtistaUserIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "ArtistaUser"
-    ADD CONSTRAINT "FK_ArtistaUserIDUser" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID");
+ALTER TABLE ONLY "ArtistTrack"
+    ADD CONSTRAINT "FK_ArtistaCancionIDArtista" FOREIGN KEY ("artistId") REFERENCES "Artist"("artistId");
 
 
 --
--- Name: Contacto FK_ContactoIDContacto; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistTrack FK_ArtistaCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "Contacto"
-    ADD CONSTRAINT "FK_ContactoIDContacto" FOREIGN KEY ("ContactoID") REFERENCES "Users"("UserID");
-
-
---
--- Name: Contacto FK_ContactoIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "Contacto"
-    ADD CONSTRAINT "FK_ContactoIDUser" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID");
+ALTER TABLE ONLY "ArtistTrack"
+    ADD CONSTRAINT "FK_ArtistaCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
 
 
 --
--- Name: GeneroAlbum FK_GeneroAlbumIDAlbum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistUser FK_ArtistaUserIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "GeneroAlbum"
-    ADD CONSTRAINT "FK_GeneroAlbumIDAlbum" FOREIGN KEY ("AlbumID") REFERENCES "Album"("AlbumID");
-
-
---
--- Name: GeneroAlbum FK_GeneroAlbumIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "GeneroAlbum"
-    ADD CONSTRAINT "FK_GeneroAlbumIDGenero" FOREIGN KEY ("GeneroID") REFERENCES "Genero"("GeneroID");
+ALTER TABLE ONLY "ArtistUser"
+    ADD CONSTRAINT "FK_ArtistaUserIDArtista" FOREIGN KEY ("artistId") REFERENCES "Artist"("artistId");
 
 
 --
--- Name: GeneroArtista FK_GeneroArtistaIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: ArtistUser FK_ArtistaUserIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "GeneroArtista"
-    ADD CONSTRAINT "FK_GeneroArtistaIDArtista" FOREIGN KEY ("ArtistaID") REFERENCES "Artista"("ArtistaID");
-
-
---
--- Name: GeneroArtista FK_GeneroArtistaIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "GeneroArtista"
-    ADD CONSTRAINT "FK_GeneroArtistaIDGenero" FOREIGN KEY ("GeneroID") REFERENCES "Genero"("GeneroID");
+ALTER TABLE ONLY "ArtistUser"
+    ADD CONSTRAINT "FK_ArtistaUserIDUser" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
 
 
 --
--- Name: GeneroCancion FK_GeneroCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: Contact FK_ContactoIDContacto; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "GeneroCancion"
-    ADD CONSTRAINT "FK_GeneroCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
-
-
---
--- Name: GeneroCancion FK_GeneroCancionIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "GeneroCancion"
-    ADD CONSTRAINT "FK_GeneroCancionIDGenero" FOREIGN KEY ("GeneroID") REFERENCES "Genero"("GeneroID");
+ALTER TABLE ONLY "Contact"
+    ADD CONSTRAINT "FK_ContactoIDContacto" FOREIGN KEY ("contactId") REFERENCES "Users"("userId");
 
 
 --
--- Name: MarcaCancion FK_MarcaCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: Contact FK_ContactoIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "MarcaCancion"
-    ADD CONSTRAINT "FK_MarcaCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
-
-
---
--- Name: MarcaCancion FK_MarcaCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "MarcaCancion"
-    ADD CONSTRAINT "FK_MarcaCancionIDUser" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID");
+ALTER TABLE ONLY "Contact"
+    ADD CONSTRAINT "FK_ContactoIDUser" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
 
 
 --
--- Name: PlaylistCancion FK_PlaylistCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: GenderAlbum FK_GeneroAlbumIDAlbum; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "PlaylistCancion"
-    ADD CONSTRAINT "FK_PlaylistCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
-
-
---
--- Name: PlaylistCancion FK_PlaylistCancionIDPlaylist; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "PlaylistCancion"
-    ADD CONSTRAINT "FK_PlaylistCancionIDPlaylist" FOREIGN KEY ("PlaylistID") REFERENCES "Playlist"("PlaylistID");
+ALTER TABLE ONLY "GenderAlbum"
+    ADD CONSTRAINT "FK_GeneroAlbumIDAlbum" FOREIGN KEY ("albumId") REFERENCES "Album"("albumId");
 
 
 --
--- Name: PuntuacionCancion FK_PuntuacionCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: GenderAlbum FK_GeneroAlbumIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "PuntuacionCancion"
-    ADD CONSTRAINT "FK_PuntuacionCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
-
-
---
--- Name: PuntuacionCancion FK_PuntuacionCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY "PuntuacionCancion"
-    ADD CONSTRAINT "FK_PuntuacionCancionIDUser" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID");
+ALTER TABLE ONLY "GenderAlbum"
+    ADD CONSTRAINT "FK_GeneroAlbumIDGenero" FOREIGN KEY ("genderId") REFERENCES "Gender"("genderId");
 
 
 --
--- Name: ReproduccionCancion FK_ReproduccionCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: GenderArtist FK_GeneroArtistaIDArtista; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ReproduccionCancion"
-    ADD CONSTRAINT "FK_ReproduccionCancionIDCancion" FOREIGN KEY ("CancionID") REFERENCES "Cancion"("CancionID");
+ALTER TABLE ONLY "GenderArtist"
+    ADD CONSTRAINT "FK_GeneroArtistaIDArtista" FOREIGN KEY ("artistId") REFERENCES "Artist"("artistId");
 
 
 --
--- Name: ReproduccionCancion FK_ReproduccionCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: GenderArtist FK_GeneroArtistaIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY "ReproduccionCancion"
-    ADD CONSTRAINT "FK_ReproduccionCancionIDUser" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID");
+ALTER TABLE ONLY "GenderArtist"
+    ADD CONSTRAINT "FK_GeneroArtistaIDGenero" FOREIGN KEY ("genderId") REFERENCES "Gender"("genderId");
+
+
+--
+-- Name: GenderTrack FK_GeneroCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "GenderTrack"
+    ADD CONSTRAINT "FK_GeneroCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
+
+
+--
+-- Name: GenderTrack FK_GeneroCancionIDGenero; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "GenderTrack"
+    ADD CONSTRAINT "FK_GeneroCancionIDGenero" FOREIGN KEY ("genderId") REFERENCES "Gender"("genderId");
+
+
+--
+-- Name: FavoriteTrack FK_MarcaCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "FavoriteTrack"
+    ADD CONSTRAINT "FK_MarcaCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
+
+
+--
+-- Name: FavoriteTrack FK_MarcaCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "FavoriteTrack"
+    ADD CONSTRAINT "FK_MarcaCancionIDUser" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+
+
+--
+-- Name: PlaylistTrack FK_PlaylistCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PlaylistTrack"
+    ADD CONSTRAINT "FK_PlaylistCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
+
+
+--
+-- Name: PlaylistTrack FK_PlaylistCancionIDPlaylist; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PlaylistTrack"
+    ADD CONSTRAINT "FK_PlaylistCancionIDPlaylist" FOREIGN KEY ("playlistId") REFERENCES "Playlist"("playlistId");
+
+
+--
+-- Name: RateTrack FK_PuntuacionCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RateTrack"
+    ADD CONSTRAINT "FK_PuntuacionCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
+
+
+--
+-- Name: RateTrack FK_PuntuacionCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RateTrack"
+    ADD CONSTRAINT "FK_PuntuacionCancionIDUser" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
+
+
+--
+-- Name: PlayTrack FK_ReproduccionCancionIDCancion; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PlayTrack"
+    ADD CONSTRAINT "FK_ReproduccionCancionIDCancion" FOREIGN KEY ("trackId") REFERENCES "Track"("trackId");
+
+
+--
+-- Name: PlayTrack FK_ReproduccionCancionIDUser; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PlayTrack"
+    ADD CONSTRAINT "FK_ReproduccionCancionIDUser" FOREIGN KEY ("userId") REFERENCES "Users"("userId");
 
 
 --
@@ -1274,7 +1290,7 @@ ALTER TABLE ONLY "ReproduccionCancion"
 --
 
 ALTER TABLE ONLY "Playlist"
-    ADD CONSTRAINT "FK_UserCreacion" FOREIGN KEY ("UserCreacion") REFERENCES "Users"("UserID");
+    ADD CONSTRAINT "FK_UserCreacion" FOREIGN KEY (owner) REFERENCES "Users"("userId");
 
 
 --

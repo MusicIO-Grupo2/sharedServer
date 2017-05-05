@@ -36,12 +36,12 @@ Router.post('/tracks/',functionsDatabase.altaCancion,  function(req, res,next) {
 Router.delete('/tracks/:id',functionsDatabase.bajaCancion,  function(req, res,next) {});
 Router.put('/tracks/:id',functionsDatabase.actualizarCancion,  function(req, res,next) {});
 Router.put('/tracks/ReactivarCancion/:id',functionsDatabase.reactivarCancion,  function(req, res,next) {});
-Router.post('/tracks/:id/genero/:generoid/',functionsDatabase.altaGeneroCancion,  function(req, res,next) {});
-Router.delete('/tracks/:id/genero/:generoid/',functionsDatabase.bajaGeneroCancion,  function(req, res,next) {});
+Router.post('/tracks/:id/gender/:genderId/',functionsDatabase.altaGeneroCancion,  function(req, res,next) {});
+Router.delete('/tracks/:id/gender/:genderId/',functionsDatabase.bajaGeneroCancion,  function(req, res,next) {});
 Router.post('/tracks/:id/popularity',functionsDatabase.puntuarCancion,  function(req, res,next) {});
 Router.post('/tracks/:id/like',functionsDatabase.marcarCancion,  function(req, res,next) {});
 Router.post('/tracks/:id/unlike',functionsDatabase.desmarcarCancion,  function(req, res,next) {}); //La hacemos por post porque usamos el body.
-Router.get('/tracks/ObtenerPuntuacionCancion/:id',functionsDatabase.obtenerPuntuacionCancion,  function(req, res,next) {});
+Router.get('/tracks/:id/popularity',functionsDatabase.obtenerPuntuacionCancion,  function(req, res,next) {});
 
 
 module.exports = Router;

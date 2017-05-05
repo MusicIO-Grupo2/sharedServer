@@ -1,8 +1,8 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Album', {
-    albumId: {
+  return sequelize.define('Track', {
+    trackId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
@@ -12,16 +12,20 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    dateRelease: {
-      type: DataTypes.DATE,
+    description: {
+      type: DataTypes.STRING,
       allowNull: true
     },
     active: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
       defaultValue: true
+    },
+    duration: {
+      type: DataTypes.BIGINT,
+      allowNull: true
     }
   }, {
-    tableName: 'Album'
+    tableName: 'Track'
   });
 };

@@ -2,25 +2,25 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Playlist', {
-    PlaylistID: {
+    playlistId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    Nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    UserCreacion: {
+    owner: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
         model: 'Users',
-        key: 'UserID'
+        key: 'userId'
       }
     },
-    Activo: {
+    active: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: true

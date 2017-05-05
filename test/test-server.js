@@ -120,7 +120,7 @@ describe('tracks', function() {
    	});
 	it('Obtener Puntuacion Cancion', function(done) {
 		       chai.request(server)
-		      .get('/tracks/ObtenerPuntuacionCancion/1')
+		      .get('/tracks/1/popularity/')
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -129,7 +129,7 @@ describe('tracks', function() {
    	});
 	it('Obtener Puntuacion Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .get('/tracks/ObtenerPuntuacionCancion/0')
+		      .get('/tracks/0/popularity/')
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -184,7 +184,7 @@ describe('tracks', function() {
 	it('Alta Cancion', function(done) {
 		       chai.request(server)
 		      .post('/tracks/')
-		      .send({"Nombre":helperPass.hash("testeame"),"Descripcion":helperPass.hash("testeame")})
+		      .send({"name":helperPass.hash("testeame"),"description":helperPass.hash("testeame")})
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -198,7 +198,7 @@ describe('tracks', function() {
 	it('Alta Cancion existente', function(done) {
 		       chai.request(server)
 		      .post('/tracks/')
-		      .send({"Nombre":"Testeame","Descripcion":"Testeame"})
+		      .send({"name":"Testeame","description":"Testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -223,7 +223,7 @@ describe('tracks', function() {
    	});
 	it('Alta Genero Cancion', function(done) {
 		       chai.request(server)
-		      .post('/tracks/1/genero/2/')
+		      .post('/tracks/1/gender/2/')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -236,7 +236,7 @@ describe('tracks', function() {
    	});
 	it('Alta Genero Cancion Existente', function(done) {
 		       chai.request(server)
-		      .post('/tracks/1/genero/2/')
+		      .post('/tracks/1/gender/2/')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -249,7 +249,7 @@ describe('tracks', function() {
    	});
 	it('Baja Genero Cancion', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/1/genero/2')
+		      .delete('/tracks/1/gender/2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -262,7 +262,7 @@ describe('tracks', function() {
    	});
 	it('Baja Genero Cancion Inexistente', function(done) {
 		       chai.request(server)
-		      .delete('/tracks/tracks/1/genero/2')
+		      .delete('/tracks/1/gender/2')
 		      .end(function(err, res){
 			if (res.status==404){
 				res.should.have.status(404);
@@ -276,7 +276,7 @@ describe('tracks', function() {
 	it('Actualizar Cancion', function(done) {
 		       chai.request(server)
 		      .put('/tracks/1')
-		      .send({"Nombre":"testeame","Descripcion":"testeame"})
+		      .send({"name":"testeame","description":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(200);
 			res.should.be.json;
@@ -286,7 +286,7 @@ describe('tracks', function() {
 	it('Actualizar Cancion Inexistente', function(done) {
 		       chai.request(server)
 		      .put('/tracks/0')
-		      .send({"Nombre":"testeame","Descripcion":"testeame"})
+		      .send({"name":"testeame","description":"testeame"})
 		      .end(function(err, res){
 			res.should.have.status(404);
 			res.should.be.json;
@@ -450,7 +450,7 @@ it('Reactivar Usuario by id', function(done) {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.UserID.should.equal('11');
+        res.body.user.userId.should.equal('11');
         done();
       });
    });
@@ -486,7 +486,7 @@ it('Reactivar Usuario by id', function(done) {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.UserID.should.equal('11');
+        res.body.user.userId.should.equal('11');
         done();
       });
    });
@@ -506,7 +506,7 @@ it('Reactivar Usuario by id', function(done) {
         res.should.have.status(200);
         res.should.be.json;
         res.body.should.have.property('user');
-        res.body.user.UserID.should.equal('11');
+        res.body.user.userId.should.equal('11');
         done();
       });
    });

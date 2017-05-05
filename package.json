@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MusicIO-Grupo2/sharedServer#readme",
   "dependencies": {
+    "angular-base64-upload": "^0.1.22",
     "asyn": "0.0.1",
     "jade": "^1.11.0",
     "log4js": "^1.1.1",

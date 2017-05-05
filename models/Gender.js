@@ -1,27 +1,23 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Album', {
-    albumId: {
+  return sequelize.define('Gender', {
+    genderId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    description: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    dateRelease: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
     active: {
       type: DataTypes.BOOLEAN,
-      allowNull: true,
+      allowNull: false,
       defaultValue: true
     }
   }, {
-    tableName: 'Album'
+    tableName: 'Gender'
   });
 };

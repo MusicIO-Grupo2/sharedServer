@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('PlaylistAlbum', {
+  return sequelize.define('PlaylistTrack', {
     playlistId: {
       type: DataTypes.BIGINT,
       allowNull: false,
@@ -11,15 +11,15 @@ module.exports = function(sequelize, DataTypes) {
         key: 'playlistId'
       }
     },
-    albumId: {
+    trackId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
-        model: 'Album',
-        key: 'albumId'
+        model: 'Track',
+        key: 'trackId'
       }
     }
   }, {
-    tableName: 'PlaylistAlbum'
+    tableName: 'PlaylistTrack'
   });
 };

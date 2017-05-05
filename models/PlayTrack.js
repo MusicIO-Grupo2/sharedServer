@@ -1,25 +1,29 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('PlaylistAlbum', {
-    playlistId: {
+  return sequelize.define('PlayTrack', {
+    trackId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
       references: {
-        model: 'Playlist',
-        key: 'playlistId'
+        model: 'Track',
+        key: 'trackId'
       }
     },
-    albumId: {
+    userId: {
       type: DataTypes.BIGINT,
       allowNull: false,
       references: {
-        model: 'Album',
-        key: 'albumId'
+        model: 'Users',
+        key: 'userId'
       }
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false
     }
   }, {
-    tableName: 'PlaylistAlbum'
+    tableName: 'PlayTrack'
   });
 };
