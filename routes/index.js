@@ -24,7 +24,7 @@ Router.get('/users/me/',functionsDatabase.getUserMe,  function(req, res,next) {}
 Router.post('/users/',functionsDatabase.registerUser,  function(req, res,next) {});
 Router.delete('/users/:id',functionsDatabase.deleteUser,  function(req, res,next) {});
 Router.delete('/users/email/:email',functionsDatabase.deleteUserByMail,  function(req, res,next) {});
-Router.put('/users/:id',functionsDatabase.updateUser,  function(req, res,next) {});
+Router.put('/users/me',functionsDatabase.updateUser,  function(req, res,next) {});
 Router.put('/users/me/photo/',functionsDatabase.updateFotoPerfil,  function(req, res,next) {});
 Router.put('/users/Reactivar/:id',functionsDatabase.reactivarUser,  function(req, res,next) {});
 
